@@ -1,11 +1,9 @@
-const isVRAvailable = () => {
+const isVRAvailable = async () => {
     const xrSessionSupported = polyfill.xr.isSessionSupported()
     if(xrSessionSupported === undefined){
         return false;
     }
-    xrSessionSupported.then((val)=>{return val})
-    console.log("here")
-    
+    return await xrSessionSupported.then((val)=>{return val})
 }
 
 export default{
