@@ -13,7 +13,7 @@ const unityContext = new UnityContext({
 
 const VRContainer = (props) =>{
 
-  if(isVREnabled()){
+  if(VRService.isVRAvailable()){
     return (
       <VRComponent
         {
