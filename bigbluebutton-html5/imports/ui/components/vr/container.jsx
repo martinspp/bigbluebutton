@@ -24,8 +24,7 @@ export const unityContext = new UnityContext({
 
 
 export const startVR = () => {
-  const {unityContext} = this.props
-  unityContext.startVR()
+  unityContext.unityInstance.Module.WebXR.toggleVR()
 }
 
 export default withTracker(() =>{
