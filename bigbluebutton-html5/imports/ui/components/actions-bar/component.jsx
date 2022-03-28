@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import cx from 'classnames';
 import Button from '/imports/ui/components/button/component';
 import CaptionsButtonContainer from '/imports/ui/components/actions-bar/captions/container';
-import VRContainer from '/imports/ui/components/vr/component'
 import withShortcutHelper from '/imports/ui/components/shortcut-help/service';
 import { styles } from './styles.scss';
 import ActionsDropdown from './actions-dropdown/container';
@@ -39,7 +38,6 @@ class ActionsBar extends PureComponent {
       actionsBarStyle,
       isOldMinimizeButtonEnabled,
       isVRAvailable,
-      unityContext
     } = this.props;
 
     return (
@@ -135,7 +133,7 @@ class ActionsBar extends PureComponent {
                   color="primary"
                   circle
                   onClick={() => {
-                    unityContext.startVR()
+                    console.log("click")
                   }} 
                 />
               )

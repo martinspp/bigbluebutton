@@ -20,5 +20,5 @@ class VRComponent extends PureComponent{
   }
 }
 
-export default injectIntl(VRComponent);
+export default VRComponent;
 
