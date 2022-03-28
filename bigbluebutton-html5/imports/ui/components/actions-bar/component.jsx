@@ -133,7 +133,7 @@ class ActionsBar extends PureComponent {
                   color="primary"
                   circle
                   onClick={() => {
-                    print("a");
+                    console.log("clicking vr button");
                   }} 
                 />
               )
