@@ -135,7 +135,7 @@ class ActionsBar extends PureComponent {
                   circle
                   onClick={() => {
                     console.log("click")
-                    VRContainer.startVR()
+                    VRContainer.unityContext.startVR()
                   }} 
                 />
               )
