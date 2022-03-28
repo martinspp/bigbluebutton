@@ -38,7 +38,8 @@ class ActionsBar extends PureComponent {
       layoutContextDispatch,
       actionsBarStyle,
       isOldMinimizeButtonEnabled,
-      isVRAvailable
+      isVRAvailable,
+      enableVR
     } = this.props;
 
     return (
@@ -125,6 +126,7 @@ class ActionsBar extends PureComponent {
               />
             )
             : null}
+
             {isVRAvailable
               ? (
                 <Button
@@ -133,8 +135,7 @@ class ActionsBar extends PureComponent {
                   color="primary"
                   circle
                   onClick={() => {
-                    console.log("hlep")
-                    VRContainer.startVR()
+                    enableVR()
                   }} 
                 />
               )
