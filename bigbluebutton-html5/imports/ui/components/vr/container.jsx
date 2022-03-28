@@ -24,7 +24,11 @@ export const unityContext = new UnityContext({
 
 
 export const startVR = () => {
-  unityContext.unityInstance.Module.WebXR.toggleVR()
+  if(VRService.isVRAvailable)
+    unityContext.unityInstance.Module.WebXR.toggleVR()
+  else{
+    alert("VR Is not supported")
+  }
 }
 
 export default withTracker(() =>{

@@ -125,22 +125,18 @@ class ActionsBar extends PureComponent {
               />
             )
             : null}
-
-            {isVRAvailable
-              ? (
-                <Button
-                  label='vr'
-                  size="1g"
-                  color="primary"
-                  circle
-                  onClick={() => {
-                    startVR()
-                  }
-                    
-                  } 
-                />
-              )
-              : null} 
+            <Button
+              label='vr'
+              size="1g"
+              color="primary"
+              circle
+              onClick={() => {
+                startVR()
+              }
+                
+              } 
+            />
+              
         </div>
       </div>
     );
