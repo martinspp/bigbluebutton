@@ -128,12 +128,11 @@ class ActionsBar extends PureComponent {
             {isVRAvailable
               ? (
                 <Button
-                  icon='hand'
                   label='vr'
                   size="1g"
                   color="primary"
                   circle
-                  onClick={VRContainer.startVR} 
+                  onClick={VRContainer.startVR()} 
                 />
               )
               : null} 
