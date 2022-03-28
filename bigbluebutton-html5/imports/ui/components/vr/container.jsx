@@ -3,7 +3,7 @@ import VRComponent from './component'
 import VRService from './service'
 import Unity, { UnityContext } from "react-unity-webgl";
 import { withTracker } from 'meteor/react-meteor-data';
-
+import {getVideoStreams} from '/imports/ui/components/video-provider/service'
 
 
 const VRContainer = (props) =>{
@@ -32,7 +32,8 @@ export const startVR = () => {
       alert("VR Is not supported")
     }  
   }
-  isVrAvailable()
+  //isVrAvailable()
+  console.log(getVideoStreams())
 }
 
 export default withTracker(() =>{
