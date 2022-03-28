@@ -33,7 +33,7 @@ export const startVR = () => {
     }  
   }
   //isVrAvailable()
-  console.log(getVideoStreams())
+  console.log(getVideoStreams)
 }
 
 export default withTracker(() =>{
