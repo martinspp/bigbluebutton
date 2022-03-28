@@ -9,7 +9,7 @@ import ScreenshareButtonContainer from '/imports/ui/components/actions-bar/scree
 import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
 import PresentationOptionsContainer from './presentation-options/component';
-import VRContainer from '/imports/ui/components/vr/container'
+import {unityContext} from '/imports/ui/components/vr/container'
 
 class ActionsBar extends PureComponent {
   render() {
@@ -134,7 +134,7 @@ class ActionsBar extends PureComponent {
                   color="primary"
                   circle
                   onClick={() => {
-                    console.log("help")
+                    console.log(unityContext)
                   }
                     
                   } 
