@@ -95,6 +95,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       opacity: 1;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/webxr-polyfill@latest/build/webxr-polyfill.min.js" language="javascript"></script>
   <script>
     document.addEventListener('gesturestart', function (e) {
       e.preventDefault();
@@ -106,7 +107,6 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
   <script src="compatibility/kurento-utils.js?v=VERSION" language="javascript"></script>
   <script src="compatibility/tflite-simd.js?v=VERSION" language="javascript"></script>
   <script src="compatibility/tflite.js?v=VERSION" language="javascript"></script>
-  <script src="https://cdn.jsdelivr.net/npm/webxr-polyfill@latest/build/webxr-polyfill.min.js"></script>
   <!-- fonts -->
   <link rel="preload" href="fonts/BbbIcons/bbb-icons.woff?v=VERSION" as="font" crossorigin="anonymous"/>
   <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Light.woff?v=VERSION" as="font" crossorigin="anonymous"/>
