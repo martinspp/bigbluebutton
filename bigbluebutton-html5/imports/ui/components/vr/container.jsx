@@ -15,14 +15,14 @@ const VRContainer = (props) =>{
   }
   return null
 }
+export const unityContext = new UnityContext({
+  loaderUrl: "vr/build.loader.js",
+  dataUrl: "vr/build.data",
+  frameworkUrl: "vr/build.framework.js",
+  codeUrl: "vr/build.wasm",
+});
 
 export default withTracker(() =>{
-  const unityContext = new UnityContext({
-    loaderUrl: "vr/build.loader.js",
-    dataUrl: "vr/build.data",
-    frameworkUrl: "vr/build.framework.js",
-    codeUrl: "vr/build.wasm",
-  });
   return{
     unityContext,
   }
