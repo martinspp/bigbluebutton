@@ -9,6 +9,7 @@ import ScreenshareButtonContainer from '/imports/ui/components/actions-bar/scree
 import AudioControlsContainer from '../audio/audio-controls/container';
 import JoinVideoOptionsContainer from '../video-provider/video-button/container';
 import PresentationOptionsContainer from './presentation-options/component';
+import VRContainer from '/imports/ui/components/vr/container'
 
 class ActionsBar extends PureComponent {
   render() {
@@ -134,6 +135,7 @@ class ActionsBar extends PureComponent {
                   circle
                   onClick={() => {
                     console.log("click")
+                    VRContainer.startVR()
                   }} 
                 />
               )

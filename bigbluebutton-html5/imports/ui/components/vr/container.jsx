@@ -22,6 +22,11 @@ export const unityContext = new UnityContext({
   codeUrl: "vr/build.wasm",
 });
 
+
+export const startVR = () => {
+  this.unityContext.startVR()
+}
+
 export default withTracker(() =>{
   return{
     unityContext,
