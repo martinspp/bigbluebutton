@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import VRComponent from './component'
 import VRService from './service'
 import Unity, { UnityContext } from "react-unity-webgl";
+import { withTracker } from 'meteor/react-meteor-data';
 
 const unityContext = new UnityContext({
   loaderUrl: "vr/build.loader.js",
