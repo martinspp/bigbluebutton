@@ -39,7 +39,7 @@ class ActionsBar extends PureComponent {
       actionsBarStyle,
       isOldMinimizeButtonEnabled,
       isVRAvailable,
-      enableVR
+      unityContext
     } = this.props;
 
     return (
@@ -135,7 +135,7 @@ class ActionsBar extends PureComponent {
                   color="primary"
                   circle
                   onClick={() => {
-                    enableVR()
+                    unityContext.startVR()
                   }} 
                 />
               )

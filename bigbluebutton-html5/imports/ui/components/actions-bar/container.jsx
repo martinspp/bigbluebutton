@@ -15,7 +15,7 @@ import CaptionsService from '/imports/ui/components/captions/service';
 import LayoutContext from '../layout/context';
 import { isVideoBroadcasting } from '/imports/ui/components/screenshare/service';
 import VRService from '/imports/ui/components/vr/service';
-import VRComponent from '/imports/ui/components/vr/component'
+import {unityContext} from '/imports/ui/components/vr/component'
 
 import MediaService, {
   getSwapLayout,
@@ -75,6 +75,6 @@ export default withTracker(() => ({
   allowExternalVideo: Meteor.settings.public.externalVideoPlayer.enabled,
   setEmojiStatus: UserListService.setEmojiStatus,
   isVRAvailable: VRService.isVRAvailable(),
-  enableVR: VRComponent.startVR
+  unityContext: unityContext
 
 }))(injectIntl(ActionsBarContainer));
