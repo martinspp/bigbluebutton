@@ -133,10 +133,9 @@ class ActionsBar extends PureComponent {
                   size="1g"
                   color="primary"
                   circle
-                  onClick={() => {
-                    console.log("click")
+                  onClick={
                     VRContainer.unityContext.startVR()
-                  }} 
+                  } 
                 />
               )
               : null} 

@@ -4,11 +4,6 @@ import Unity, { UnityContext } from "react-unity-webgl";
 
 class VRComponent extends PureComponent{
 
-  startVR(){
-    const {unityContext} = this.props
-    unityContext.startVR()
-  }
-
   render(){
     const{
       unityContext
