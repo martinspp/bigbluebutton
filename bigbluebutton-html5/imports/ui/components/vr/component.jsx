@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { injectIntl } from "react-intl";
 import Unity, { UnityContext } from "react-unity-webgl";
 
 class VRComponent extends PureComponent{
@@ -12,3 +13,6 @@ class VRComponent extends PureComponent{
     )
   }
 }
+
+export default injectIntl(VRComponent);
+
