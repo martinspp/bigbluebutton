@@ -1,10 +1,10 @@
 const isVRAvailable = () => {
     //const xrSessionSupported = polyfill.xr.isSessionSupported()
     //if(xrSessionSupported === undefined){
-    //    return false;
+     //   return false;
     //}
-    xrSessionSupported.then((val)=>{return val})
-    //return true
+    //xrSessionSupported.then((val)=>{return val})
+    return true
 }
 
 export default{
