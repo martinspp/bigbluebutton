@@ -8,6 +8,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 const VRContainer = (props) =>{
   this.props = unityContext
+  console.log("render container " + VRService.isVRAvailable())
   if(VRService.isVRAvailable()){
     return (
       <VRComponent {...props } />
