@@ -6,15 +6,13 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 
 
-const VRContainer = async (props) =>{
+const VRContainer = (props) =>{
   this.props = unityContext
-  await console.log("render container " + VRService.isVRAvailable())
-  if( await VRService.isVRAvailable()){
-    return (
-      <VRComponent {...props } />
-    );
-  }
-  return null
+  this.props = await VRService.isVRAvailable()
+  console.log("render container " + VRService.isVRAvailable())
+  return (
+    <VRComponent {...props } />
+  );
 }
 export const unityContext = new UnityContext({
   loaderUrl: "vr/build.loader.js",
@@ -25,11 +23,14 @@ export const unityContext = new UnityContext({
 
 
 export const startVR = () => {
-  if(VRService.isVRAvailable()){
-    unityContext.unityInstance.Module.WebXR.toggleVR()
-  }
-  else{
-    alert("VR Is not supported")
+  const isVrAvailable = async () =>{
+
+    if(await VRService.isVRAvailable()){
+      unityContext.unityInstance.Module.WebXR.toggleVR()
+    }
+    else{
+      alert("VR Is not supported")
+    }  
   }
 }
 
