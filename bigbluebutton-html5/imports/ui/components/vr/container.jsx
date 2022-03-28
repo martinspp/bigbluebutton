@@ -7,7 +7,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 
 const VRContainer = (props) =>{
-
+  this.props = unityContext
   if(VRService.isVRAvailable()){
     return (
       <VRComponent {...props } />
@@ -24,7 +24,8 @@ export const unityContext = new UnityContext({
 
 
 export const startVR = () => {
-  this.unityContext.startVR()
+  const {unityContext} = this.props
+  unityContext.startVR()
 }
 
 export default withTracker(() =>{
