@@ -4,6 +4,7 @@ const isVRAvailable = () => {
         return false;
     }
     xrSessionSupported.then((val)=>{return val})
+    console.log("here")
     
 }
 
