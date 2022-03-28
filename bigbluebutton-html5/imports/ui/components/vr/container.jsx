@@ -32,6 +32,7 @@ export const startVR = () => {
       alert("VR Is not supported")
     }  
   }
+  isVrAvailable()
 }
 
 export default withTracker(() =>{
