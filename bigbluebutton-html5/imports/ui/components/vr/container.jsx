@@ -24,7 +24,7 @@ export const unityContext = new UnityContext({
 
 
 export const startVR = () => {
-  if(VRService.isVRAvailable){
+  if(VRService.isVRAvailable()){
     unityContext.unityInstance.Module.WebXR.toggleVR()
   }
   else{
