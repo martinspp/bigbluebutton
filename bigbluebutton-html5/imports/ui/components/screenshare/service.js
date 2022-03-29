@@ -100,6 +100,8 @@ const shouldEnableVolumeControl = () => VOLUME_CONTROL_ENABLED && screenshareHas
 
 const attachLocalPreviewStream = (mediaElement) => {
   const stream = KurentoBridge.gdmStream;
+  console.log(stream)
+  console.log(mediaElement)
   if (stream && mediaElement) {
     // Always muted, presenter preview.
     BridgeService.screenshareLoadAndPlayMediaStream(stream, mediaElement, true);
