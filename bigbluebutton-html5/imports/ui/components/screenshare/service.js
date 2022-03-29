@@ -107,6 +107,7 @@ const attachLocalPreviewStream = (mediaElement) => {
 }
 
 const screenshareHasStarted = () => {
+  console.log("test")
   // Presenter's screen preview is local, so skip
   if (!UserListService.amIPresenter()) {
     viewScreenshare();
