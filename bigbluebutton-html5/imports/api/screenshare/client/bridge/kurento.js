@@ -267,7 +267,9 @@ export default class KurentoScreenshareBridge {
     this.broker.onended = this.handleEnded.bind(this);
     
     console.log(this.broker)
-    return this.broker.view().finally(this.scheduleReconnect.bind(this));
+    const thing = await this.broker.view().finally(this.scheduleReconnect.bind(this));
+    console.log(thing)
+    return thing
   }
 
   handlePresenterStart() {
