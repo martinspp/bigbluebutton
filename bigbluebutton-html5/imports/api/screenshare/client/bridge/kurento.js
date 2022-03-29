@@ -262,11 +262,11 @@ export default class KurentoScreenshareBridge {
       this.role,
       options,
     );
-
     this.broker.onstart = this.handleViewerStart.bind(this);
     this.broker.onerror = this.handleBrokerFailure.bind(this);
     this.broker.onended = this.handleEnded.bind(this);
-
+    
+    console.log(this.broker)
     return this.broker.view().finally(this.scheduleReconnect.bind(this));
   }
 
