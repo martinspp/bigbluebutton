@@ -40,13 +40,16 @@ class ScreenshareBroker extends BaseBroker {
   }
 
   view () {
-    return this.openWSConnection()
-      .then(this.subscribeToScreenStream.bind(this));
+    var test = this.openWSConnection()
+    .then(this.subscribeToScreenStream.bind(this));
+    console.log(test)
+    return test
   }
 
   onWSMessage (message) {
+    console.log("ws message")
     const parsedMessage = JSON.parse(message.data);
-
+    console.log(parsedMessage)
     switch (parsedMessage.id) {
       case 'startResponse':
         this.onRemoteDescriptionReceived(parsedMessage);
