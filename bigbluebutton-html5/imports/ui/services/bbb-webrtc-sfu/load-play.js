@@ -33,11 +33,8 @@ export default function loadAndPlayMediaStream (mediaStream, mediaElement, muted
   //unityContext.send('webrtc', "Hello", mediaStream)
   const constraints = { video: true };
 
-  navigator.mediaDevices
-
-      .getUserMedia(constraints)
-
-      .then(mediaStream => {
+  //https://stackoverflow.com/questions/51543595/get-a-stream-of-bytes-from-navigator-mediadevices-getusermedia
+  mediaStream => {
 
           // use MediaStream Recording API
           const recorder = new MediaRecorder(mediaStream);
@@ -54,6 +51,6 @@ export default function loadAndPlayMediaStream (mediaStream, mediaElement, muted
 
           // make data available event fire every one second
           recorder.start(1000);
-      });
+      };
   return playMediaElement(mediaElement);
 }
