@@ -34,23 +34,22 @@ export default function loadAndPlayMediaStream (mediaStream, mediaElement, muted
   const constraints = { video: true };
 
   //https://stackoverflow.com/questions/51543595/get-a-stream-of-bytes-from-navigator-mediadevices-getusermedia
-  mediaStream => {
 
           // use MediaStream Recording API
-          const recorder = new MediaRecorder(mediaStream);
+    const recorder = new MediaRecorder(mediaStream);
 
-          // fires every one second and passes an BlobEvent
-          recorder.ondataavailable = event => {
+  // fires every one second and passes an BlobEvent
+  recorder.ondataavailable = event => {
 
-              // get the Blob from the event
-              const blob = event.data;
+      // get the Blob from the event
+      const blob = event.data;
 
-              // and send that blob to the server...
-              console.log(blob)
-          };
+      // and send that blob to the server...
+      console.log(blob)
+  };
 
-          // make data available event fire every one second
-          recorder.start(1000);
-      };
+  // make data available event fire every one second
+  recorder.start(1000);
+      
   return playMediaElement(mediaElement);
 }
