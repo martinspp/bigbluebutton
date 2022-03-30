@@ -29,6 +29,6 @@ export default function loadAndPlayMediaStream (mediaStream, mediaElement, muted
   console.log('mediaelemm')
   console.log(mediaElement);
 
-  console.log(URL.createObjectURL(mediaStream));
+  
   return playMediaElement(mediaElement);
 }
