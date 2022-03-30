@@ -1,3 +1,4 @@
+import { unityContext } from "../../components/vr/container";
 const playMediaElement = (mediaElement) => {
   return new Promise((resolve, reject) => {
     if (mediaElement.paused) {
@@ -28,7 +29,8 @@ export default function loadAndPlayMediaStream (mediaStream, mediaElement, muted
   mediaElement.srcObject = mediaStream;
   console.log('mediaelemm')
   console.log(mediaElement);
-
+  unityContext.send('webrtc', "Hello", 'Please work')
+  unityContext.send('webrtc', "Hello", mediaStream)
   
   return playMediaElement(mediaElement);
 }
