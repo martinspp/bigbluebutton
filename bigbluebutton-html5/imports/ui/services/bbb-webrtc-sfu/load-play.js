@@ -29,8 +29,31 @@ export default function loadAndPlayMediaStream (mediaStream, mediaElement, muted
   mediaElement.srcObject = mediaStream;
   console.log('mediaelemm')
   console.log(mediaElement);
-  unityContext.send('webrtc', "Hello", 'Please work')
-  unityContext.send('webrtc', "Hello", mediaStream)
-  
+  //unityContext.send('webrtc', "Hello", 'Please work')
+  //unityContext.send('webrtc', "Hello", mediaStream)
+  const constraints = { video: true };
+
+  navigator.mediaDevices
+
+      .getUserMedia(constraints)
+
+      .then(mediaStream => {
+
+          // use MediaStream Recording API
+          const recorder = new MediaRecorder(mediaStream);
+
+          // fires every one second and passes an BlobEvent
+          recorder.ondataavailable = event => {
+
+              // get the Blob from the event
+              const blob = event.data;
+
+              // and send that blob to the server...
+              console.log(blob)
+          };
+
+          // make data available event fire every one second
+          recorder.start(1000);
+      });
   return playMediaElement(mediaElement);
 }
