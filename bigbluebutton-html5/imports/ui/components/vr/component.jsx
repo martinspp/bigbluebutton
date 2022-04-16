@@ -26,7 +26,9 @@ class VRComponent extends PureComponent{
     subscribeToStreamStateChange('screenshare', this.onStreamStateChange);
   }
   onStreamStateChange(){
-    console.log("stream started, change in vrcomponent")
+    console.log("stream started, change in vrcomponent")/*
+    console.log(Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl))
+    console.log("")
     data = [Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
       "none",
       Auth.userID,
@@ -34,7 +36,7 @@ class VRComponent extends PureComponent{
       Auth.fullname,
       BridgeService.getConferenceBridge()]
     console.log("Sending to unity: %O ", data)
-    unityContext.send("GameObject","ScreenshareInit",data)
+    unityContext.send("GameObject","ScreenshareInit",data)*/
   }
   render(){
     const{
