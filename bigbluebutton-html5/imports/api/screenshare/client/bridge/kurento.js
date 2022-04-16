@@ -255,7 +255,7 @@ export default class KurentoScreenshareBridge {
     };
 
     this.broker = new ScreenshareBroker(
-      Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
+      Auth.authenticateURL(SFU_URL),
       BridgeService.getConferenceBridge(),
       Auth.userID,
       Auth.meetingID,

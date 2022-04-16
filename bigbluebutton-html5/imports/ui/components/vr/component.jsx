@@ -27,7 +27,7 @@ class VRComponent extends PureComponent{
   }
   onStreamStateChange(){
     console.log("stream started, change in vrcomponent")
-    data = [Auth.authenticateURL(SFU_URL),
+    data = [Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
       "none",
       Auth.userID,
       Auth.meetingID,
