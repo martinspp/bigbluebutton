@@ -9,7 +9,7 @@ import {
 } from '/imports/ui/services/bbb-webrtc-sfu/stream-state-service';
 import Users from '/imports/api/users';
 import Auth from '/imports/ui/services/auth';
-import { data } from "autoprefixer";
+import BridgeService from '/imports/api/screenshare/client/bridge/service';
 class VRComponent extends PureComponent{
 
   constructor(){
