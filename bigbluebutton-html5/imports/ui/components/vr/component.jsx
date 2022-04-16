@@ -36,7 +36,7 @@ class VRComponent extends PureComponent{
         voiceBridge: BridgeService.getConferenceBridge()
       }
       console.log("Sending to unity: %O ", data)
-      unityContext.send("GameObject","ScreenshareInit",JSON.stringify(data))
+      unityContext.send("GameObject","SettingsInit",JSON.stringify(data))
       unityContext.send("GameObject","ScreenshareStart")
     }
   }
