@@ -7,9 +7,9 @@ import {
   subscribeToStreamStateChange,
   unsubscribeFromStreamStateChange,
 } from '/imports/ui/services/bbb-webrtc-sfu/stream-state-service';
-import Auth from '/imports/ui/services/auth';
-import BridgeService from '/imports/api/screenshare/client/bridge/service';
+
 import { delay } from "lodash";
+import debug from "redis/lib/debug";
 class VRComponent extends PureComponent{
 
   constructor(){
@@ -29,16 +29,8 @@ class VRComponent extends PureComponent{
     console.log(event)
     if(event.detail.streamState == "connected")
     {
-      const data = {
-        wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
-        callerName: Auth.userID,
-        InternalMeetingId: Auth.meetingID,
-        userName: Auth.fullname,
-        voiceBridge: BridgeService.getConferenceBridge()
-      }
-      console.log("Sending to unity: %O ", data)
-      unityContext.send("GameObject","SettingsInit",JSON.stringify(data))
-      delay(unityContext.send,5000, "GameObject", "ScreenshareStart");
+      console.log("starting screenshare");
+      unityContext.send("GameObject", "ScreenshareStart");
     }
   }
   render(){
