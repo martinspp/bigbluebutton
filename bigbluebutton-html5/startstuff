@@ -1,0 +1,27 @@
+ ls
+    2  cd bigbluebutton/
+    3  ls
+    4  watch git pull
+    5  sudo su
+    6  git clone -b v2.4.x-release --depth 1 https://github.com/martinspp/bigbluebutton.git
+    7  cd bigbluebutton/bigbluebutton-html5
+    8  curl https://install.meteor.com/ | sh
+    9  grep "wsUrl" /usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
+   10  vi private/config/settings.yml
+   11  sudo systemctl stop bbb-html5
+   12  vi /etc/nginx/sites-enabled/bigbluebutton
+   13  ls
+   14  vi /etc/nginx/nginx.conf
+   15  vi /etc/nginx/sites-available/default
+   16  vi /etc/nginx/sites-enabled/default
+   17  vi /etc/nginx/sites-enabled/bigbluebutton
+   18  ls
+   19  vi /etc/nginx/conf.d/bbb-html5-loadbalancer.conf
+   20  vi /etc/nginx/sites-enabled/bigbluebutton
+   21  vi /etc/nginx/proxy_params
+   22  cat /etc/nginx/sites-enabled/bigbluebutton
+   23  vi /etc/bigbluebutton/nginx/bbb-html5.nginx
+   24  sudo vi /etc/bigbluebutton/nginx/bbb-html5.nginx
+   25  sudo systemctl reload nginx
+   26  meteor npm install
+   27  meteor
