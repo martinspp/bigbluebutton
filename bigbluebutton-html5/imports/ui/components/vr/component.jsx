@@ -38,7 +38,7 @@ class VRComponent extends PureComponent{
       }
       console.log("Sending to unity: %O ", data)
       unityContext.send("GameObject","SettingsInit",JSON.stringify(data))
-      await delay(unityContext.send,5000, "GameObject", "ScreenshareStart");
+      delay(unityContext.send,5000, "GameObject", "ScreenshareStart");
     }
   }
   render(){
