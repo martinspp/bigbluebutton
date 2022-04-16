@@ -22,6 +22,7 @@ class VRComponent extends PureComponent{
 
   componentWillUnmount(){
     unityContext.send("GameObject","ScreenshareStop")
+    unityContext.quitUnityInstance()
   }
   onStreamStateChange(event){
     console.log(event)
