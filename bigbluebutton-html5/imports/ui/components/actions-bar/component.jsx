@@ -38,7 +38,6 @@ class ActionsBar extends PureComponent {
       layoutContextDispatch,
       actionsBarStyle,
       isOldMinimizeButtonEnabled,
-      isVRAvailable,
     } = this.props;
 
     return (
