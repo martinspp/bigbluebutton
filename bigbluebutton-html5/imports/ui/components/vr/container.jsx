@@ -13,7 +13,8 @@ const VRContainer = (props) =>{
   console.log("render container " + VRService.isVRAvailable())
 
   useEffect(function(){
-    unityContext.on("loaded", function(){
+    unityContext.on("unitystarted", function(){
+      console.log("unity started event")
       const data = {
         wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
         callerName: Auth.userID,
@@ -25,7 +26,7 @@ const VRContainer = (props) =>{
       console.log("Sending to unity: %O ", data)
     });
   },[]);
-  
+
   return (
     <VRComponent {...props } />
   );

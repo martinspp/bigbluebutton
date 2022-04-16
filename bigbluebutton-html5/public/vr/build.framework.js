@@ -5832,7 +5832,7 @@ function _emscripten_asm_const_id(code, a0) {
  return ASM_CONSTS[code](a0);
 }
 STATIC_BASE = GLOBAL_BASE;
-STATICTOP = STATIC_BASE + 3353488;
+STATICTOP = STATIC_BASE + 3353872;
 __ATINIT__.push({
  func: (function() {
   __GLOBAL__sub_I_AccessibilityScriptingClasses_cpp();
@@ -7886,7 +7886,7 @@ __ATINIT__.push({
   ___emscripten_environ_constructor();
  })
 });
-var STATIC_BUMP = 3353488;
+var STATIC_BUMP = 3353872;
 Module["STATIC_BASE"] = STATIC_BASE;
 Module["STATIC_BUMP"] = STATIC_BUMP;
 var tempDoublePtr = STATICTOP;
@@ -20089,6 +20089,9 @@ function _time(ptr) {
  }
  return ret;
 }
+function _unitystarted() {
+ window.dispatchReactUnityEvent("unitystarted");
+}
 function _unsetenv(name) {
  if (name === 0) {
   ___setErrNo(ERRNO_CODES.EINVAL);
@@ -25389,6 +25392,7 @@ Module.asmLibraryArg = {
  "_sysconf": _sysconf,
  "_time": _time,
  "_tzset": _tzset,
+ "_unitystarted": _unitystarted,
  "_unsetenv": _unsetenv,
  "_usleep": _usleep,
  "_utime": _utime,
