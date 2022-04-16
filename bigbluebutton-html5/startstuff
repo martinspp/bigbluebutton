@@ -1,4 +1,4 @@
-wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -g -v bionic-24 -s bbb.4eks1s.com -e info@4eks1s.com
+wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -g -w -v bionic-24 -s bbb.4eks1s.com -e info@4eks1s.com
 cd bigbluebutton/
 ls
 watch git pull
@@ -11,6 +11,6 @@ vi private/config/settings.yml
 sudo systemctl stop bbb-html5
 sudo vi /etc/bigbluebutton/nginx/bbb-html5.nginx
 sudo systemctl reload nginx
-docker exec greenlight-v2 bundle exec rake user:create["admin","admin@example.com","o2ZTL4BRKjoVNb3iwn5^","admin"]
+sudo docker exec greenlight-v2 bundle exec rake user:create["admin","admin@example.com","o2ZTL4BRKjoVNb3iwn5^","admin"]
 meteor npm install
 npm start
