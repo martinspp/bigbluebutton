@@ -24,14 +24,15 @@ class VRComponent extends PureComponent{
   
   componentDidMount(){
     subscribeToStreamStateChange('screenshare', this.onStreamStateChange);
+    
   }
-  onStreamStateChange(){
+  onStreamStateChange(event){
+    console.log(event)
     console.log("stream started, change in vrcomponent")
     //console.log(Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl))
     //console.log("")
     const data = {
       wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
-      cookie: "none",
       callerName: Auth.userID,
       InternalMeetingId: Auth.meetingID,
       userName: Auth.fullname,
