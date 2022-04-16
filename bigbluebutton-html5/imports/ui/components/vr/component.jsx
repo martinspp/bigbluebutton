@@ -7,7 +7,6 @@ import {
   subscribeToStreamStateChange,
   unsubscribeFromStreamStateChange,
 } from '/imports/ui/services/bbb-webrtc-sfu/stream-state-service';
-import Users from '/imports/api/users';
 import Auth from '/imports/ui/services/auth';
 import BridgeService from '/imports/api/screenshare/client/bridge/service';
 class VRComponent extends PureComponent{
@@ -17,23 +16,17 @@ class VRComponent extends PureComponent{
     this.onStreamStateChange = this.onStreamStateChange.bind(this);
   }
   
-  startVR(){
-    const {unityContext} = this.props
-    unityContext.startVR()
-    //wtf
-  }
-  
   componentDidMount(){
     subscribeToStreamStateChange('screenshare', this.onStreamStateChange);
-    
+  }
+
+  componentWillUnmount(){
+    unityContext.send("GameObject","ScreenshareStop")
   }
   onStreamStateChange(event){
     console.log(event)
     if(event.detail.streamState == "connected")
     {
-      console.log("stream started, change in vrcomponent")
-      //console.log(Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl))
-      //console.log("")
       const data = {
         wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
         callerName: Auth.userID,
@@ -51,8 +44,8 @@ class VRComponent extends PureComponent{
     } = this.props;
 
     return (
-      <Unity unityContext={unityContext} />
-      //<span></span>
+      //<Unity unityContext={unityContext} />
+      <span></span>
     )
   }
 }
