@@ -19,7 +19,7 @@ class VRComponent extends PureComponent{
   
   startVR(){
     const {unityContext} = this.props
-    unityContext.startVR()
+    //unityContext.startVR()
   }
   
   componentDidMount(){
