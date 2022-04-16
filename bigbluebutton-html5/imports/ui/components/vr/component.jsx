@@ -29,7 +29,7 @@ class VRComponent extends PureComponent{
     console.log("stream started, change in vrcomponent")
     //console.log(Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl))
     //console.log("")
-    data = [
+    const data = [
       Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
       "none",
       Auth.userID,
