@@ -37,6 +37,7 @@ class VRComponent extends PureComponent{
       }
       console.log("Sending to unity: %O ", data)
       unityContext.send("GameObject","ScreenshareInit",JSON.stringify(data))
+      unityContext.send("GameObject","ScreenshareStart")
     }
   }
   render(){
