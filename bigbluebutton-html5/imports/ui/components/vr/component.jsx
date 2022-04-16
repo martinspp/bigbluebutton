@@ -51,6 +51,7 @@ class VRComponent extends PureComponent{
 
     return (
       //<Unity unityContext={unityContext} />
+      <span></span>
     )
   }
 }
