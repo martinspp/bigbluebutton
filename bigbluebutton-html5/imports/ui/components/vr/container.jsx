@@ -32,7 +32,7 @@ export const startVR = () => {
       alert("VR Is not supported")
     }  
   }
-  //isVrAvailable()
+  isVrAvailable()
   console.log(VideoProviderService)
 }
 
