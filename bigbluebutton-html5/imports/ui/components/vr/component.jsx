@@ -9,6 +9,7 @@ import {
 } from '/imports/ui/services/bbb-webrtc-sfu/stream-state-service';
 import Auth from '/imports/ui/services/auth';
 import BridgeService from '/imports/api/screenshare/client/bridge/service';
+import { delay } from "lodash";
 class VRComponent extends PureComponent{
 
   constructor(){
@@ -37,7 +38,7 @@ class VRComponent extends PureComponent{
       }
       console.log("Sending to unity: %O ", data)
       unityContext.send("GameObject","SettingsInit",JSON.stringify(data))
-      unityContext.send("GameObject","ScreenshareStart")
+      await delay(unityContext.send,5000, "GameObject", "ScreenshareStart");
     }
   }
   render(){
