@@ -28,18 +28,21 @@ class VRComponent extends PureComponent{
   }
   onStreamStateChange(event){
     console.log(event)
-    console.log("stream started, change in vrcomponent")
-    //console.log(Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl))
-    //console.log("")
-    const data = {
-      wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
-      callerName: Auth.userID,
-      InternalMeetingId: Auth.meetingID,
-      userName: Auth.fullname,
-      voiceBridge: BridgeService.getConferenceBridge()
+    if(event.detail.streamState == "connected")
+    {
+      console.log("stream started, change in vrcomponent")
+      //console.log(Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl))
+      //console.log("")
+      const data = {
+        wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
+        callerName: Auth.userID,
+        InternalMeetingId: Auth.meetingID,
+        userName: Auth.fullname,
+        voiceBridge: BridgeService.getConferenceBridge()
+      }
+      console.log("Sending to unity: %O ", data)
+      unityContext.send("GameObject","ScreenshareInit",JSON.stringify(data))
     }
-    console.log("Sending to unity: %O ", data)
-    unityContext.send("GameObject","ScreenshareInit",JSON.stringify(data))
   }
   render(){
     const{
