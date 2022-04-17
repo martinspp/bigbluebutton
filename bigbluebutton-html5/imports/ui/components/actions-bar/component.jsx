@@ -38,6 +38,7 @@ class ActionsBar extends PureComponent {
       layoutContextDispatch,
       actionsBarStyle,
       isOldMinimizeButtonEnabled,
+      isUnityStarted,
     } = this.props;
 
     return (
@@ -126,7 +127,7 @@ class ActionsBar extends PureComponent {
             : null}
             <Button
               icon="vr"
-              label='vr'
+              label='Start VR'
               size="1g"
               color="primary"
               circle
