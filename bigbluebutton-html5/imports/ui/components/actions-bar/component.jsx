@@ -130,6 +130,8 @@ class ActionsBar extends PureComponent {
               size="1g"
               color="primary"
               circle
+              hideLabel
+              className={styles.btn}
               onClick={() => {
                 startVR()
               }
