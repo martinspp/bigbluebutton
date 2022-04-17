@@ -43,7 +43,7 @@ export const startVR = () => {
   const isVrAvailable = async () =>{
 
     if(await VRService.isVRAvailable()){
-      unityContext.unityInstance.Module.WebXR.toggleVR()
+      //unityContext.unityInstance.Module.WebXR.toggleVR()
     }
     else{
       alert("VR Is not supported")
