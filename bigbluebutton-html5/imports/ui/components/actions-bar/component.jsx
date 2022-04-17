@@ -125,6 +125,7 @@ class ActionsBar extends PureComponent {
             )
             : null}
             <Button
+              icon="vr"
               label='vr'
               size="1g"
               color="primary"
