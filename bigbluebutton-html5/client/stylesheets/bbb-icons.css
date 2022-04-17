@@ -345,3 +345,6 @@
 .icon-bbb-pin-video_off:before {
   content: "\e965";
 }
+.icon-bbb-vr:before{
+  content: "\e966"
+}
