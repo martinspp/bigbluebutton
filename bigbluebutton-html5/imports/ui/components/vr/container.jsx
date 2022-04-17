@@ -50,7 +50,7 @@ export const startVR = () => {
     }  
   }
   isVrAvailable()
-  console.log(VideoProviderService)
+  unityContext.unityInstance.Module.WebXR.toggleVR()
 }
 
 
