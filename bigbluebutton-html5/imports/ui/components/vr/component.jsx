@@ -1,15 +1,10 @@
 import React, { PureComponent } from "react";
-import { injectIntl } from "react-intl";
 import Unity, { UnityContext } from "react-unity-webgl";
 import { unityContext } from "./container";
 import {
-  isStreamStateUnhealthy,
   subscribeToStreamStateChange,
-  unsubscribeFromStreamStateChange,
 } from '/imports/ui/services/bbb-webrtc-sfu/stream-state-service';
 
-import { delay } from "lodash";
-import debug from "redis/lib/debug";
 class VRComponent extends PureComponent{
 
   constructor(){
@@ -40,7 +35,6 @@ class VRComponent extends PureComponent{
 
     return (
       <Unity unityContext={unityContext} />
-      //<span></span>
     )
   }
 }

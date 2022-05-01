@@ -135,9 +135,7 @@ class ActionsBar extends PureComponent {
               className={styles.btn}
               onClick={() => {
                 startVR()
-              }
-                
-              } 
+              }} 
             />
               
         </div>
