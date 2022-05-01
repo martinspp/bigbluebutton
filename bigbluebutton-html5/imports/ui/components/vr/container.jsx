@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import VRComponent from './component'
 import VRService from './service'
-import Unity, { UnityContext } from "react-unity-webgl";
+import { UnityContext } from "react-unity-webgl";
 import { withTracker } from 'meteor/react-meteor-data';
-import VideoProviderService from '/imports/ui/components/video-provider/service'
 import Auth from '/imports/ui/services/auth';
 import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
@@ -28,6 +27,7 @@ const VRContainer = (props) =>{
   },[]);
 
   return (
+
     <VRComponent {...props } />
   );
 }
@@ -40,16 +40,6 @@ export const unityContext = new UnityContext({
 
 
 export const startVR = () => {
-  const isVrAvailable = async () =>{
-
-    if(await VRService.isVRAvailable()){
-      //unityContext.unityInstance.Module.WebXR.toggleVR()
-    }
-    else{
-      alert("VR Is not supported")
-    }  
-  }
-  isVrAvailable()
   unityContext.unityInstance.Module.WebXR.toggleVR()
 }
 
