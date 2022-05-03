@@ -24,7 +24,7 @@ const downloadPresentationUri = (podId) => {
   const uri = `${APP.bbbWebBase}/presentation/download/`
     + `${currentPresentation.meetingId}/${currentPresentation.id}`
     + `?presFilename=${encodeURIComponent(presentationFileName)}`;
-
+  console.log(uri);
   return uri;
 };
 

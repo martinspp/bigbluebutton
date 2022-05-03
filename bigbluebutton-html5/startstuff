@@ -1,4 +1,4 @@
-wget -qO- https://ubuntu.bigbluebutton.org/bbb-install.sh | bash -s -- -g -w -v bionic-24 -s bbb.4eks1s.com -e info@4eks1s.com
+bb
 cd bigbluebutton/
 ls
 watch git pull
