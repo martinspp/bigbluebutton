@@ -236,7 +236,7 @@ class Presentation extends PureComponent {
         }
       }
       if(currentSlide.id !== prevProps.currentSlide.id){
-        debugger;
+        
         const presentationSizes = this.getPresentationSizesAvailable();
         console.log("slide changed")
         console.log("url: " + currentSlide.imageUri);
@@ -252,6 +252,7 @@ class Presentation extends PureComponent {
         let v = Canvg.from(ctx, currentSlide.imageUri, preset)
         
         v.then(()=>{
+          debugger;
           v.render();
           var blob = canvas.convertToBlob();
           blob.then((b)=>{console.log(b)})
