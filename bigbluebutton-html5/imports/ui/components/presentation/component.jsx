@@ -24,7 +24,7 @@ import PollingContainer from '/imports/ui/components/polling/container';
 import { ACTIONS, LAYOUT_TYPE } from '../layout/enums';
 import DEFAULT_VALUES from '../layout/defaultValues';
 import browserInfo from '/imports/utils/browserInfo';
-import { Canvg } from 'https://cdn.skypack.dev/canvg';
+import {Canvg} from 'canvg'
 import { unityContext } from '../vr/container';
 
 const intlMessages = defineMessages({
