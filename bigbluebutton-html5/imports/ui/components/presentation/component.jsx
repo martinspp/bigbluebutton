@@ -255,11 +255,9 @@ class Presentation extends PureComponent {
         .then(svg => Canvg.fromString(ctx, svg, preset))
         .then(v => {
           v.render()
-          const blob = canvas.convertToBlob();
-          const pngUrl = URL.createObjectURL(blob);
-          return pngUrl;
+          return canvas.convertToBlob();
         })
-        .then(b => console.log(b))
+        .then(b => console.log(URL.createObjectURL(blob)))
         .catch(e => console.log("Something broke: "+ e))
         
       }
