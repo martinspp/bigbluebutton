@@ -24,6 +24,8 @@ import PollingContainer from '/imports/ui/components/polling/container';
 import { ACTIONS, LAYOUT_TYPE } from '../layout/enums';
 import DEFAULT_VALUES from '../layout/defaultValues';
 import browserInfo from '/imports/utils/browserInfo';
+import { Canvg } from 'https://cdn.skypack.dev/canvg';
+import { unityContext } from '../vr/container';
 
 const intlMessages = defineMessages({
   presentationLabel: {
@@ -229,6 +231,17 @@ class Presentation extends PureComponent {
         if (slideChanged || positionChanged || pollPublished) {
           toggleSwapLayout(layoutContextDispatch);
         }
+      }
+      if(slideChanged){
+        let v = null;
+        const canvas = document.querySelector('#svg-to-png-convert');
+        const ctx = canvas.getContext('2d');
+        v = Canvg.fromString(imageUri)
+        v.start();
+        var img = canvas.toDataURL('img/png');
+        console.log(img);
+        console.log(v);
+        //unityContext.send
       }
 
       if (presentationBounds !== prevPresentationBounds) this.onResize();
@@ -610,7 +623,7 @@ class Presentation extends PureComponent {
     const slideContent = content ? `${intl.formatMessage(intlMessages.slideContentStart)}
       ${content}
       ${intl.formatMessage(intlMessages.slideContentEnd)}` : intl.formatMessage(intlMessages.noSlideContent);
-    console.log(imageUri)
+    
     return (
       <div
         style={{
