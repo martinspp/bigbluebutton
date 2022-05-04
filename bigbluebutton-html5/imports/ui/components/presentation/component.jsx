@@ -250,8 +250,9 @@ class Presentation extends PureComponent {
         fetch(currentSlide.imageUri)
         .then(response =>{
           console.log(response)
-          return Canvg.fromString(ctx, response.body, preset)
+          return response.text()
         })
+        .then(svg => Canvg.fromString(ctx, response.text(), preset))
         .then(v => {
           v.render()
           return canvas.convertToBlob();
