@@ -247,11 +247,12 @@ class Presentation extends PureComponent {
           fetch
         });
         const ctx = canvas.getContext('2d');
-        fetch(currentSlide.imageUri)
-        .then(response =>{
-          Canvg.fromString(ctx, response.body, preset)
-          console.log(response)
-        })
+        //fetch(currentSlide.imageUri)
+        //.then(response =>{
+          
+        //  console.log(response)
+        //})
+        Canvg.from(ctx, currentSlide.imageUri, preset)
         .then(v => {
           v.render()
           return canvas.convertToBlob();
