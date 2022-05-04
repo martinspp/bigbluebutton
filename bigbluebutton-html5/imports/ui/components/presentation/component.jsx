@@ -246,8 +246,8 @@ class Presentation extends PureComponent {
           canvas,
           fetch
         });
-        const canvas = preset.createCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
-        const ctx = canvas.getContext('2d');
+        const canv = preset.createCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
+        const ctx = canv.getContext('2d');
         fetch(currentSlide.imageUri)
         .then(response =>{
           console.log(response)
@@ -256,7 +256,7 @@ class Presentation extends PureComponent {
         .then(svg => Canvg.fromString(ctx, svg, preset))
         .then(v => {
           v.render()
-          return canvas.convertToBlob();
+          return canv.convertToBlob();
         })
         .then(blob => {
           var reader = new FileReader();
