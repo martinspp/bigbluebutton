@@ -25,6 +25,8 @@ import { ACTIONS, LAYOUT_TYPE } from '../layout/enums';
 import DEFAULT_VALUES from '../layout/defaultValues';
 import browserInfo from '/imports/utils/browserInfo';
 import {Canvg, presets} from 'canvg'
+import * as canvas from 'canvas';
+import { DOMParser } from 'xmldom';
 import { unityContext } from '../vr/container';
 import ContextProvidersComponent from '../context-providers/component';
 
@@ -237,18 +239,26 @@ class Presentation extends PureComponent {
       if(currentSlide.id !== prevProps.currentSlide.id){
         const presentationSizes = this.getPresentationSizesAvailable();
         console.log("slide changed")
-        
+        console.log("url: " + imageUri);
         const canvas = new OffscreenCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
-      
+        const preset = presets.node({
+          DOMParser,
+          canvas,
+          fetch
+        });
+        
         
         const ctx = canvas.getContext('2d');
-        let v = Canvg.fromString(ctx, imageUri)
+        let v = Canvg.fromString(ctx, imageUri,preset)
         
         v.render();
-        var blob = canvas.convertToBlob();
-        blob.then((b)=>{console.log(b)})
-        console.log(v);
-        //unityContext.send
+        v.then(()=>{
+          var blob = canvas.convertToBlob();
+          blob.then((b)=>{console.log(b)})
+          console.log(v);
+          //unityContext.send
+        })
+        
       }
       
         
