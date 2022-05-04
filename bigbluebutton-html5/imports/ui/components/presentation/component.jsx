@@ -239,10 +239,7 @@ class Presentation extends PureComponent {
         console.log("slide changed")
         
         const canvas = new OffscreenCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
-        
-        const preset = presets.offscreen({
-          DOMParser
-        });
+      
         
         const ctx = canvas.getContext('2d');
         let v = Canvg.fromString(ctx, imageUri)
