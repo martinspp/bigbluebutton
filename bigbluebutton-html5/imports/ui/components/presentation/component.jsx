@@ -249,8 +249,8 @@ class Presentation extends PureComponent {
         let v = Canvg.fromString(ctx, imageUri, preset)
         
         v.render();
-        var blob = await canvas.convertToBlob();
-        console.log(blob);
+        var blob = canvas.convertToBlob();
+        blob.then((b)=>{console.log(b)})
         console.log(v);
         //unityContext.send
       }
