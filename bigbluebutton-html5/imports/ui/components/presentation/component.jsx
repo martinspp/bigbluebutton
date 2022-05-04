@@ -250,7 +250,7 @@ class Presentation extends PureComponent {
         fetch(currentSlide.imageUri)
         .then(response =>{
           console.log(response)
-          Canvg.fromString(ctx, response.body, preset)
+          return Canvg.fromString(ctx, response.body, preset)
         })
         .then(v => {
           v.render()
