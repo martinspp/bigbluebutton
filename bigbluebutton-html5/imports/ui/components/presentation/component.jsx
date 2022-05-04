@@ -245,7 +245,7 @@ class Presentation extends PureComponent {
         });
         
         const ctx = canvas.getContext('2d');
-        let v = Canvg.fromString(ctx, imageUri, preset)
+        let v = Canvg.fromString(ctx, imageUri)
         
         v.render();
         var blob = canvas.convertToBlob();
