@@ -34,7 +34,10 @@ class VRComponent extends PureComponent{
     } = this.props;
 
     return (
+      <div>
       <Unity unityContext={unityContext} />
+      <canvas id='svg-to-png-convert' hidden></canvas>
+      </div>
     )
   }
 }
