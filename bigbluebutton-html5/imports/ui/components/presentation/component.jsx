@@ -236,6 +236,7 @@ class Presentation extends PureComponent {
         }
       }
       if(currentSlide.id !== prevProps.currentSlide.id){
+        debugger;
         const presentationSizes = this.getPresentationSizesAvailable();
         console.log("slide changed")
         console.log("url: " + currentSlide.imageUri);
