@@ -256,7 +256,7 @@ class Presentation extends PureComponent {
         })
         .then(svg => Canvg.fromString(ctx, svg, preset).render())
         .then(() => {
-          console.log(c.toBuffer())
+          console.log(c.toDataURL('image/png'))
         })
         .then(blob => {
           var reader = new FileReader();
