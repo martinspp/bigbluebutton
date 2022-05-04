@@ -252,7 +252,7 @@ class Presentation extends PureComponent {
           console.log(response)
           return response.text()
         })
-        .then(svg => Canvg.fromString(ctx, response.text(), preset))
+        .then(svg => Canvg.fromString(ctx, svg, preset))
         .then(v => {
           v.render()
           return canvas.convertToBlob();
