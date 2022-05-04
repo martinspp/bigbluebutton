@@ -252,7 +252,7 @@ class Presentation extends PureComponent {
           console.log(response)
           return response.text()
         })
-        .then(svg => Canvg.fromString(ctx, svg, preset))
+        .then(svg => Canvg.fromString(ctx, svg))
         .then(v => {
           v.render()
           return canvas.convertToBlob();
@@ -262,7 +262,7 @@ class Presentation extends PureComponent {
           reader.readAsDataURL(blob);
           reader.onloadend = () => {
             var base64data = reader.result;
-            console.log(base64data)
+            unityContext.send()
           }
         })
         .catch(e => console.log("Something broke: "+ e))
