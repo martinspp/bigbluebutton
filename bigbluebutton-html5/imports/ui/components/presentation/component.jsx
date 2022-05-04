@@ -25,7 +25,7 @@ import { ACTIONS, LAYOUT_TYPE } from '../layout/enums';
 import DEFAULT_VALUES from '../layout/defaultValues';
 import browserInfo from '/imports/utils/browserInfo';
 import {Canvg, presets} from 'canvg'
-import * as canvas from 'canvas';
+import canvas from 'canvas';
 import fetch from 'node-fetch';
 import { DOMParser } from 'xmldom';
 import { unityContext } from '../vr/container';
@@ -247,7 +247,7 @@ class Presentation extends PureComponent {
           canvas,
           fetch
         });
-        const c = Canvas.createCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
+        const c = canvas.createCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
         const ctx = c.getContext('2d');
         fetch(currentSlide.imageUri)
         .then(response =>{
