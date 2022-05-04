@@ -231,6 +231,8 @@ class Presentation extends PureComponent {
         if (slideChanged || positionChanged || pollPublished) {
           toggleSwapLayout(layoutContextDispatch);
         }
+      }
+      if(currentSlide.id !== prevProps.currentSlide.id){
         let v = null;
         const canvas = document.querySelector('#svg-to-png-convert');
         const ctx = canvas.getContext('2d');
