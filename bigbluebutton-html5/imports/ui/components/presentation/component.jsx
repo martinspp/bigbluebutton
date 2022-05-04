@@ -240,19 +240,20 @@ class Presentation extends PureComponent {
         const presentationSizes = this.getPresentationSizesAvailable();
         console.log("slide changed")
         console.log("url: " + currentSlide.imageUri);
-        const canvas = new OffscreenCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
+        //const canvas = new OffscreenCanvas();
         const preset = presets.node({
           DOMParser,
           canvas,
           fetch
         });
+        const canvas = preset.createCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
         const ctx = canvas.getContext('2d');
         fetch(currentSlide.imageUri)
         .then(response =>{
           console.log(response)
           return response.text()
         })
-        .then(svg => Canvg.fromString(ctx, svg))
+        .then(svg => Canvg.fromString(ctx, svg, preset))
         .then(v => {
           v.render()
           return canvas.convertToBlob();
@@ -262,6 +263,7 @@ class Presentation extends PureComponent {
           reader.readAsDataURL(blob);
           reader.onloadend = () => {
             var base64data = reader.result;
+            console.log(base64data);
             unityContext.send()
           }
         })
