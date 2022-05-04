@@ -231,8 +231,6 @@ class Presentation extends PureComponent {
         if (slideChanged || positionChanged || pollPublished) {
           toggleSwapLayout(layoutContextDispatch);
         }
-      }
-      if(slideChanged){
         let v = null;
         const canvas = document.querySelector('#svg-to-png-convert');
         const ctx = canvas.getContext('2d');
@@ -243,6 +241,9 @@ class Presentation extends PureComponent {
         console.log(v);
         //unityContext.send
       }
+      
+        
+      
 
       if (presentationBounds !== prevPresentationBounds) this.onResize();
     } else if (slidePosition) {
