@@ -24,8 +24,10 @@ import PollingContainer from '/imports/ui/components/polling/container';
 import { ACTIONS, LAYOUT_TYPE } from '../layout/enums';
 import DEFAULT_VALUES from '../layout/defaultValues';
 import browserInfo from '/imports/utils/browserInfo';
-import {Canvg} from 'canvg'
+import {Canvg, presets} from 'canvg'
+import { DOMParser } from 'canvg/dist/presets/types';
 import { unityContext } from '../vr/container';
+import ContextProvidersComponent from '../context-providers/component';
 
 const intlMessages = defineMessages({
   presentationLabel: {
@@ -239,12 +241,16 @@ class Presentation extends PureComponent {
         
         const canvas = new OffscreenCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
         
+        const preset = presets.offscreen({
+          DOMParser
+        });
         
         const ctx = canvas.getContext('2d');
-        let v = Canvg.fromString(imageUri)
+        let v = Canvg.fromString(ctx, imageUri, preset)
+        
         v.render();
-        var img = canvas.toDataURL('img/png');
-        console.log(img);
+        var blob = await canvas.convertToBlob();
+        console.log(blob);
         console.log(v);
         //unityContext.send
       }
