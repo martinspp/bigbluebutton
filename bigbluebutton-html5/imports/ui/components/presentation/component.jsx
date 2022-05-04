@@ -238,7 +238,7 @@ class Presentation extends PureComponent {
       if(currentSlide.id !== prevProps.currentSlide.id){
         const presentationSizes = this.getPresentationSizesAvailable();
         console.log("slide changed")
-        console.log("url: " + imageUri);
+        console.log("url: " + currentSlide.imageUri);
         const canvas = new OffscreenCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
         const preset = presets.node({
           DOMParser,
