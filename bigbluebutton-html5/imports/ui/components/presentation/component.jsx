@@ -610,7 +610,7 @@ class Presentation extends PureComponent {
     const slideContent = content ? `${intl.formatMessage(intlMessages.slideContentStart)}
       ${content}
       ${intl.formatMessage(intlMessages.slideContentEnd)}` : intl.formatMessage(intlMessages.noSlideContent);
-
+    console.log(imageUri)
     return (
       <div
         style={{
