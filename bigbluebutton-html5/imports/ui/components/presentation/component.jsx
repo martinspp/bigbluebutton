@@ -249,7 +249,7 @@ class Presentation extends PureComponent {
         
         
         const ctx = canvas.getContext('2d');
-        let v = Canvg.fromString(ctx, imageUri,preset)
+        let v = Canvg.from(ctx, imageUri,preset)
         
         v.render();
         v.then(()=>{
