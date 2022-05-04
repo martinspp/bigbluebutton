@@ -257,7 +257,7 @@ class Presentation extends PureComponent {
           v.render()
           return canvas.convertToBlob();
         })
-        .then(b => console.log(URL.createObjectURL(blob)))
+        .then(b => console.log(URL.createObjectURL(b)))
         .catch(e => console.log("Something broke: "+ e))
         
       }
