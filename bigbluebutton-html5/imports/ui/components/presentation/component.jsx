@@ -239,7 +239,6 @@ class Presentation extends PureComponent {
       if(currentSlide.id !== prevProps.currentSlide.id){
         
         const presentationSizes = this.getPresentationSizesAvailable();
-        console.log("slide changed")
         console.log("url: " + currentSlide.imageUri);
         //const canvas = new OffscreenCanvas();
         const preset = presets.node({
@@ -256,16 +255,8 @@ class Presentation extends PureComponent {
         })
         .then(svg => Canvg.fromString(ctx, svg, preset).render())
         .then(() => {
-          console.log(c.toDataURL('image/png'))
-        })
-        .then(blob => {
-          var reader = new FileReader();
-          reader.readAsDataURL(blob);
-          reader.onloadend = () => {
-            var base64data = reader.result;
-            console.log(base64data);
-            unityContext.send()
-          }
+          console.log("slide changed")
+          unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
         })
         .catch(e => console.log("Something broke: "+ e))
         
