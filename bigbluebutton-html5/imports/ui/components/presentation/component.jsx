@@ -251,8 +251,8 @@ class Presentation extends PureComponent {
         const ctx = canvas.getContext('2d');
         let v = Canvg.from(ctx, imageUri,preset)
         
-        v.render();
         v.then(()=>{
+          v.render();
           var blob = canvas.convertToBlob();
           blob.then((b)=>{console.log(b)})
           console.log(v);
