@@ -257,7 +257,7 @@ class Presentation extends PureComponent {
           v.render()
           return canvas.convertToBlob();
         })
-        .then(b => {
+        .then(blob => {
           var reader = new FileReader();
           reader.readAsBinaryString(blob);
           reader.onloadend = () => {
