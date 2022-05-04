@@ -246,19 +246,15 @@ class Presentation extends PureComponent {
           canvas,
           fetch
         });
-        
-        
         const ctx = canvas.getContext('2d');
-        let v = Canvg.from(ctx, currentSlide.imageUri, preset)
-        
-        v.then(()=>{
-          debugger;
-          v.render();
-          var blob = canvas.convertToBlob();
-          blob.then((b)=>{console.log(b)})
-          console.log(v);
-          //unityContext.send
+        fetch(currentSlide.imageUri)
+        .then(response => Canvg.fromString(ctx, response, preset))
+        .then(v => {
+          v.render()
+          return canvas.convertToBlob();
         })
+        .then(b => console.log(b))
+        .catch(e => console.log("Something broke: "+ e))
         
       }
       
