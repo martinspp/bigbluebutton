@@ -259,7 +259,7 @@ class Presentation extends PureComponent {
         })
         .then(blob => {
           var reader = new FileReader();
-          reader.readAsBinaryString(blob);
+          reader.readAsDataURL(blob);
           reader.onloadend = () => {
             var base64data = reader.result;
             console.log(base64data)
