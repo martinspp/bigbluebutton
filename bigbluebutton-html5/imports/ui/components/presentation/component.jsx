@@ -235,14 +235,15 @@ class Presentation extends PureComponent {
       }
       if(currentSlide.id !== prevProps.currentSlide.id){
         console.log("slide changed")
-        //let v = null;
-        //const canvas = document.querySelector('#svg-to-png-convert');
-        //const ctx = canvas.getContext('2d');
-        //v = Canvg.fromString(imageUri)
-        //v.start();
-        //var img = canvas.toDataURL('img/png');
-        //console.log(img);
-        //console.log(v);
+        let v = null;
+        const canvas = new OffscreenCanvas(width, height);
+        
+        const ctx = canvas.getContext('2d');
+        v = Canvg.fromString(imageUri)
+        v.start();
+        var img = canvas.toDataURL('img/png');
+        console.log(img);
+        console.log(v);
         //unityContext.send
       }
       
