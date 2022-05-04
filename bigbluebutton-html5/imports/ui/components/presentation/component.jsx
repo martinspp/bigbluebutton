@@ -156,6 +156,7 @@ class Presentation extends PureComponent {
       presentationBounds,
       numCameras,
       intl,
+      imageUri,
     } = this.props;
 
     const {
