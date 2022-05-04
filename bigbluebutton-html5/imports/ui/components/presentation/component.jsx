@@ -26,6 +26,7 @@ import DEFAULT_VALUES from '../layout/defaultValues';
 import browserInfo from '/imports/utils/browserInfo';
 import {Canvg, presets} from 'canvg'
 import * as canvas from 'canvas';
+import fetch from 'node-fetch';
 import { DOMParser } from 'xmldom';
 import { unityContext } from '../vr/container';
 import ContextProvidersComponent from '../context-providers/component';
@@ -254,9 +255,9 @@ class Presentation extends PureComponent {
           return response.text()
         })
         .then(svg => Canvg.fromString(ctx, svg, preset))
-        .then(v => {
-          v.render()
-          return canv.convertToBlob();
+        .then(v => v.render())
+        .then(() => {
+          console.log(canv.toBuffer())
         })
         .then(blob => {
           var reader = new FileReader();
