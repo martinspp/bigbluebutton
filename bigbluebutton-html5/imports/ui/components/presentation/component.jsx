@@ -25,7 +25,6 @@ import { ACTIONS, LAYOUT_TYPE } from '../layout/enums';
 import DEFAULT_VALUES from '../layout/defaultValues';
 import browserInfo from '/imports/utils/browserInfo';
 import {Canvg, presets} from 'canvg'
-import { DOMParser } from 'canvg/dist/presets/types';
 import { unityContext } from '../vr/container';
 import ContextProvidersComponent from '../context-providers/component';
 
