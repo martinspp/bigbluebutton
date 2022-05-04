@@ -234,13 +234,15 @@ class Presentation extends PureComponent {
         }
       }
       if(currentSlide.id !== prevProps.currentSlide.id){
+        const presentationSizes = this.getPresentationSizesAvailable();
         console.log("slide changed")
-        let v = null;
-        const canvas = new OffscreenCanvas(width, height);
+        
+        const canvas = new OffscreenCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
+        
         
         const ctx = canvas.getContext('2d');
-        v = Canvg.fromString(imageUri)
-        v.start();
+        let v = Canvg.fromString(imageUri)
+        v.render();
         var img = canvas.toDataURL('img/png');
         console.log(img);
         console.log(v);
