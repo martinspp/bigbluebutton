@@ -159,7 +159,6 @@ class Presentation extends PureComponent {
       presentationBounds,
       numCameras,
       intl,
-      imageUri,
     } = this.props;
 
     const {
@@ -249,7 +248,7 @@ class Presentation extends PureComponent {
         
         
         const ctx = canvas.getContext('2d');
-        let v = Canvg.from(ctx, imageUri,preset)
+        let v = Canvg.from(ctx, currentSlide.imageUri, preset)
         
         v.then(()=>{
           v.render();
