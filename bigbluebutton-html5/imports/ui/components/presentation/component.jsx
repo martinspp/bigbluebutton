@@ -257,7 +257,14 @@ class Presentation extends PureComponent {
           v.render()
           return canvas.convertToBlob();
         })
-        .then(b => console.log(URL.createObjectURL(b)))
+        .then(b => {
+          var reader = new FileReader();
+          reader.readAsBinaryString(blob);
+          reader.onloadend = () => {
+            var base64data = reader.result;
+            console.log(base64data)
+          }
+        })
         .catch(e => console.log("Something broke: "+ e))
         
       }
