@@ -144,7 +144,7 @@ class Presentation extends PureComponent {
         },
       });
     }
-    this.svgToUnity(slidePosition)
+    this.svgToUnity()
   }
 
   componentDidUpdate(prevProps) {
@@ -227,7 +227,7 @@ class Presentation extends PureComponent {
         });
       }
       if(prevProps.currentSlide?.num != currentSlide.num){
-        this.svgToUnity(slidePosition)
+        this.svgToUnity()
       }
       if (layoutSwapped && restoreOnUpdate && !userIsPresenter && currentSlide) {
         const slideChanged = currentSlide.id !== prevProps.currentSlide.id;
@@ -258,8 +258,10 @@ class Presentation extends PureComponent {
     
   }
 
-  svgToUnity(slidePosition){
-    const presentationSizes = this.getPresentationSizesAvailable();
+  svgToUnity(){
+    const {
+      slidePosition,
+    } = this.props;
       //const canvas = new OffscreenCanvas();
       const preset = presets.node({
         DOMParser,
@@ -444,6 +446,7 @@ class Presentation extends PureComponent {
   zoomChanger(incomingZoom) {
     const {
       zoom,
+
     } = this.state;
 
     let newZoom = incomingZoom;
@@ -455,6 +458,7 @@ class Presentation extends PureComponent {
     }
 
     if (newZoom !== zoom) this.setState({ zoom: newZoom });
+    this.svgToUnity();
   }
 
   fitToWidthHandler() {
