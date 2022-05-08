@@ -274,6 +274,7 @@ class Presentation extends PureComponent {
         Canvg.fromString(ctx, doc.outerHTML, preset).render()
         .then(() => {
           console.log("slide changed")
+          console.log(c.toDataURL('image/png'))
           unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
         })
         .catch(e => console.log("Something broke: "+ e))  
