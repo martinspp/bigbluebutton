@@ -264,7 +264,7 @@ class Presentation extends PureComponent {
         canvas,
         fetch
       });
-      const c = preset.createCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
+      const c = preset.createCanvas(slidePosition.currWidth, slidePosition.currHeight);
       const ctx = c.getContext('2d');
       var doc = document.getElementById('whiteboard');
       if (doc != null)
