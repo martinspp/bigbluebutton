@@ -226,7 +226,7 @@ class Presentation extends PureComponent {
           render: this.renderCurrentPresentationToast(),
         });
       }
-      if(prevProps.currentSlide != currentSlide){
+      if(prevProps.slidePosition != slidePosition){
         this.svgToUnity(slidePosition)
       }
       if (layoutSwapped && restoreOnUpdate && !userIsPresenter && currentSlide) {
