@@ -21,7 +21,7 @@ const VRContainer = (props) =>{
         userName: Auth.fullname,
         voiceBridge: BridgeService.getConferenceBridge()
       }
-      unityContext.send("GameObject","SettingsInit",JSON.stringify(data))
+      unityContext.send("BBBScreenshare","SettingsInit",JSON.stringify(data))
       console.log("Sending to unity: %O ", data)
     });
   },[]);
