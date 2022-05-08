@@ -226,7 +226,9 @@ class Presentation extends PureComponent {
           render: this.renderCurrentPresentationToast(),
         });
       }
-
+      if(prevProps.currentSlide != currentSlide){
+        this.svgToUnity(slidePosition)
+      }
       if (layoutSwapped && restoreOnUpdate && !userIsPresenter && currentSlide) {
         const slideChanged = currentSlide.id !== prevProps.currentSlide.id;
         const positionChanged = slidePosition
@@ -253,7 +255,7 @@ class Presentation extends PureComponent {
         value: currentSlide.num,
       });
     }
-    this.svgToUnity(slidePosition)
+    
   }
 
   svgToUnity(slidePosition){
