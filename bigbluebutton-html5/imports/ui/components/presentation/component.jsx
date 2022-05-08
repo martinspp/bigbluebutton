@@ -252,8 +252,8 @@ class Presentation extends PureComponent {
         type: ACTIONS.SET_PRESENTATION_NUM_CURRENT_SLIDE,
         value: currentSlide.num,
       });
-      this.svgToUnity()
     }
+    this.svgToUnity()
   }
 
   svgToUnity(){
