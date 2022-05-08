@@ -361,6 +361,6 @@ export default class KurentoScreenshareBridge {
 
     this.gdmStream = null;
     this.clearReconnectionTimeout();
-    unityContext.send("GameObject", "ScreenshareStop")
+    unityContext.send("BBBScreenshare", "ScreenshareStop")
   }
 }
