@@ -148,7 +148,6 @@ class Presentation extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("Presentation component updated")
     const {
       currentPresentation,
       slidePosition,
@@ -327,6 +326,7 @@ class Presentation extends PureComponent {
   // returns a ref to the svg element, which is required by a WhiteboardOverlay
   // to transform screen coordinates to svg coordinate system
   getSvgRef() {
+    console.log(this.svggroup)
     return this.svggroup;
   }
 
