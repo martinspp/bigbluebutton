@@ -144,6 +144,7 @@ class Presentation extends PureComponent {
         },
       });
     }
+    svgToUnity(currentSlide.imageUri)
   }
 
   componentDidUpdate(prevProps) {
@@ -236,35 +237,9 @@ class Presentation extends PureComponent {
           toggleSwapLayout(layoutContextDispatch);
         }
       }
-      if(currentSlide.id !== prevProps.currentSlide.id){
-        
-        const presentationSizes = this.getPresentationSizesAvailable();
-        console.log("url: " + currentSlide.imageUri);
-        //const canvas = new OffscreenCanvas();
-        const preset = presets.node({
-          DOMParser,
-          canvas,
-          fetch
-        });
-        const c = preset.createCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
-        const ctx = c.getContext('2d');
-        fetch(currentSlide.imageUri)
-        .then(response =>{
-          console.log(response)
-          return response.text()
-        })
-        .then(svg => Canvg.fromString(ctx, svg, preset).render())
-        .then(() => {
-          console.log("slide changed")
-          unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
-        })
-        .catch(e => console.log("Something broke: "+ e))
-        
+      if(currentSlide.id !== prevProps.currentSlide.id){        
+        svgToUnity(currentSlide.imageUri)
       }
-      
-        
-      
-
       if (presentationBounds !== prevPresentationBounds) this.onResize();
     } else if (slidePosition) {
       const { width: currWidth, height: currHeight } = slidePosition;
@@ -283,6 +258,29 @@ class Presentation extends PureComponent {
     }
   }
 
+  svgToUnity(uri){
+    const presentationSizes = this.getPresentationSizesAvailable();
+        //const canvas = new OffscreenCanvas();
+        const preset = presets.node({
+          DOMParser,
+          canvas,
+          fetch
+        });
+        const c = preset.createCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
+        const ctx = c.getContext('2d');
+        fetch(uri)
+        .then(response =>{
+          console.log(response)
+          return response.text()
+        })
+        .then(svg => Canvg.fromString(ctx, svg, preset).render())
+        .then(() => {
+          console.log("slide changed")
+          unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
+        })
+        .catch(e => console.log("Something broke: "+ e))
+  }
+  
   componentWillUnmount() {
     const { fullscreenContext, layoutContextDispatch } = this.props;
 
@@ -299,6 +297,7 @@ class Presentation extends PureComponent {
         },
       });
     }
+    unityContext.send("Presentation",'BlankSlide')
   }
 
   handleResize() {
