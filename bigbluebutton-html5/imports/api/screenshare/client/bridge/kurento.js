@@ -5,6 +5,7 @@ import ScreenshareBroker from '/imports/ui/services/bbb-webrtc-sfu/screenshare-b
 import { setSharingScreen, screenShareEndAlert } from '/imports/ui/components/screenshare/service';
 import { SCREENSHARING_ERRORS } from './errors';
 import { shouldForceRelay } from '/imports/ui/services/bbb-webrtc-sfu/utils';
+import { unityContext } from '/imports/ui/components/vr/container';
 
 const SFU_CONFIG = Meteor.settings.public.kurento;
 const SFU_URL = SFU_CONFIG.wsUrl;
@@ -360,5 +361,6 @@ export default class KurentoScreenshareBridge {
 
     this.gdmStream = null;
     this.clearReconnectionTimeout();
+    unityContext.send("GameObject", "ScreenshareStop")
   }
 }
