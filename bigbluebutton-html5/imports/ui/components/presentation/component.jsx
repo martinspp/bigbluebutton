@@ -148,6 +148,7 @@ class Presentation extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
+    console.log("Presentation component updated")
     const {
       currentPresentation,
       slidePosition,

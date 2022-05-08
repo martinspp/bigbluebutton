@@ -115,7 +115,6 @@ export default class CursorListener extends Component {
     }
 
     this.checkCursor(event.clientX, event.clientY);
-    console.log("enter x: " + event.clientX +"y: "+ event.clientY)
   }
 
   handleMouseMove(event) {
@@ -124,12 +123,10 @@ export default class CursorListener extends Component {
     }
 
     this.checkCursor(event.clientX, event.clientY);
-    console.log("move x: " + event.clientX +"y: "+ event.clientY)
   }
 
   handleMouseLeave() {
     this.checkCursor(-1, -1);
-    console.log("left mouse");
   }
 
   clearTouchEvents() {
