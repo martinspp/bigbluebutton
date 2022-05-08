@@ -266,7 +266,7 @@ class Presentation extends PureComponent {
         canvas,
         fetch
       });
-      const c = preset.createCanvas(presentationSizes.slideWidth, presentationSizes.slideHeight);
+      const c = preset.createCanvas(slidePosition.width, slidePosition.height);
       const ctx = c.getContext('2d');
       var doc = document.getElementById('whiteboard');
       if (doc != null)
@@ -274,8 +274,8 @@ class Presentation extends PureComponent {
         Canvg.fromString(ctx, doc.outerHTML, preset).render()
         .then(() => {
           console.log("slide changed")
-          console.log("width: "+slidePosition.width+ " height: "+ slidePosition.height );
-          //console.log(c.toDataURL('image/png'))
+          //console.log("width: "+slidePosition.width+ " height: "+ slidePosition.height );
+          console.log(c.toDataURL('image/png'))
           unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
         })
         .catch(e => console.log("Something broke: "+ e))  
