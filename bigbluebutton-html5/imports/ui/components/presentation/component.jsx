@@ -237,9 +237,6 @@ class Presentation extends PureComponent {
           toggleSwapLayout(layoutContextDispatch);
         }
       }
-      if(currentSlide.id !== prevProps.currentSlide.id){        
-        this.svgToUnity()
-      }
       if (presentationBounds !== prevPresentationBounds) this.onResize();
     } else if (slidePosition) {
       const { width: currWidth, height: currHeight } = slidePosition;
@@ -255,6 +252,7 @@ class Presentation extends PureComponent {
         type: ACTIONS.SET_PRESENTATION_NUM_CURRENT_SLIDE,
         value: currentSlide.num,
       });
+      this.svgToUnity()
     }
   }
 
