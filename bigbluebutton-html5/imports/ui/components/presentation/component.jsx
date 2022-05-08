@@ -267,12 +267,18 @@ class Presentation extends PureComponent {
         fetch
       });
       const c = preset.createCanvas(slidePosition.width, slidePosition.height);
+      
       const ctx = c.getContext('2d');
       var doc = document.getElementById('whiteboard');
       if (doc != null)
       {
-        Canvg.fromString(ctx, doc.outerHTML, preset).render()
-        .then(() => {
+        Canvg.fromString(ctx, doc.outerHTML, preset)
+        .then((v) => {
+          v.resize(slidePosition.width, slidePosition.height)
+          return v.render()
+        })
+        .then((v) => {
+          
           console.log("slide changed")
           console.log("width: "+slidePosition.width+ " height: "+ slidePosition.height );
           console.log(c.toDataURL('image/png'))
