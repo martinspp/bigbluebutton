@@ -260,20 +260,24 @@ class Presentation extends PureComponent {
 
   svgToUnity(){
     const presentationSizes = this.getPresentationSizesAvailable();
-        //const canvas = new OffscreenCanvas();
-        const preset = presets.node({
-          DOMParser,
-          canvas,
-          fetch
-        });
-        const c = preset.createCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
-        const ctx = c.getContext('2d');
-        Canvg.fromString(ctx, document.getElementById('whiteboard').outerHTML, preset).render()
+      //const canvas = new OffscreenCanvas();
+      const preset = presets.node({
+        DOMParser,
+        canvas,
+        fetch
+      });
+      const c = preset.createCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
+      const ctx = c.getContext('2d');
+      var doc = document.getElementById('whiteboard');
+      if (doc != null)
+      {
+        Canvg.fromString(ctx, doc.outerHTML, preset).render()
         .then(() => {
           console.log("slide changed")
           unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
         })
-        .catch(e => console.log("Something broke: "+ e))
+        .catch(e => console.log("Something broke: "+ e))  
+      }
   }
   
   componentWillUnmount() {
