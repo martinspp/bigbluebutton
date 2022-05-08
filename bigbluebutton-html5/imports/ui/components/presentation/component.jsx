@@ -272,12 +272,9 @@ class Presentation extends PureComponent {
       var doc = document.getElementById('whiteboard');
       if (doc != null)
       {
-        Canvg.fromString(ctx, doc.outerHTML, preset)
-        .then((v) => {
-          v.resize(slidePosition.width, slidePosition.height)
-          return v.render()
-        })
-        .then((v) => {
+        var v = Canvg.fromString(ctx, doc.outerHTML, preset)
+        v.resize(slidePosition.width, slidePosition.height)
+        render().then(() => {
           
           console.log("slide changed")
           console.log("width: "+slidePosition.width+ " height: "+ slidePosition.height );
