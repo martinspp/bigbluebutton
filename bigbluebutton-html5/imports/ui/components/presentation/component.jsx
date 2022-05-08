@@ -144,7 +144,7 @@ class Presentation extends PureComponent {
         },
       });
     }
-    this.svgToUnity()
+    this.svgToUnity(slidePosition)
   }
 
   componentDidUpdate(prevProps) {
@@ -253,10 +253,10 @@ class Presentation extends PureComponent {
         value: currentSlide.num,
       });
     }
-    this.svgToUnity()
+    this.svgToUnity(slidePosition)
   }
 
-  svgToUnity(){
+  svgToUnity(slidePosition){
     const presentationSizes = this.getPresentationSizesAvailable();
       //const canvas = new OffscreenCanvas();
       const preset = presets.node({
