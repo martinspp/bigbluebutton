@@ -144,7 +144,7 @@ class Presentation extends PureComponent {
         },
       });
     }
-    svgToUnity(currentSlide.imageUri)
+    this.svgToUnity(currentSlide.imageUri)
   }
 
   componentDidUpdate(prevProps) {
@@ -238,7 +238,7 @@ class Presentation extends PureComponent {
         }
       }
       if(currentSlide.id !== prevProps.currentSlide.id){        
-        svgToUnity(currentSlide.imageUri)
+        this.svgToUnity(currentSlide.imageUri)
       }
       if (presentationBounds !== prevPresentationBounds) this.onResize();
     } else if (slidePosition) {
