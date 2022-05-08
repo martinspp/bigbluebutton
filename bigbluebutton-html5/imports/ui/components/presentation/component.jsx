@@ -273,11 +273,10 @@ class Presentation extends PureComponent {
       if (doc != null)
       {
         var v = Canvg.fromString(ctx, doc.outerHTML, preset)
-        v.resize(slidePosition.width, slidePosition.height)
+        v.resize(slidePosition.width*1.5, slidePosition.height*1.5)
         v.render().then(() => {
           
           console.log("slide changed")
-          console.log("width: "+slidePosition.width+ " height: "+ slidePosition.height );
           console.log(c.toDataURL('image/png'))
           unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
         })
