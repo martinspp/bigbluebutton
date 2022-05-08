@@ -144,7 +144,7 @@ class Presentation extends PureComponent {
         },
       });
     }
-    this.svgToUnity(currentSlide.imageUri)
+    this.svgToUnity()
   }
 
   componentDidUpdate(prevProps) {
@@ -238,7 +238,7 @@ class Presentation extends PureComponent {
         }
       }
       if(currentSlide.id !== prevProps.currentSlide.id){        
-        this.svgToUnity(currentSlide.imageUri)
+        this.svgToUnity()
       }
       if (presentationBounds !== prevPresentationBounds) this.onResize();
     } else if (slidePosition) {
@@ -258,7 +258,7 @@ class Presentation extends PureComponent {
     }
   }
 
-  svgToUnity(uri){
+  svgToUnity(){
     const presentationSizes = this.getPresentationSizesAvailable();
         //const canvas = new OffscreenCanvas();
         const preset = presets.node({
@@ -268,12 +268,7 @@ class Presentation extends PureComponent {
         });
         const c = preset.createCanvas(presentationSizes.presentationWidth, presentationSizes.presentationHeight);
         const ctx = c.getContext('2d');
-        fetch(uri)
-        .then(response =>{
-          console.log(response)
-          return response.text()
-        })
-        .then(svg => Canvg.fromString(ctx, svg, preset).render())
+        Canvg.fromString(ctx, document.getElementById('whiteboard').outerHTML, preset).render()
         .then(() => {
           console.log("slide changed")
           unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
@@ -326,7 +321,6 @@ class Presentation extends PureComponent {
   // returns a ref to the svg element, which is required by a WhiteboardOverlay
   // to transform screen coordinates to svg coordinate system
   getSvgRef() {
-    console.log(this.svggroup)
     return this.svggroup;
   }
 
@@ -660,6 +654,7 @@ class Presentation extends PureComponent {
         {this.renderPresentationDownload()}
         {this.renderPresentationFullscreen()}
         <svg
+          id="whiteboard"
           key={currentSlide.id}
           data-test="whiteboard"
           width={svgDimensions.width < 0 ? 0 : svgDimensions.width}
