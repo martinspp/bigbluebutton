@@ -274,7 +274,7 @@ class Presentation extends PureComponent {
       {
         var v = Canvg.fromString(ctx, doc.outerHTML, preset)
         v.resize(slidePosition.width, slidePosition.height)
-        render().then(() => {
+        v.render().then(() => {
           
           console.log("slide changed")
           console.log("width: "+slidePosition.width+ " height: "+ slidePosition.height );
