@@ -446,7 +446,6 @@ class Presentation extends PureComponent {
   zoomChanger(incomingZoom) {
     const {
       zoom,
-
     } = this.state;
 
     let newZoom = incomingZoom;
@@ -458,7 +457,6 @@ class Presentation extends PureComponent {
     }
 
     if (newZoom !== zoom) this.setState({ zoom: newZoom });
-    this.svgToUnity();
   }
 
   fitToWidthHandler() {
