@@ -81,13 +81,13 @@ async def repeating(timeout, function):
 
 async def main():
     ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    bbbssl = pathlib.Path(__file__).with_name("fullchain.pem")
-    ssl_context.load_verify_locations(bbbssl)
+    bbbssl_pem = pathlib.Path(__file__).with_name("fullchain.pem")
+    ssl_context.load_verify_locations(bbbssl_pem)
     loop = asyncio.get_running_loop()
     stop = loop.create_future()
     loop.create_task(repeating(0.1,broadcastUpdate))
     
-    async with websockets.serve(handler, "", 8765, ssl=ssl_context):
+    async with websockets.serve(handler, "bbb.4eks1s.com", 8765, ssl=ssl_context):
         await stop
         
     
