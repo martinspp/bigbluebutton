@@ -80,7 +80,7 @@ async def repeating(timeout, function):
         await function()
 
 async def main():
-    ssl_context = ssl.SSLContext(ssl.PROTOCOL_SSLv2)
+    ssl_context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
     bbbssl = pathlib.Path(__file__).with_name("fullchain.pem")
     ssl_context.load_verify_locations(bbbssl)
     loop = asyncio.get_running_loop()
