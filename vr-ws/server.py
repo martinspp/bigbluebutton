@@ -3,6 +3,8 @@
 import asyncio
 import websockets
 import json
+import pathlib
+import ssl
 
 meetings = {}
 wss = {}
@@ -78,11 +80,14 @@ async def repeating(timeout, function):
         await function()
 
 async def main():
+    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+    bbbssl = pathlib.Path(__file__).with_name("fullchain.pem")
+    ssl_context.load_verify_locations(bbbssl)
     loop = asyncio.get_running_loop()
     stop = loop.create_future()
     loop.create_task(repeating(0.1,broadcastUpdate))
     
-    async with websockets.serve(handler, "", 8765):
+    async with websockets.serve(handler, "", 8765, ssl=ssl_context):
         await stop
         
     

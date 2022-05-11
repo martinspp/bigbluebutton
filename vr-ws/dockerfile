@@ -6,5 +6,6 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
+COPY /etc/letsencrypt/live/bbb.4eks1s.com/fullchain.pem .
 
 CMD [ "python", "./server.py" ]
