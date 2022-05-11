@@ -81,9 +81,9 @@ async def repeating(timeout, function):
 
 async def main():
     ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    bbbssl_pem = pathlib.Path(__file__).with_name("fullchain.pem")
-    print(bbbssl_pem)
-    ssl_context.load_verify_locations(bbbssl_pem)
+    bbbssl_cert = pathlib.Path(__file__).with_name("fullchain.pem")
+    bbbssl_key = pathlib.Path(__file__).with_name("privkey.pem")
+    ssl_context.load_cert_chain(bbbssl_cert, keyfile=bbbssl_key)
     loop = asyncio.get_running_loop()
     stop = loop.create_future()
     loop.create_task(repeating(0.1,broadcastUpdate))
