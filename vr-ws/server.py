@@ -26,9 +26,9 @@ async def handler (websocket):
                 meetings[meetingId][playerId] = {}
                 meetings[meetingId][playerId]['wsId'] = str(websocket.id)
                 meetings[meetingId][playerId]['playerId'] = playerId
-                meetings[meetingId][playerId]['LController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-                meetings[meetingId][playerId]['RController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-                meetings[meetingId][playerId]['Head'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+                meetings[meetingId][playerId]['LController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+                meetings[meetingId][playerId]['RController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+                meetings[meetingId][playerId]['Head'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
                 print(websocket)
             if m['id'] == "remove":
                 websocket.close()
@@ -51,8 +51,6 @@ async def handler (websocket):
             if(value['wsId'] == str(websocket.id)):
                 playerId = value['playerId']
                 
-
-        print("####")
         if meetingId is not None:
             wss[meetingId].remove(websocket)
             if(not wss[meetingId]):
