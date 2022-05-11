@@ -71,7 +71,7 @@ def search(list, v):
 async def broadcastUpdate():
     for key, value in wss.items():
         print(f"Broadcasting clients of {key}: {len(value)}")
-        websockets.broadcast(value, json.dumps(meetings[key]))
+        websockets.broadcast(value, json.dumps([(v) for k, v in meetings[key].items()]))
         
 
 async def repeating(timeout, function):
