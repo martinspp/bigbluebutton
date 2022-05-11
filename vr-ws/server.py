@@ -87,7 +87,7 @@ async def main():
     stop = loop.create_future()
     loop.create_task(repeating(0.1,broadcastUpdate))
     
-    async with websockets.serve(handler, "localhost", 8765, ssl=ssl_context):
+    async with websockets.serve(handler, "", 8765, ssl=ssl_context):
         await stop
         
     
