@@ -86,7 +86,7 @@ async def main():
     ssl_context.load_cert_chain(bbbssl_cert, keyfile=bbbssl_key)
     loop = asyncio.get_running_loop()
     stop = loop.create_future()
-    loop.create_task(repeating(0.05,broadcastUpdate))
+    loop.create_task(repeating(0.1,broadcastUpdate))
     
     async with websockets.serve(handler, "", 8765, ssl=ssl_context):
         await stop
