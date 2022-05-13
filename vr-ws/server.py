@@ -28,9 +28,9 @@ async def handler (websocket):
                 meetings[meetingId][playerId] = {}
                 meetings[meetingId][playerId]['wsId'] = str(websocket.id)
                 meetings[meetingId][playerId]['playerId'] = playerId
-                meetings[meetingId][playerId]['LController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-                meetings[meetingId][playerId]['RController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-                meetings[meetingId][playerId]['Head'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+                meetings[meetingId][playerId]['LController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+                meetings[meetingId][playerId]['RController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+                meetings[meetingId][playerId]['Head'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
                 print(websocket)
             if m['id'] == "remove":
                 websocket.close()
@@ -71,6 +71,7 @@ def search(list, v):
 async def broadcastUpdate():
     for key, value in wss.items():
         print(f"Broadcasting clients of {key}: {len(value)}")
+        print(json.dumps([(v) for k, v in meetings[key].items()]))
         websockets.broadcast(value, json.dumps([(v) for k, v in meetings[key].items()]))
         
 
