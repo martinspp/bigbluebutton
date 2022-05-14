@@ -52,6 +52,7 @@ export const startVR = () => {
 
 export default withTracker(() =>{
   return{
-    unityContext
+    unityContext,
+    EngineEnabled
   }
 })(VRContainer);
