@@ -9,7 +9,7 @@ import BridgeService from '/imports/api/screenshare/client/bridge/service';
 const VRContainer = () => {
   this.props = {
     unityContext,
-    EngineEnabled: false
+    EngineEnabled
   }
   useEffect(function(){
     unityContext.on("unitystarted", function(){
@@ -26,15 +26,11 @@ const VRContainer = () => {
     });
   },[]);
 
-  if(props.EngineEnabled){
-    return (
-      <VRComponent {...props } />
-    )}
-  else{
-    return null
-  };
-
-}
+  
+  return (
+    <VRComponent {...props } />
+  )
+};
 export const unityContext = new UnityContext({
   loaderUrl: "vr/build.loader.js",
   dataUrl: "vr/build.data",
@@ -47,10 +43,11 @@ export const startVR = () => {
   unityContext.unityInstance.Module.WebXR.toggleVR()
 }
 
+export var EngineEnabled = false;
+
 
 export default withTracker(() =>{
   return{
     unityContext,
-    EngineEnabled
   }
 })(VRContainer);

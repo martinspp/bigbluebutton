@@ -30,12 +30,17 @@ class VRComponent extends PureComponent{
   }
   render(){
     const{
-      unityContext
+      unityContext,
+      EngineEnabled
     } = this.props;
-
-    return (
-      <Unity unityContext={unityContext} />
-    )
+    if(EngineEnabled){
+      return (
+        <Unity unityContext={unityContext} />
+      )
+    }
+    else{
+      return null;
+    }
   }
 }
 
