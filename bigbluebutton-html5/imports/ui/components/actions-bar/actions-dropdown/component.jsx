@@ -128,6 +128,7 @@ class ActionsDropdown extends PureComponent {
       mountModal,
       layoutContextDispatch,
       hidePresentation,
+      isVrAvailable
     } = this.props;
 
     const {
