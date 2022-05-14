@@ -7,10 +7,7 @@ import Auth from '/imports/ui/services/auth';
 import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
 const VRContainer = (props) =>{
-  this.props = {
-    unityContext,
-    EngineEnabled: false
-  }
+  console.log(props)
   useEffect(function(){
     unityContext.on("unitystarted", function(){
       console.log("unity started event")
@@ -25,6 +22,7 @@ const VRContainer = (props) =>{
       console.log("Sending to unity: %O ", data)
     });
   },[]);
+
   if(EngineEnabled){
     return (
       <VRComponent {...props } />
