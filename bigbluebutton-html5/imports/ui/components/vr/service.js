@@ -1,4 +1,5 @@
-const isVRAvailable = async () => {
+const isVRAvailable = () => {
+    console.log("testing vr")
     if(navigator.xr){
         navigator.xr.isSessionSupported("immersive-vr")
         .then((isSupported) => {
