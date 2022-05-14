@@ -9,8 +9,6 @@ import BridgeService from '/imports/api/screenshare/client/bridge/service';
 const VRContainer = () => {
   this.props = {
     unityContext,
-  }
-  this.state = {
     EngineEnabled: false
   }
   useEffect(function(){
@@ -28,7 +26,7 @@ const VRContainer = () => {
     });
   },[]);
 
-  if(state.EngineEnabled){
+  if(props.EngineEnabled){
     return (
       <VRComponent {...props } />
     )}
