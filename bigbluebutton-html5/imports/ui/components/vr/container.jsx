@@ -8,7 +8,8 @@ import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
 const VRContainer = () => {
   this.props = {
-    unityContext
+    unityContext,
+    EngineEnabled: false
   }
   useEffect(function(){
     unityContext.on("unitystarted", function(){
