@@ -33,7 +33,7 @@ const VRContainer = () => {
       <VRComponent {...props } />
     )}
   else{
-    return
+    return null
   };
 
 }
