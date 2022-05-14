@@ -6,8 +6,10 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Auth from '/imports/ui/services/auth';
 import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
-const VRContainer = (props) =>{
-  console.log(props)
+const VRContainer = () => {
+  this.props = {
+    unityContext
+  }
   useEffect(function(){
     unityContext.on("unitystarted", function(){
       console.log("unity started event")
