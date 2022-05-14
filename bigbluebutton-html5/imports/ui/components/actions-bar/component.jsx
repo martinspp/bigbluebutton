@@ -128,7 +128,7 @@ class ActionsBar extends PureComponent {
             <Button
               icon="vr"
               label='Start VR'
-              size="1g"
+              size="lg"
               color="primary"
               circle
               hideLabel
