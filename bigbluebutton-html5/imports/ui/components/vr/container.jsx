@@ -43,11 +43,12 @@ export const startVR = () => {
   unityContext.unityInstance.Module.WebXR.toggleVR()
 }
 
-export var EngineEnabled = false;
+var EngineEnabled = false;
 
 
 export default withTracker(() =>{
   return{
     unityContext,
+    EngineEnabled
   }
 })(VRContainer);
