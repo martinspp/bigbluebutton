@@ -207,9 +207,9 @@ class ActionsDropdown extends PureComponent {
         dataTest: "selectRandomUser",
       })
     }
-    debugger;
+
     console.log(isVrAvailable)
-    if(isVrAvailable){
+    if(true){
       actions.push({
         icon: "presentation",
         label: "Iespējot VR",
