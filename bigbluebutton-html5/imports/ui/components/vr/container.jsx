@@ -8,9 +8,7 @@ import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
 const VRContainer = (props) =>{
   this.props = unityContext
-  this.props = VRService.isVRAvailable()
-  console.log("render container " + VRService.isVRAvailable())
-
+  this.EngineEnabled = false
   useEffect(function(){
     unityContext.on("unitystarted", function(){
       console.log("unity started event")
@@ -25,11 +23,14 @@ const VRContainer = (props) =>{
       console.log("Sending to unity: %O ", data)
     });
   },[]);
-
+  if(EngineEnabled){
   return (
-
     <VRComponent {...props } />
-  );
+  )}
+  else{
+    return
+  };
+
 }
 export const unityContext = new UnityContext({
   loaderUrl: "vr/build.loader.js",
@@ -47,5 +48,6 @@ export const startVR = () => {
 export default withTracker(() =>{
   return{
     unityContext,
+    EngineEnabled
   }
 })(VRContainer);
