@@ -207,6 +207,7 @@ class ActionsDropdown extends PureComponent {
         dataTest: "selectRandomUser",
       })
     }
+    debugger;
     console.log(isVrAvailable)
     if(isVrAvailable){
       actions.push({
