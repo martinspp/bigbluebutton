@@ -1,12 +1,14 @@
 const isVRAvailable = async () => {
-    //const xrSessionSupported = polyfill.xr.isSessionSupported()
-    //if(xrSessionSupported === undefined){
-    //    return false;
-    //}
-    //console.log("here")
-    //const ret = await xrSessionSupported.then((val)=>{return val})
-    //console.log(ret)
-    return true;
+    if(navigator.xr){
+        navigator.xr.isSessionSupported("immersive-vr")
+        .then((isSupported) => {
+            return isSupported
+        })
+    }
+    else{
+        return false;
+    }
+    
 }
 
 export default{

@@ -11,6 +11,8 @@ import BBBMenu from '/imports/ui/components/menu/component';
 import cx from 'classnames';
 import { styles } from '../styles';
 import { PANELS, ACTIONS } from '../../layout/enums';
+import { unityContext } from '../../vr/container';
+import { isVrAvailable } from '/imports/ui/components/vr/service'
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -94,6 +96,7 @@ class ActionsDropdown extends PureComponent {
     this.pollId = _.uniqueId('action-item-');
     this.takePresenterId = _.uniqueId('action-item-');
     this.selectUserRandId = _.uniqueId('action-item-');
+    this.enableVR = _.uniqueId("action-item-");
 
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
@@ -200,6 +203,14 @@ class ActionsDropdown extends PureComponent {
         key: this.selectUserRandId,
         onClick: () => mountModal(<RandomUserSelectContainer isSelectedUser={false} />),
         dataTest: "selectRandomUser",
+      })
+    }
+    if(isVrAvailable){
+      actions.push({
+        icon: "presentation",
+        label: "Iespējot VR",
+        key: this.enableVR
+        //onClick:
       })
     }
 
