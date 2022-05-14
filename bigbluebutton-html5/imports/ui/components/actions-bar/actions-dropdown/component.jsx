@@ -13,6 +13,7 @@ import { styles } from '../styles';
 import { PANELS, ACTIONS } from '../../layout/enums';
 import { unityContext } from '../../vr/container';
 import { isVrAvailable } from '/imports/ui/components/vr/service'
+import debug from 'redis/lib/debug';
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -206,6 +207,7 @@ class ActionsDropdown extends PureComponent {
         dataTest: "selectRandomUser",
       })
     }
+    console.log(isVrAvailable)
     if(isVrAvailable){
       actions.push({
         icon: "presentation",
