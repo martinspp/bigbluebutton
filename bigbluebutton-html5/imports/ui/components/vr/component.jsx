@@ -28,7 +28,7 @@ class VRComponent extends PureComponent{
     if(event.detail.streamState == "connected")
     {
       console.log("starting screenshare");
-      screenShareStart();
+      //screenShareStart();
     }
   }
   render(){
