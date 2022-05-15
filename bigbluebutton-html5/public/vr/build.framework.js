@@ -20215,6 +20215,9 @@ function _unityMultiplayerStarted() {
 function _unityScreenShareStarted() {
  window.dispatchReactUnityEvent("unityScreenShareStarted");
 }
+function _unityScreenShareWSConnected() {
+ window.dispatchReactUnityEvent("unityScreenShareWSConnected");
+}
 function _unsetenv(name) {
  if (name === 0) {
   ___setErrNo(ERRNO_CODES.EINVAL);
@@ -26789,6 +26792,7 @@ Module.asmLibraryArg = {
  "_tzset": _tzset,
  "_unityMultiplayerStarted": _unityMultiplayerStarted,
  "_unityScreenShareStarted": _unityScreenShareStarted,
+ "_unityScreenShareWSConnected": _unityScreenShareWSConnected,
  "_unsetenv": _unsetenv,
  "_usleep": _usleep,
  "_utime": _utime,
