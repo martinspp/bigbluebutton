@@ -14,7 +14,7 @@ const VRContainer = (props) => {
   )
 };
 
-const unityContext = new UnityContext({
+export const unityContext = new UnityContext({
   loaderUrl: "vr/build.loader.js",
   dataUrl: "vr/build.data",
   frameworkUrl: "vr/build.framework.js",
