@@ -35,14 +35,14 @@ const VRContainer = (props) =>{
     cursorStreamListener.on('message', ({ cursors }) => {
       Object.keys(cursors).forEach((cursorId) => {
         const cursor = cursors[cursorId];
-        //const userId = cursor.userId;
+        const userId = cursor.userId;
+        console.log(cursor)
+        console.log(userId)
         //delete cursor.userId;
         //if (Auth.userID === userId) return;
         
       });
-      if(cursors.length != 1){
-        console.log(cursors)
-      }
+      
         
     });
     unityContext.on("unityScreenShareStarted", function(){
