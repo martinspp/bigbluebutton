@@ -8,7 +8,7 @@ import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
 
 
-const VRContainer = (props) => {
+const VRContainer = () => {
 
   return(
    <VRComponent { ...unityContext } />

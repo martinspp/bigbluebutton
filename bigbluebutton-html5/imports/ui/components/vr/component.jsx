@@ -42,6 +42,9 @@ class VRComponent extends Component{
     }
   }
   render(){
+    const{
+      unityContext
+    } = this.props;
     return <Unity unityContext={unityContext} /> 
   }
 }
