@@ -9,9 +9,7 @@ class VRComponent extends Component{
 
   constructor(props){
     super(props);
-    this.state = {
-      EngineEnabled: false
-    }
+    
     this.onStreamStateChange = this.onStreamStateChange.bind(this);
     this.onEngineEnabledClick = this.onEngineEnabledClick.bind(this);
   }
@@ -49,8 +47,7 @@ class VRComponent extends Component{
     this.setState({EngineEnabled: true})
   }
   render(){
-    
-    return this.state.EngineEnabled ? <Unity unityContext={unityContext} /> : null
+    <Unity unityContext={unityContext} /> 
   }
 }
 

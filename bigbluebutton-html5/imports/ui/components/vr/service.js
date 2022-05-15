@@ -1,5 +1,5 @@
 import { UnityContext } from "react-unity-webgl";
-
+import {setState} from "react"
 const isVRAvailable = () => {
     console.log("testing vr")
     if(navigator.xr){
@@ -22,10 +22,14 @@ const unityContext = new UnityContext({
 const startVR = () => {
     unityContext.unityInstance.Module.WebXR.toggleVR()
 }
+function setEngineEnabled(){
+    this.setState({EngineEnabled: true})
+}
 
 
 export default{
     isVRAvailable,
     unityContext,
-    startVR
+    startVR,
+    setEngineEnabled
 }
