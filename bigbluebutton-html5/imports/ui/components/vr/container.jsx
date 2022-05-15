@@ -9,7 +9,7 @@ import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
 
 const VRContainer = () => {
-
+  this.props = unityContext
   return(
    <VRComponent { ...unityContext } />
   )
