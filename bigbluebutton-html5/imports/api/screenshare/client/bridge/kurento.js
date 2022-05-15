@@ -334,9 +334,11 @@ export default class KurentoScreenshareBridge {
 
       this.broker.share().then(() => {
           this.scheduleReconnect();
+          unityContext.send("ScreenShare", "ScreenshareStart")
           return resolve();
         }).catch(reject);
     });
+    
   };
 
   stop() {
