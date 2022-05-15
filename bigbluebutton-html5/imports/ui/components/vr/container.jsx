@@ -8,25 +8,25 @@ import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
 
 
-class VRContainer extends Component{
-  constructor(props){
-    super(props)
-    this.state = {EngineEnabled: true}
-    this.props.unityContext = new UnityContext({
-      loaderUrl: "vr/build.loader.js",
-      dataUrl: "vr/build.data",
-      frameworkUrl: "vr/build.framework.js",
-      codeUrl: "vr/build.wasm",
-    });
-    
-  }
-  test(){
-    this.setState({EngineEnabled:true})
-  }
-  render(){
-    const unityContext = this.props
-    return this.state.EngineEnabled ? <VRComponent { ...props } />: null
-  }
+const VRContainer = (props) => {
+  return(
+   <VRComponent { ...unityContext } />
+  )
 };
 
-export default VRContainer
+const unityContext = new UnityContext({
+  loaderUrl: "vr/build.loader.js",
+  dataUrl: "vr/build.data",
+  frameworkUrl: "vr/build.framework.js",
+  codeUrl: "vr/build.wasm",
+});
+
+export const startVR = () => {
+  unityContext.unityInstance.Module.WebXR.toggleVR()
+}
+
+export default withTracker(() =>{
+  return{
+    unityContext,
+  }
+})(VRContainer);
