@@ -53,8 +53,10 @@ const VRContainer = (props) =>{
     
     });
 
-    subscribeToStreamStateChange('screenshare', function(){
+    subscribeToStreamStateChange('screenshare', function(e){
+
       console.log("AAABBBBBBBBBBCCCCCCCCC")
+      console.log(e)
     });
   });
 
