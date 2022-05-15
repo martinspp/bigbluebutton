@@ -26,7 +26,7 @@ const VRContainer = (props) =>{
 
     annotationsStreamListener = new Meteor.Streamer(`annotations-${Auth.meetingID}`, { retransmit: false });
     annotationsStreamListener.on('added', ({ annotations }) => {
-      console("does this owrk?")
+      window.dispatchEvent(new CustomEvent("updateSlide"))
     });
     unityContext.on("unityScreenShareStarted", function(){
       const screenShareData = {
@@ -102,7 +102,7 @@ const VRContainer = (props) =>{
     })
     window.setInterval(function(){
       if (!Screenshare.findOne({ meetingId: Auth.meetingID },{ fields: { 'screenshare.stream': 1 } })){
-        //window.dispatchEvent(new CustomEvent("updateSlide"))
+        //
       }
     }, 1000)
   });
