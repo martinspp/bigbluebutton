@@ -15,5 +15,4 @@ const isVRAvailable = () => {
 
 export default{
     isVRAvailable,
-    startVR,
 }
