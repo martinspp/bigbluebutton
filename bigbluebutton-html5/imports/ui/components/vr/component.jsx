@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
-import { unityContext } from "./service";
+import { unityContext } from "./container";
 import {
   subscribeToStreamStateChange,
 } from '/imports/ui/services/bbb-webrtc-sfu/stream-state-service';
