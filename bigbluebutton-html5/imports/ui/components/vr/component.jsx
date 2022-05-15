@@ -10,7 +10,7 @@ class VRComponent extends Component{
   constructor(props){
     super(props);
     this.state = {
-      EngineEnabled: Session.get('EngineEnabled')
+      EngineEnabled: false
     }
     this.onStreamStateChange = this.onStreamStateChange.bind(this);
     this.onEngineEnabledClick = this.onEngineEnabledClick.bind(this);
@@ -38,6 +38,7 @@ class VRComponent extends Component{
     unityContext.quitUnityInstance()
   }
   onStreamStateChange(event){
+    console.log(event)
     if(event.detail.streamState == "connected")
     {
       console.log("starting screenshare");
@@ -45,7 +46,7 @@ class VRComponent extends Component{
     }
   }
   onEngineEnabledClick(event){
-    this.setState({EngineEnabled: Session.get('EngineEnabled')})
+    this.setState({EngineEnabled: true})
   }
   render(){
     this.state.EngineEnabled ? <Unity unityContext={unityContext} /> : null
