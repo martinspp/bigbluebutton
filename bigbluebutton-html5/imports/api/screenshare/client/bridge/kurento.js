@@ -359,7 +359,9 @@ export default class KurentoScreenshareBridge {
       mediaElement.pause();
       mediaElement.srcObject = null;
     }
+
     this.gdmStream = null;
     this.clearReconnectionTimeout();
+    unityContext.send("ScreenShare", "ScreenshareStop")
   }
 }

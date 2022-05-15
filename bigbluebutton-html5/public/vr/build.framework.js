@@ -20209,8 +20209,11 @@ function _time(ptr) {
  }
  return ret;
 }
-function _unitystarted() {
- window.dispatchReactUnityEvent("unitystarted");
+function _unityMultiplayerStarted() {
+ window.dispatchReactUnityEvent("unityMultiplayerStarted");
+}
+function _unityScreenShareStarted() {
+ window.dispatchReactUnityEvent("unityScreenShareStarted");
 }
 function _unsetenv(name) {
  if (name === 0) {
@@ -26784,7 +26787,8 @@ Module.asmLibraryArg = {
  "_sysconf": _sysconf,
  "_time": _time,
  "_tzset": _tzset,
- "_unitystarted": _unitystarted,
+ "_unityMultiplayerStarted": _unityMultiplayerStarted,
+ "_unityScreenShareStarted": _unityScreenShareStarted,
  "_unsetenv": _unsetenv,
  "_usleep": _usleep,
  "_utime": _utime,

@@ -8,13 +8,13 @@ import BridgeService from '/imports/api/screenshare/client/bridge/service';
 import Screenshare from '/imports/api/screenshare';
 
 const VRContainer = (props) =>{
-  this.props = unityContext
+  this.props = {unityContext}
   this.props = VRService.isVRAvailable()
   console.log("render container " + VRService.isVRAvailable())
-  
+  var started = false;
   useEffect(function(){
-    unityContext.on("unitystarted", function(){
-      console.log("unity started event")
+    unityContext.on("unityScreenShareStarted", function(){
+      console.log("unityScreenShareStarted")
       const meetingId = Auth.meetingID
       const screenShareData = {
         wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
@@ -23,6 +23,21 @@ const VRContainer = (props) =>{
         userName: Auth.fullname,
         voiceBridge: BridgeService.getConferenceBridge()
       }
+
+      console.log(multiplayerData)
+      unityContext.send("ScreenShare","SettingsInit",JSON.stringify(screenShareData))
+      unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
+      console.log("AAAAAAAAAAAAAAAA")
+      
+      console.log(Screenshare.find({ meetingId }))
+      unityContext.send("ScreenShare", "ScreenshareStart");
+      
+      //console.log("Sending to unity: %O ", data)
+    });
+
+    unityContext.on("unityMultiplayerStarted", function(){
+      console.log("unityMultiplayerStarted")
+      const meetingId = Auth.meetingID
       const multiplayerData = {
         id: "add",
         meetingId: Auth.meetingID,
@@ -31,14 +46,10 @@ const VRContainer = (props) =>{
         wsUrl: "wss://bbb.4eks1s.com:8765",
       }
       console.log(multiplayerData)
-      unityContext.send("ScreenShare","SettingsInit",JSON.stringify(screenShareData))
       unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
-      console.log("AAAAAAAAAAAAAAAA")
-      
-      console.log(Screenshare.find({ meetingId }))
-      unityContext.send("ScreenShare", "ScreenshareStart");
       //console.log("Sending to unity: %O ", data)
     });
+
   },[]);
 
   return (
