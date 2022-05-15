@@ -80,11 +80,7 @@ const VRContainer = (props) =>{
       
       if (doc != null)
       {
-        var cursor = document.getElementById('cursor')
-        console.log(cursor)
-        if(cursor != null){
-          doc.removeChild(cursor)
-        }
+
         if(lastSvg == null){
           lastSvg = doc.outerHTML
         }else if (lastSvg == doc.outerHTML){
@@ -102,7 +98,7 @@ const VRContainer = (props) =>{
     })
     window.setInterval(function(){
       if (!Screenshare.findOne({ meetingId: Auth.meetingID },{ fields: { 'screenshare.stream': 1 } })){
-        window.dispatchEvent(new CustomEvent("updateSlide"))
+        //window.dispatchEvent(new CustomEvent("updateSlide"))
       }
     }, 1000)
   });
