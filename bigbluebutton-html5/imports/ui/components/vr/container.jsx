@@ -24,7 +24,6 @@ const VRContainer = (props) =>{
         voiceBridge: BridgeService.getConferenceBridge()
       }
 
-      console.log(multiplayerData)
       unityContext.send("ScreenShare","SettingsInit",JSON.stringify(screenShareData))
       
       console.log(Screenshare.find({ meetingId }))
@@ -35,7 +34,6 @@ const VRContainer = (props) =>{
 
     unityContext.on("unityMultiplayerStarted", function(){
       console.log("unityMultiplayerStarted")
-      const meetingId = Auth.meetingID
       const multiplayerData = {
         id: "add",
         meetingId: Auth.meetingID,
