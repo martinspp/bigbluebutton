@@ -9,27 +9,11 @@ class VRComponent extends PureComponent{
 
   constructor(){
     super();
-    this.onStreamStateChange = this.onStreamStateChange.bind(this);
+    
   }
-  
-  componentDidMount(){
-    subscribeToStreamStateChange('screenshare', this.onStreamStateChange);
-  }
-
   componentWillUnmount(){
     unityContext.send("ScreenShare","ScreenshareStop")
     unityContext.quitUnityInstance()
-  }
-  onStreamStateChange(event){
-    const{
-      screenShareStart
-    } = this.props
-    console.log(event)
-    if(event.detail.streamState == "connected")
-    {
-      //console.log("starting screenshare");
-      //screenShareStart();
-    }
   }
   render(){
     const{
