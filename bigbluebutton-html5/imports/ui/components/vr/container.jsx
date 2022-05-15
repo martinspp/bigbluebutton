@@ -79,6 +79,7 @@ const VRContainer = (props) =>{
       
       if (doc != null)
       {
+        doc.removeChild(document.getElementById('cursor'))
         if(lastSvg == null){
           lastSvg = doc.outerHTML
         }else if (lastSvg == doc.outerHTML){
