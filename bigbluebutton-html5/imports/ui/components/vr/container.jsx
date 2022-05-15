@@ -81,6 +81,7 @@ const VRContainer = (props) =>{
       if (doc != null)
       {
         var cursor = document.getElementById('cursor')
+        console.log(cursor)
         if(cursor != null){
           doc.removeChild(cursor)
         }
