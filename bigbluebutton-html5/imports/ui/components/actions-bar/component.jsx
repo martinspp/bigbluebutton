@@ -125,7 +125,7 @@ class ActionsBar extends PureComponent {
               />
             )
             : null}
-            false ? <Button
+            {false ? (<Button
               icon="vr"
               label='Start VR'
               size="lg"
@@ -136,7 +136,7 @@ class ActionsBar extends PureComponent {
               onClick={() => {
                 startVR()
               }} 
-            /> : null
+            />) : null}
               
         </div>
       </div>
