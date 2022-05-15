@@ -40,8 +40,10 @@ const VRContainer = (props) =>{
         //if (Auth.userID === userId) return;
         
       });
-      if(cursors.length == 2)
+      if(cursors.length == 2){
         console.log(cursors)
+      }
+        
     });
     unityContext.on("unityScreenShareStarted", function(){
       const screenShareData = {
