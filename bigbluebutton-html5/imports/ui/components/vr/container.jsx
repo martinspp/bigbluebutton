@@ -47,9 +47,9 @@ const VRContainer = (props) =>{
     });
 
     unityContext.on("unityScreenShareWSConnected", function(){
-      //console.log(Screenshare.find({ meetingId }))
       console.log("unityScreenShareWSConnected")
       WSConnected = true;
+      console.log(Screenshare.find({ meetingId }))
       unityContext.send("ScreenShare", "ScreenshareStart");
     
     });
