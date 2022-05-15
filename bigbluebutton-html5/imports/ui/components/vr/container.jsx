@@ -42,7 +42,7 @@ const VRContainer = (props) =>{
         //delete cursor.userId;
         //if (Auth.userID === userId) return;
         
-      });
+      
       
         
     });
