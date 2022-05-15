@@ -7,7 +7,7 @@ import Auth from '/imports/ui/services/auth';
 import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
 
-export const VRContainer = () => {
+export default VRContainer = () => {
 
   useEffect(function(){
     unityContext.on("unitystarted", function(){
