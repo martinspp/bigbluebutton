@@ -76,13 +76,14 @@ const VRContainer = (props) =>{
       
       const ctx = c.getContext('2d');
       var doc = document.getElementById('whiteboard');
-      if(lastSvg == null){
-        lastSvg = doc.outerHTML
-      }else if (lastSvg == doc.outerHTML){
-        return
-      }
+      
       if (doc != null)
       {
+        if(lastSvg == null){
+          lastSvg = doc.outerHTML
+        }else if (lastSvg == doc.outerHTML){
+          return
+        }
         var v = Canvg.fromString(ctx, doc.outerHTML, preset)
         v.resize(slideDimensions.width*1.5, slideDimensions.height*1.5)
         console.log("updating")
@@ -90,6 +91,7 @@ const VRContainer = (props) =>{
           unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
         })
         .catch(e => console.log("Something broke: "+ e))  
+        lastSvg = doc.outerHTML
       }
     })
     window.setInterval(function(){
