@@ -9,6 +9,10 @@ import Screenshare from '/imports/api/screenshare';
 import {
   subscribeToStreamStateChange,
 } from '/imports/ui/services/bbb-webrtc-sfu/stream-state-service';
+import {Canvg, presets} from 'canvg'
+import canvas from 'canvas';
+import fetch from 'node-fetch';
+import { DOMParser } from 'xmldom';
 
 const VRContainer = (props) =>{
   this.props = {unityContext}
@@ -53,7 +57,29 @@ const VRContainer = (props) =>{
         unityContext.send("ScreenShare", "ScreenshareStart");
     });
     window.addEventListener("updateSlide",function(e){
-      console.log("§!@#!@#!@# SLIDE UPDATED")
+
+      const preset = presets.node({
+        DOMParser,
+        canvas,
+        fetch
+      });
+      const c = preset.createCanvas(e.detail.width, e.detail.height);
+      
+      const ctx = c.getContext('2d');
+      var doc = document.getElementById('whiteboard');
+      if (doc != null)
+      {
+        var v = Canvg.fromString(ctx, doc.outerHTML, preset)
+        v.resize(e.detail.width*1.5, e.detail.height*1.5)
+        v.render().then(() => {
+          
+          console.log("slide changed")
+          console.log(c.toDataURL('image/png'))
+          unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
+        })
+        .catch(e => console.log("Something broke: "+ e))  
+      }
+      
     })
   });
 

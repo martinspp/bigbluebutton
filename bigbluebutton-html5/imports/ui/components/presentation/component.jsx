@@ -144,7 +144,6 @@ class Presentation extends PureComponent {
         },
       });
     }
-    this.svgToUnity()
   }
 
   componentDidUpdate(prevProps) {
@@ -227,8 +226,7 @@ class Presentation extends PureComponent {
         });
       }
       if(prevProps.currentSlide?.num != currentSlide.num){
-        window.dispatchEvent(new Event("updateSlide"))
-        this.svgToUnity()
+        window.dispatchEvent(new CustomEvent("updateSlide", {detail:{width:slidePosition.width, height:slidePosition.height}}))
       }
       if (layoutSwapped && restoreOnUpdate && !userIsPresenter && currentSlide) {
         const slideChanged = currentSlide.id !== prevProps.currentSlide.id;
@@ -257,34 +255,6 @@ class Presentation extends PureComponent {
       });
     }
     
-  }
-
-  svgToUnity(){
-    const {
-      slidePosition,
-    } = this.props;
-      //const canvas = new OffscreenCanvas();
-      const preset = presets.node({
-        DOMParser,
-        canvas,
-        fetch
-      });
-      const c = preset.createCanvas(slidePosition.width, slidePosition.height);
-      
-      const ctx = c.getContext('2d');
-      var doc = document.getElementById('whiteboard');
-      if (doc != null)
-      {
-        var v = Canvg.fromString(ctx, doc.outerHTML, preset)
-        v.resize(slidePosition.width*1.5, slidePosition.height*1.5)
-        v.render().then(() => {
-          
-          console.log("slide changed")
-          console.log(c.toDataURL('image/png'))
-          unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
-        })
-        .catch(e => console.log("Something broke: "+ e))  
-      }
   }
   
   componentWillUnmount() {
