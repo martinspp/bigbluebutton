@@ -25,13 +25,21 @@ const VRContainer = (props) =>{
   useEffect(() => {
 
     annotationsStreamListener = new Meteor.Streamer(`annotations-${Auth.meetingID}`, { retransmit: false });
+    cursorStreamListener = new Meteor.Streamer(`cursor-${Auth.meetingID}`, { retransmit: false });
+
     annotationsStreamListener.on('added', () => {
-      console.log("test")
       setTimeout(()=>{
-        console.log("test222")
         window.dispatchEvent(new CustomEvent("updateSlide"))
-      },500)
-      
+      },500)  
+    });
+    cursorStreamListener.on('message', ({ cursors }) => {
+      Object.keys(cursors).forEach((cursorId) => {
+        const cursor = cursors[cursorId];
+        //const userId = cursor.userId;
+        //delete cursor.userId;
+        //if (Auth.userID === userId) return;
+        console.log(cursor)
+      });
     });
     unityContext.on("unityScreenShareStarted", function(){
       const screenShareData = {
