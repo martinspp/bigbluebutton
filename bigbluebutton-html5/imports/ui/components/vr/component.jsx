@@ -1,11 +1,11 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
 import { unityContext } from "./container";
 import {
   subscribeToStreamStateChange,
 } from '/imports/ui/services/bbb-webrtc-sfu/stream-state-service';
 
-class VRComponent extends PureComponent{
+class VRComponent extends Component{
 
   constructor(){
     super();
@@ -29,18 +29,7 @@ class VRComponent extends PureComponent{
     }
   }
   render(){
-    const{
-      unityContext,
-      EngineEnabled
-    } = this.props;
-    if(EngineEnabled){
-      return (
-        <Unity unityContext={unityContext} />
-      )
-    }
-    else{
-      return null;
-    }
+    <Unity unityContext={unityContext} />
   }
 }
 

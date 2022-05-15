@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import VRComponent from './component'
-import VRService from './service'
+import unityContext from './service'
 import { UnityContext } from "react-unity-webgl";
 import { withTracker } from 'meteor/react-meteor-data';
 import Auth from '/imports/ui/services/auth';
 import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
+
 const VRContainer = () => {
-  this.props = {
-    unityContext,
-    EngineEnabled
-  }
+
   useEffect(function(){
     unityContext.on("unitystarted", function(){
       console.log("unity started event")
@@ -27,28 +25,8 @@ const VRContainer = () => {
   },[]);
 
   
-  return (
-    <VRComponent {...props } />
+  return ( EngineEnabled ?
+    <VRComponent { ...unityContext } />
+    : null
   )
 };
-export const unityContext = new UnityContext({
-  loaderUrl: "vr/build.loader.js",
-  dataUrl: "vr/build.data",
-  frameworkUrl: "vr/build.framework.js",
-  codeUrl: "vr/build.wasm",
-});
-
-
-export const startVR = () => {
-  unityContext.unityInstance.Module.WebXR.toggleVR()
-}
-
-var EngineEnabled = true;
-
-
-export default withTracker(() =>{
-  return{
-    unityContext,
-    EngineEnabled
-  }
-})(VRContainer);
