@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from 'react';
 import VRComponent from './component'
-import {unityContext, setEngineEnabled} from './service'
+import {unityContext} from './service'
 import { UnityContext } from "react-unity-webgl";
 import { withTracker } from 'meteor/react-meteor-data';
 import Auth from '/imports/ui/services/auth';
@@ -12,7 +12,6 @@ class VRContainer extends Component{
   constructor(props){
     super(props)
     this.state = {EngineEnabled: false}
-    setEngineEnabled = setEngineEnabled.bind(this)
   }
   render(){
      this.state.EngineEnabled ? <VRComponent { ...unityContext } />: null

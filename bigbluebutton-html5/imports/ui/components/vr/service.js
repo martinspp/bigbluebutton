@@ -22,14 +22,11 @@ const unityContext = new UnityContext({
 const startVR = () => {
     unityContext.unityInstance.Module.WebXR.toggleVR()
 }
-function setEngineEnabled(){
-    this.setState({EngineEnabled: true})
-}
 
 
 export default{
     isVRAvailable,
     unityContext,
     startVR,
-    setEngineEnabled
+
 }
