@@ -12,7 +12,7 @@ import cx from 'classnames';
 import { styles } from '../styles';
 import { PANELS, ACTIONS } from '../../layout/enums';
 import { unityContext } from '../../vr/service';
-import { VRComponent } from '/imports/ui/components/vr/component'
+import { VRContainer } from '/imports/ui/components/vr/container'
 import debug from 'redis/lib/debug';
 
 const propTypes = {
