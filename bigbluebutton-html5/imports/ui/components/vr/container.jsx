@@ -6,6 +6,9 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Auth from '/imports/ui/services/auth';
 import BridgeService from '/imports/api/screenshare/client/bridge/service';
 import Screenshare from '/imports/api/screenshare';
+import {
+  subscribeToStreamStateChange,
+} from '/imports/ui/services/bbb-webrtc-sfu/stream-state-service';
 
 const VRContainer = (props) =>{
   this.props = {unityContext}
