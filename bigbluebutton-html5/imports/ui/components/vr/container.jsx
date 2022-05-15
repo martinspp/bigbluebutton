@@ -14,7 +14,7 @@ const VRContainer = (props) =>{
   this.props = {unityContext}
   this.props = VRService.isVRAvailable()
   console.log("render container " + VRService.isVRAvailable())
-  var started = false;
+  var WSConnected = false;
   useEffect(() => {
     unityContext.on("unityScreenShareStarted", function(){
       console.log("unityScreenShareStarted")
@@ -49,14 +49,15 @@ const VRContainer = (props) =>{
     unityContext.on("unityScreenShareWSConnected", function(){
       //console.log(Screenshare.find({ meetingId }))
       console.log("unityScreenShareWSConnected")
+      WSConnected = true;
       unityContext.send("ScreenShare", "ScreenshareStart");
     
     });
 
     subscribeToStreamStateChange('screenshare', function(e){
+      if(e.detail.streamState == "connected" && WSConnected)
+        unityContext.send("ScreenShare", "ScreenshareStart");
 
-      console.log("AAABBBBBBBBBBCCCCCCCCC")
-      console.log(e)
     });
   });
 
