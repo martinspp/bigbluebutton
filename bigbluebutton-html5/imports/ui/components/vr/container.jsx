@@ -24,6 +24,10 @@ const VRContainer = (props) =>{
   var lastSvg = null
   useEffect(() => {
 
+    annotationsStreamListener = new Meteor.Streamer(`annotations-${Auth.meetingID}`, { retransmit: false });
+    annotationsStreamListener.on('added', ({ annotations }) => {
+      console("does this owrk?")
+    });
     unityContext.on("unityScreenShareStarted", function(){
       const screenShareData = {
         wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
