@@ -26,10 +26,7 @@ const VRContainer = (props) =>{
 
       unityContext.send("ScreenShare","SettingsInit",JSON.stringify(screenShareData))
       
-      console.log(Screenshare.find({ meetingId }))
-      unityContext.send("ScreenShare", "ScreenshareStart");
-      
-      //console.log("Sending to unity: %O ", data)
+
     });
 
     unityContext.on("unityMultiplayerStarted", function(){
@@ -43,9 +40,14 @@ const VRContainer = (props) =>{
       }
       console.log(multiplayerData)
       unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
-      //console.log("Sending to unity: %O ", data)
+     
     });
 
+    unityContext.on("unityScreenShareWSConnected", function(){
+      //console.log(Screenshare.find({ meetingId }))
+      unityContext.send("ScreenShare", "ScreenshareStart");
+    
+    });
   });
 
   return (
