@@ -461,11 +461,10 @@ class Presentation extends PureComponent {
       currentSlide,
       podId,
       zoomSlide,
-      slidePosition
     } = this.props;
 
     zoomSlide(currentSlide.num, podId, w, h, x, y);
-    window.dispatchEvent(new CustomEvent("updateSlide", {detail:{width:slidePosition.width, height:slidePosition.height}}))
+    
   }
 
   renderPresentationClose() {

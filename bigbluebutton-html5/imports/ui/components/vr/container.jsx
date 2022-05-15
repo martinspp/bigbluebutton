@@ -19,6 +19,7 @@ const VRContainer = (props) =>{
   this.props = VRService.isVRAvailable()
   console.log("render container " + VRService.isVRAvailable())
   var WSConnected = false;
+  var slideDimensions = {width: null, height:null}
   useEffect(() => {
 
     unityContext.on("unityScreenShareStarted", function(){
@@ -58,12 +59,19 @@ const VRContainer = (props) =>{
     });
     window.addEventListener("updateSlide",function(e){
 
+      if(e.detail){
+        slideDimensions={
+          width:e.detail.width,
+          height:e.detail.height
+        }
+      }
+
       const preset = presets.node({
         DOMParser,
         canvas,
         fetch
       });
-      const c = preset.createCanvas(e.detail.width, e.detail.height);
+      const c = preset.createCanvas(slideDimensions.width, slideDimensions.height);
       
       const ctx = c.getContext('2d');
       var doc = document.getElementById('whiteboard');
