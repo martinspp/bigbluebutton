@@ -34,7 +34,7 @@ const VRContainer = (props) =>{
     });
     cursorStreamListener.on('message', ({ cursors }) => {
       console.log(Object.keys(cursors))
-      console.log(cursors)
+      console.log(cursors[0])
       //Object.keys(cursors).forEach((cursorId) => {
        // const cursor = cursors[cursorId];
         //const userId = cursor.userId;
