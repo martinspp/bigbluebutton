@@ -24,7 +24,7 @@ const VRContainer = (props) =>{
       const multiplayerData = {
         id: "add",
         meetingId: Auth.meetingID,
-        playerId: userID,
+        playerId: Auth.userID,
         username: Auth.fullname,
         wsUrl: Auth.authenticateURL(Meteor.settings.public.vr.wsUrl),
       }
