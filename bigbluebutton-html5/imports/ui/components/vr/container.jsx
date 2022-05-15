@@ -12,7 +12,7 @@ const VRContainer = (props) =>{
   this.props = VRService.isVRAvailable()
   console.log("render container " + VRService.isVRAvailable())
   var started = false;
-  useEffectuseEffect(() => {
+  useEffect(() => {
     unityContext.on("unityScreenShareStarted", function(){
       debugger;
       console.log("unityScreenShareStarted")
