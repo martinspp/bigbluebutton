@@ -33,7 +33,7 @@ function handleAddedAnnotation({
   const query = addAnnotationQuery(meetingId, whiteboardId, userId, annotation);
 
   Annotations.upsert(query.selector, query.modifier);
-  window.dispatchEvent(new CustomEvent("updateSlide"))
+  
   if (isOwn) {
     UnsentAnnotations.remove({ id: `${annotation.id}` });
   }
