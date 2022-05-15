@@ -13,6 +13,7 @@ import {Canvg, presets} from 'canvg'
 import canvas from 'canvas';
 import fetch from 'node-fetch';
 import { DOMParser } from 'xmldom';
+import Cursor from '../cursor/service';
 
 const VRContainer = (props) =>{
   this.props = {unityContext}
@@ -79,7 +80,10 @@ const VRContainer = (props) =>{
       
       if (doc != null)
       {
-        doc.removeChild(document.getElementById('cursor'))
+        var cursor = document.getElementById('cursor')
+        if(cursor != null){
+          doc.removeChild(cursor)
+        }
         if(lastSvg == null){
           lastSvg = doc.outerHTML
         }else if (lastSvg == doc.outerHTML){
