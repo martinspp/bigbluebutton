@@ -514,7 +514,6 @@ class App extends Component {
           <ManyWebcamsNotifier />
           <PollingContainer />
           <ModalContainer />
-          <VRContainer />
           {this.renderActionsBar()}
           {customStyleUrl ? <link rel="stylesheet" type="text/css" href={customStyleUrl} /> : null}
           {customStyle ? <link rel="stylesheet" type="text/css" href={`data:text/css;charset=UTF-8,${encodeURIComponent(customStyle)}`} /> : null}
@@ -524,6 +523,7 @@ class App extends Component {
   }
 }
 //
+//<VRContainer />
 App.propTypes = propTypes;
 App.defaultProps = defaultProps;
 
