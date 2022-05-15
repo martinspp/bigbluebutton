@@ -17,7 +17,7 @@ class VRComponent extends PureComponent{
   }
 
   componentWillUnmount(){
-    unityContext.send("BBBScreenshare","ScreenshareStop")
+    unityContext.send("ScreenShare","ScreenshareStop")
     unityContext.quitUnityInstance()
   }
   onStreamStateChange(event){
@@ -25,7 +25,7 @@ class VRComponent extends PureComponent{
     if(event.detail.streamState == "connected")
     {
       console.log("starting screenshare");
-      unityContext.send("BBBScreenshare", "ScreenshareStart");
+      unityContext.send("ScreenShare", "ScreenshareStart");
     }
   }
   render(){
