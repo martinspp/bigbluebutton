@@ -20,6 +20,7 @@ const VRContainer = (props) =>{
   console.log("render container " + VRService.isVRAvailable())
   var WSConnected = false;
   var slideDimensions = {width: null, height:null}
+  var lastSvg = null
   useEffect(() => {
 
     unityContext.on("unityScreenShareStarted", function(){
@@ -75,6 +76,11 @@ const VRContainer = (props) =>{
       
       const ctx = c.getContext('2d');
       var doc = document.getElementById('whiteboard');
+      if(lastSvg == null){
+        lastSvg = doc.outerHTML
+      }else if (lastSvg == doc.outerHTML){
+        return
+      }
       if (doc != null)
       {
         var v = Canvg.fromString(ctx, doc.outerHTML, preset)
