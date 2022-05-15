@@ -26,7 +26,11 @@ const VRContainer = (props) =>{
 
     annotationsStreamListener = new Meteor.Streamer(`annotations-${Auth.meetingID}`, { retransmit: false });
     annotationsStreamListener.on('added', () => {
-      setTimeout(window.dispatchEvent(new CustomEvent("updateSlide")),1000)
+      console.log("test")
+      setTimeout(()=>{
+        console.log("test222")
+        window.dispatchEvent(new CustomEvent("updateSlide"))
+      },1000)
       
     });
     unityContext.on("unityScreenShareStarted", function(){
