@@ -209,13 +209,13 @@ class ActionsDropdown extends PureComponent {
     }
 
     
-    if (!EngineEnabled) {
+    if (Session.get("EngineEnable", false)) {
       actions.push({
         icon: "presentation",
         label: "Iespējot VR",
         key: this.enableVR,
         onClick: () => {
-          onEngineEnabledClick()
+          Session.set("EngineEnable", true)
         }
       })
     }
