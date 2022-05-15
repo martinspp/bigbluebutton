@@ -13,14 +13,7 @@ const isVRAvailable = () => {
     }    
 }
 
-
-const startVR = () => {
-    unityContext.unityInstance.Module.WebXR.toggleVR()
-}
-
-
 export default{
     isVRAvailable,
     startVR,
-
 }

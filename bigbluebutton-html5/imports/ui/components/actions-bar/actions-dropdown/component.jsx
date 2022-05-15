@@ -14,6 +14,7 @@ import { PANELS, ACTIONS } from '../../layout/enums';
 import { unityContext } from '../../vr/service';
 import { VRContainer } from '/imports/ui/components/vr/container'
 import debug from 'redis/lib/debug';
+import {startVR} from '/imports/ui/components/vr/container'
 
 const propTypes = {
   amIPresenter: PropTypes.bool.isRequired,
@@ -217,7 +218,7 @@ class ActionsDropdown extends PureComponent {
         label: "Iespējot VR",
         key: this.enableVR,
         onClick: () => {
-          //mountModal(<VRContainer />)
+          startVR()
         }
       })
     }
