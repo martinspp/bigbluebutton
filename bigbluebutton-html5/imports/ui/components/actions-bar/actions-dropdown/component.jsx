@@ -217,7 +217,7 @@ class ActionsDropdown extends PureComponent {
         label: "Iespējot VR",
         key: this.enableVR,
         onClick: () => {
-          mountModal(<VRContainer unityContext />)
+          //mountModal(<VRContainer unityContext />)
         }
       })
     }
