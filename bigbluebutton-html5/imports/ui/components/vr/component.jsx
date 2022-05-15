@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
 import { unityContext } from "./container";
 import {
@@ -14,6 +14,19 @@ class VRComponent extends Component{
   
   componentDidMount(){
     subscribeToStreamStateChange('screenshare', this.onStreamStateChange);
+
+    unityContext.on("unitystarted", function(){
+      console.log("unity started event")
+      const data = {
+        wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
+        callerName: Auth.userID,
+        InternalMeetingId: Auth.meetingID,
+        userName: Auth.fullname,
+        voiceBridge: BridgeService.getConferenceBridge()
+      }
+      unityContext.send("BBBScreenshare","SettingsInit",JSON.stringify(data))
+      console.log("Sending to unity: %O ", data)
+    });
   }
 
   componentWillUnmount(){

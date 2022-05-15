@@ -9,21 +9,6 @@ import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
 export default VRContainer = () => {
 
-  useEffect(function(){
-    unityContext.on("unitystarted", function(){
-      console.log("unity started event")
-      const data = {
-        wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
-        callerName: Auth.userID,
-        InternalMeetingId: Auth.meetingID,
-        userName: Auth.fullname,
-        voiceBridge: BridgeService.getConferenceBridge()
-      }
-      unityContext.send("BBBScreenshare","SettingsInit",JSON.stringify(data))
-      console.log("Sending to unity: %O ", data)
-    });
-  },[]);
-
   
   return ( EngineEnabled ?
     <VRComponent { ...unityContext } />
