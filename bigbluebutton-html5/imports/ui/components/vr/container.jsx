@@ -8,7 +8,7 @@ import BridgeService from '/imports/api/screenshare/client/bridge/service';
 
 
 export default VRContainer = () => {
-  
+
   
   return ( EngineEnabled ?
     <VRComponent { ...unityContext } />

@@ -49,6 +49,7 @@ class VRComponent extends Component{
     this.setState({EngineEnabled: true})
   }
   render(){
+    
     return this.state.EngineEnabled ? <Unity unityContext={unityContext} /> : null
   }
 }
