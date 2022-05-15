@@ -16,9 +16,8 @@ const VRContainer = (props) =>{
   console.log("render container " + VRService.isVRAvailable())
   var WSConnected = false;
   useEffect(() => {
+
     unityContext.on("unityScreenShareStarted", function(){
-      console.log("unityScreenShareStarted")
-      const meetingId = Auth.meetingID
       const screenShareData = {
         wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
         callerName: Auth.userID,
@@ -26,14 +25,10 @@ const VRContainer = (props) =>{
         userName: Auth.fullname,
         voiceBridge: BridgeService.getConferenceBridge()
       }
-
       unityContext.send("ScreenShare","SettingsInit",JSON.stringify(screenShareData))
-      
-
     });
 
     unityContext.on("unityMultiplayerStarted", function(){
-      console.log("unityMultiplayerStarted")
       const multiplayerData = {
         id: "add",
         meetingId: Auth.meetingID,
@@ -47,20 +42,19 @@ const VRContainer = (props) =>{
     });
 
     unityContext.on("unityScreenShareWSConnected", function(){
-      console.log("unityScreenShareWSConnected")
       WSConnected = true;
-      
       if (Screenshare.findOne({ meetingId: Auth.meetingID },{ fields: { 'screenshare.stream': 1 } })){
         unityContext.send("ScreenShare", "ScreenshareStart")
       }
-    
     });
 
     subscribeToStreamStateChange('screenshare', function(e){
       if(e.detail.streamState == "connected" && WSConnected)
         unityContext.send("ScreenShare", "ScreenshareStart");
-
     });
+    window.addEventListener("updateSlide",function(e){
+      console.log("§!@#!@#!@# SLIDE UPDATED")
+    })
   });
 
   return (
