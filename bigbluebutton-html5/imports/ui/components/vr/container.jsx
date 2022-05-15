@@ -49,6 +49,10 @@ const VRContainer = (props) =>{
       unityContext.send("ScreenShare", "ScreenshareStart");
     
     });
+
+    subscribeToStreamStateChange('screenshare', function(){
+      console.log("AAABBBBBBBBBBCCCCCCCCC")
+    });
   });
 
   return (
