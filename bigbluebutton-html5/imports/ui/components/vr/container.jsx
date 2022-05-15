@@ -12,12 +12,18 @@ class VRContainer extends Component{
   constructor(props){
     super(props)
     this.state = {EngineEnabled: true}
+    this.props =  unityContext = new UnityContext({
+      loaderUrl: "vr/build.loader.js",
+      dataUrl: "vr/build.data",
+      frameworkUrl: "vr/build.framework.js",
+      codeUrl: "vr/build.wasm",
+    });
   }
   test(){
     this.setState({EngineEnabled:true})
   }
   render(){
-     return this.state.EngineEnabled ? <VRComponent { ...unityContext } />: null
+     return this.state.EngineEnabled ? <VRComponent { ...props } />: null
   }
 };
 
