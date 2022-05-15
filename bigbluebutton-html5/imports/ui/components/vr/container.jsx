@@ -14,6 +14,7 @@ const VRContainer = (props) =>{
   var started = false;
   useEffect(function(){
     unityContext.on("unityScreenShareStarted", function(){
+      debugger;
       console.log("unityScreenShareStarted")
       const meetingId = Auth.meetingID
       const screenShareData = {
