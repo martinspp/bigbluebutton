@@ -42,7 +42,7 @@ class VRComponent extends Component{
     }
   }
   render(){
-    <Unity unityContext={unityContext} /> 
+    return <Unity unityContext={unityContext} /> 
   }
 }
 
