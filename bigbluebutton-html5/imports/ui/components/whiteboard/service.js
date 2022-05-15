@@ -82,6 +82,7 @@ export function initAnnotationsStreamListener() {
     annotationsStreamListener.on('removed', handleRemovedAnnotation);
 
     annotationsStreamListener.on('added', ({ annotations }) => {
+      console.log("added annotation");
       annotations.forEach(annotation => handleAddedAnnotation(annotation));
     });
   });
