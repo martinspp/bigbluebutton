@@ -87,8 +87,10 @@ const VRContainer = (props) =>{
         })
         .catch(e => console.log("Something broke: "+ e))  
       }
-      
     })
+    window.setInterval(function(){
+      window.dispatchEvent(new CustomEvent("updateSlide"))
+    }, 1000)
   });
 
   return (

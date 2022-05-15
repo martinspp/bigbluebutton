@@ -83,8 +83,6 @@ export function initAnnotationsStreamListener() {
 
     annotationsStreamListener.on('added', ({ annotations }) => {
       annotations.forEach(annotation => handleAddedAnnotation(annotation));
-      console.log("added annotation");
-      window.dispatchEvent(new CustomEvent("updateSlide"))
     });
   });
 }
