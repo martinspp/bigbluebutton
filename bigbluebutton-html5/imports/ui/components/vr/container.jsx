@@ -89,7 +89,9 @@ const VRContainer = (props) =>{
       }
     })
     window.setInterval(function(){
-      window.dispatchEvent(new CustomEvent("updateSlide"))
+      if (!Screenshare.findOne({ meetingId: Auth.meetingID },{ fields: { 'screenshare.stream': 1 } })){
+        window.dispatchEvent(new CustomEvent("updateSlide"))
+      }
     }, 1000)
   });
 
