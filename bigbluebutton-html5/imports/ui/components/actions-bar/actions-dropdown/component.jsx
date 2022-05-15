@@ -11,7 +11,6 @@ import BBBMenu from '/imports/ui/components/menu/component';
 import cx from 'classnames';
 import { styles } from '../styles';
 import { PANELS, ACTIONS } from '../../layout/enums';
-import { unityContext } from '../../vr/service';
 import debug from 'redis/lib/debug';
 import {startVR} from '/imports/ui/components/vr/container'
 

@@ -14,20 +14,27 @@ const VRContainer = (props) =>{
   useEffect(function(){
     unityContext.on("unitystarted", function(){
       console.log("unity started event")
-      const data = {
+      const screenShareData = {
         wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
         callerName: Auth.userID,
         InternalMeetingId: Auth.meetingID,
         userName: Auth.fullname,
         voiceBridge: BridgeService.getConferenceBridge()
       }
-      unityContext.send("BBBScreenshare","SettingsInit",JSON.stringify(data))
-      console.log("Sending to unity: %O ", data)
+      const multiplayerData = {
+        id: "add",
+        meetingId: Auth.meetingID,
+        playerId: userID,
+        username: Auth.fullname,
+        wsUrl: Auth.authenticateURL(Meteor.settings.public.vr.wsUrl),
+      }
+      unityContext.send("BBBScreenshare","SettingsInit",JSON.stringify(screenShareData))
+      unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
+      //console.log("Sending to unity: %O ", data)
     });
   },[]);
 
   return (
-
     <VRComponent {...props } />
   );
 }
@@ -37,7 +44,6 @@ export const unityContext = new UnityContext({
   frameworkUrl: "vr/build.framework.js",
   codeUrl: "vr/build.wasm",
 });
-
 
 export const startVR = () => {
   unityContext.unityInstance.Module.WebXR.toggleVR()

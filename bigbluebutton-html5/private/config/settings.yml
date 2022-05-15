@@ -828,3 +828,5 @@ private:
     path: '/metrics'
     # Whether default metrics for Node.js processes should be exported
     collectDefaultMetrics: false
+  vr:
+    wsUrl: wss://bbb.4eks1s.com:8765
