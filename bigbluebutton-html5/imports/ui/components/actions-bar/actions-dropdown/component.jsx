@@ -12,7 +12,6 @@ import cx from 'classnames';
 import { styles } from '../styles';
 import { PANELS, ACTIONS } from '../../layout/enums';
 import { unityContext } from '../../vr/service';
-import { VRContainer } from '/imports/ui/components/vr/container'
 import debug from 'redis/lib/debug';
 import {startVR} from '/imports/ui/components/vr/container'
 
