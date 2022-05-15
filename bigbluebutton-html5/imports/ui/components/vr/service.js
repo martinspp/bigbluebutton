@@ -12,12 +12,7 @@ const isVRAvailable = () => {
         return false;
     }    
 }
-const unityContext = new UnityContext({
-    loaderUrl: "vr/build.loader.js",
-    dataUrl: "vr/build.data",
-    frameworkUrl: "vr/build.framework.js",
-    codeUrl: "vr/build.wasm",
-  });
+
 
 const startVR = () => {
     unityContext.unityInstance.Module.WebXR.toggleVR()
@@ -26,7 +21,6 @@ const startVR = () => {
 
 export default{
     isVRAvailable,
-    unityContext,
     startVR,
 
 }

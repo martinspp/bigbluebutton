@@ -1,6 +1,6 @@
 import React, { Component, useEffect } from 'react';
 import VRComponent from './component'
-import {unityContext} from './service'
+import {startVR} from './service'
 import { UnityContext } from "react-unity-webgl";
 import { withTracker } from 'meteor/react-meteor-data';
 import Auth from '/imports/ui/services/auth';
@@ -20,10 +20,6 @@ const unityContext = new UnityContext({
   frameworkUrl: "vr/build.framework.js",
   codeUrl: "vr/build.wasm",
 });
-
-export const startVR = () => {
-  unityContext.unityInstance.Module.WebXR.toggleVR()
-}
 
 export default withTracker(() =>{
   return{
