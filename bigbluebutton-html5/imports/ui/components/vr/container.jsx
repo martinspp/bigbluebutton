@@ -29,7 +29,7 @@ const VRContainer = (props) =>{
         wsUrl: "wss://bbb.4eks1s.com:8765",
       }
       console.log(multiplayerData)
-      unityContext.send("BBBScreenshare","SettingsInit",JSON.stringify(screenShareData))
+      unityContext.send("ScreenShareController","SettingsInit",JSON.stringify(screenShareData))
       unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
       //console.log("Sending to unity: %O ", data)
     });
