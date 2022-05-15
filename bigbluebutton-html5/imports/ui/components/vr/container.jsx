@@ -12,7 +12,7 @@ const VRContainer = (props) =>{
   this.props = VRService.isVRAvailable()
   console.log("render container " + VRService.isVRAvailable())
   var started = false;
-  useEffect(function(){
+  useEffectuseEffect(() => {
     unityContext.on("unityScreenShareStarted", function(){
       debugger;
       console.log("unityScreenShareStarted")
@@ -27,8 +27,6 @@ const VRContainer = (props) =>{
 
       console.log(multiplayerData)
       unityContext.send("ScreenShare","SettingsInit",JSON.stringify(screenShareData))
-      unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
-      console.log("AAAAAAAAAAAAAAAA")
       
       console.log(Screenshare.find({ meetingId }))
       unityContext.send("ScreenShare", "ScreenshareStart");
@@ -51,7 +49,7 @@ const VRContainer = (props) =>{
       //console.log("Sending to unity: %O ", data)
     });
 
-  },[]);
+  });
 
   return (
     <VRComponent {...props } />
