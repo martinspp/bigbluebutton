@@ -78,7 +78,7 @@ const VRContainer = (props) =>{
       if (doc != null)
       {
         var v = Canvg.fromString(ctx, doc.outerHTML, preset)
-        v.resize(e.detail.width*1.5, e.detail.height*1.5)
+        v.resize(slideDimensions.width*1.5, slideDimensions.height*1.5)
         v.render().then(() => {
           
           console.log("slide changed")
