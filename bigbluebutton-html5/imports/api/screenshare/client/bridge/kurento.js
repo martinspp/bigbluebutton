@@ -334,7 +334,6 @@ export default class KurentoScreenshareBridge {
 
       this.broker.share().then(() => {
           this.scheduleReconnect();
-          unityContext.send("ScreenShare", "ScreenshareStart")
           return resolve();
         }).catch(reject);
     });
@@ -360,9 +359,7 @@ export default class KurentoScreenshareBridge {
       mediaElement.pause();
       mediaElement.srcObject = null;
     }
-
     this.gdmStream = null;
     this.clearReconnectionTimeout();
-    unityContext.send("ScreenShare", "ScreenshareStop")
   }
 }

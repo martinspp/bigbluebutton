@@ -5,12 +5,13 @@ import { UnityContext } from "react-unity-webgl";
 import { withTracker } from 'meteor/react-meteor-data';
 import Auth from '/imports/ui/services/auth';
 import BridgeService from '/imports/api/screenshare/client/bridge/service';
+import Screenshare from '/imports/api/screenshare';
 
 const VRContainer = (props) =>{
   this.props = unityContext
   this.props = VRService.isVRAvailable()
   console.log("render container " + VRService.isVRAvailable())
-
+  
   useEffect(function(){
     unityContext.on("unitystarted", function(){
       console.log("unity started event")
@@ -31,6 +32,9 @@ const VRContainer = (props) =>{
       console.log(multiplayerData)
       unityContext.send("ScreenShare","SettingsInit",JSON.stringify(screenShareData))
       unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
+      unityContext.send("ScreenShare", "ScreenshareStart");
+      console.log("AAAAAAAAAAAAAAAA")
+      console.log(Screenshare.find({ meetingId }))
       //console.log("Sending to unity: %O ", data)
     });
   },[]);
