@@ -15,6 +15,7 @@ const VRContainer = (props) =>{
   useEffect(function(){
     unityContext.on("unitystarted", function(){
       console.log("unity started event")
+      const meetingId = Auth.meetingID
       const screenShareData = {
         wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
         callerName: Auth.userID,
@@ -34,7 +35,8 @@ const VRContainer = (props) =>{
       unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
       unityContext.send("ScreenShare", "ScreenshareStart");
       console.log("AAAAAAAAAAAAAAAA")
-      console.log(Screenshare.find({ Auth.meetingID }))
+      
+      console.log(Screenshare.find({ meetingId }))
       //console.log("Sending to unity: %O ", data)
     });
   },[]);
