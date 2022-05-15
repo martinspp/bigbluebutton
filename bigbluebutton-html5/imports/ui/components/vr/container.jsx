@@ -85,6 +85,7 @@ const VRContainer = (props) =>{
       {
         var v = Canvg.fromString(ctx, doc.outerHTML, preset)
         v.resize(slideDimensions.width*1.5, slideDimensions.height*1.5)
+        console.log("updating")
         v.render().then(() => {
           unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
         })
