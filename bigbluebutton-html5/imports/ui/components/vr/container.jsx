@@ -40,7 +40,7 @@ const VRContainer = (props) =>{
         //if (Auth.userID === userId) return;
         
       });
-      if(cursors.length == 2){
+      if(cursors.length != 1){
         console.log(cursors)
       }
         
