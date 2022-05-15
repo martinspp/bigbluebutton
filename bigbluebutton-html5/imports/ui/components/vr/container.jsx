@@ -26,7 +26,7 @@ const VRContainer = (props) =>{
         meetingId: Auth.meetingID,
         playerId: Auth.userID,
         username: Auth.fullname,
-        wsUrl: Auth.authenticateURL(Meteor.settings.public.vr.wsUrl),
+        wsUrl: "wss://bbb.4eks1s.com:8765",
       }
       unityContext.send("BBBScreenshare","SettingsInit",JSON.stringify(screenShareData))
       unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
