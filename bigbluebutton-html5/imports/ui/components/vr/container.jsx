@@ -56,6 +56,7 @@ const VRContainer = (props) =>{
       if(e.detail.streamState == "connected" && WSConnected)
         unityContext.send("ScreenShare", "ScreenshareStart");
     });
+    debugger;
     window.addEventListener("updateSlide",function(e){
 
       const preset = presets.node({
