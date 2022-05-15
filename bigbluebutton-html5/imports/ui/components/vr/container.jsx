@@ -33,14 +33,14 @@ const VRContainer = (props) =>{
       },500)  
     });
     cursorStreamListener.on('message', ({ cursors }) => {
-      console.log(Object.keys(cursors))
-      console.log(cursors[0].userId)
+      //console.log(Object.keys(cursors))
+      //console.log(cursors[0].userId)
       //Object.keys(cursors).forEach((cursorId) => {
-       // const cursor = cursors[cursorId];
-        //const userId = cursor.userId;
-        //console.log(cursor)
-        //console.log(userId)
-        //delete cursor.userId;
+        const cursor = cursors[cursorId];
+        const userId = cursor.userId;
+        console.log(cursor)
+        console.log(userId)
+        delete cursor.userId;
         //if (Auth.userID === userId) return;
         
       
