@@ -49,6 +49,7 @@ import Settings from '/imports/ui/services/settings';
 import LayoutService from '/imports/ui/components/layout/service';
 import { registerTitleView } from '/imports/utils/dom-utils';
 import MediaService from '/imports/ui/components/media/service';
+import VRComponent from '../vr/component';
 
 const MOBILE_MEDIA = 'only screen and (max-width: 40em)';
 const APP_CONFIG = Meteor.settings.public.app;
@@ -512,7 +513,7 @@ class App extends Component {
           <ManyWebcamsNotifier />
           <PollingContainer />
           <ModalContainer />
-          <VRContainer />
+          <VRComponent />
           {this.renderActionsBar()}
           {customStyleUrl ? <link rel="stylesheet" type="text/css" href={customStyleUrl} /> : null}
           {customStyle ? <link rel="stylesheet" type="text/css" href={`data:text/css;charset=UTF-8,${encodeURIComponent(customStyle)}`} /> : null}

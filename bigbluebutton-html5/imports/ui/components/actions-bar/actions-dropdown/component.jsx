@@ -12,7 +12,7 @@ import cx from 'classnames';
 import { styles } from '../styles';
 import { PANELS, ACTIONS } from '../../layout/enums';
 import { unityContext } from '../../vr/container';
-import { EngineEnabled } from '/imports/ui/components/vr/service'
+import { VRComponent } from '/imports/ui/components/vr/component'
 import debug from 'redis/lib/debug';
 
 const propTypes = {
@@ -215,7 +215,7 @@ class ActionsDropdown extends PureComponent {
         label: "Iespējot VR",
         key: this.enableVR,
         onClick: () => {
-          EngineEnabled=true
+          onEngineEnabledClick()
         }
       })
     }

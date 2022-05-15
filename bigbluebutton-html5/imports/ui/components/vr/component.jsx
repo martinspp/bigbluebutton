@@ -1,15 +1,19 @@
 import React, { Component, useEffect } from "react";
 import Unity, { UnityContext } from "react-unity-webgl";
-import { unityContext } from "./container";
+import { unityContext } from "./service";
 import {
   subscribeToStreamStateChange,
 } from '/imports/ui/services/bbb-webrtc-sfu/stream-state-service';
 
 class VRComponent extends Component{
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
+    this.state = {
+      EngineEnabled: false
+    }
     this.onStreamStateChange = this.onStreamStateChange.bind(this);
+    this.onEngineEnabledClick = this.onEngineEnabledClick.bind(this);
   }
   
   componentDidMount(){
@@ -41,8 +45,11 @@ class VRComponent extends Component{
       unityContext.send("BBBScreenshare", "ScreenshareStart");
     }
   }
+  onEngineEnabledClick(event){
+    this.setState({EngineEnabled: true})
+  }
   render(){
-    <Unity unityContext={unityContext} />
+    this.state.EngineEnabled ? <Unity unityContext={unityContext} /> : null
   }
 }
 
