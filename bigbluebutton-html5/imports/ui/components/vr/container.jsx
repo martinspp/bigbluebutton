@@ -30,7 +30,7 @@ const VRContainer = (props) =>{
       setTimeout(()=>{
         console.log("test222")
         window.dispatchEvent(new CustomEvent("updateSlide"))
-      },1000)
+      },500)
       
     });
     unityContext.on("unityScreenShareStarted", function(){
