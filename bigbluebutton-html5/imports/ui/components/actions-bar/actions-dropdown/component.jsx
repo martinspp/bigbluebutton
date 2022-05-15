@@ -11,7 +11,7 @@ import BBBMenu from '/imports/ui/components/menu/component';
 import cx from 'classnames';
 import { styles } from '../styles';
 import { PANELS, ACTIONS } from '../../layout/enums';
-import { unityContext } from '../../vr/container';
+import { unityContext } from '../../vr/service';
 import { VRComponent } from '/imports/ui/components/vr/component'
 import debug from 'redis/lib/debug';
 
@@ -100,7 +100,6 @@ class ActionsDropdown extends PureComponent {
     this.enableVR = _.uniqueId("action-item-");
 
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
-    this.handleVREnable = this.handleVREnable.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
   }
 
@@ -117,10 +116,7 @@ class ActionsDropdown extends PureComponent {
     mountModal(<ExternalVideoModal />);
   }
 
-  handleVREnable(){
-    const { mountModal } = this.props;
-    mountModal(<VRComponent />);
-  }
+
 
   getAvailableActions() {
     const {
@@ -221,7 +217,7 @@ class ActionsDropdown extends PureComponent {
         label: "Iespējot VR",
         key: this.enableVR,
         onClick: () => {
-          mountModal(<VRContainer/>)
+          mountModal(<VRContainer unityContext />)
         }
       })
     }
