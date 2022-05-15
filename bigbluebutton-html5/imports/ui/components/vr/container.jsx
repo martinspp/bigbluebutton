@@ -14,7 +14,7 @@ class VRContainer extends Component{
     this.state = {EngineEnabled: false}
   }
   render(){
-     this.state.EngineEnabled ? <VRComponent { ...unityContext } />: null
+     return this.state.EngineEnabled ? <VRComponent { ...unityContext } />: null
   }
 };
 
