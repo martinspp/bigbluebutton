@@ -9,9 +9,7 @@ class VRComponent extends Component{
 
   constructor(props){
     super(props);
-    
     this.onStreamStateChange = this.onStreamStateChange.bind(this);
-    this.onEngineEnabledClick = this.onEngineEnabledClick.bind(this);
   }
   
   componentDidMount(){
@@ -42,9 +40,6 @@ class VRComponent extends Component{
       console.log("starting screenshare");
       unityContext.send("BBBScreenshare", "ScreenshareStart");
     }
-  }
-  onEngineEnabledClick(event){
-    this.setState({EngineEnabled: true})
   }
   render(){
     <Unity unityContext={unityContext} /> 

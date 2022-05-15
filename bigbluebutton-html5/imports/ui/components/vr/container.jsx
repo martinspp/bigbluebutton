@@ -11,7 +11,10 @@ import BridgeService from '/imports/api/screenshare/client/bridge/service';
 class VRContainer extends Component{
   constructor(props){
     super(props)
-    this.state = {EngineEnabled: false}
+    this.state = {EngineEnabled: true}
+  }
+  test(){
+    this.setState({EngineEnabled:true})
   }
   render(){
      return this.state.EngineEnabled ? <VRComponent { ...unityContext } />: null

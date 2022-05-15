@@ -100,6 +100,7 @@ class ActionsDropdown extends PureComponent {
     this.enableVR = _.uniqueId("action-item-");
 
     this.handleExternalVideoClick = this.handleExternalVideoClick.bind(this);
+    this.handleVREnable = this.handleVREnable.bind(this);
     this.makePresentationItems = this.makePresentationItems.bind(this);
   }
 
@@ -114,6 +115,11 @@ class ActionsDropdown extends PureComponent {
   handleExternalVideoClick() {
     const { mountModal } = this.props;
     mountModal(<ExternalVideoModal />);
+  }
+
+  handleVREnable(){
+    const { mountModal } = this.props;
+    mountModal(<VRComponent />);
   }
 
   getAvailableActions() {
@@ -209,13 +215,13 @@ class ActionsDropdown extends PureComponent {
     }
 
     
-    if (Session.get("EngineEnable", false)) {
+    if (true) {
       actions.push({
         icon: "presentation",
         label: "Iespējot VR",
         key: this.enableVR,
         onClick: () => {
-          Session.set("EngineEnable", true)
+          mountModal(<VRContainer/>)
         }
       })
     }

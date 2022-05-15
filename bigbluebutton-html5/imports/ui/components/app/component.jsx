@@ -467,6 +467,7 @@ class App extends Component {
       shouldShowScreenshare,
       shouldShowExternalVideo,
       isPresenter,
+      EngineEnabled
     } = this.props;
 
     return (
