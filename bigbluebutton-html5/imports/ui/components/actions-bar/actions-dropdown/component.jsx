@@ -208,18 +208,6 @@ class ActionsDropdown extends PureComponent {
         dataTest: "selectRandomUser",
       })
     }
-
-    
-    if (true) {
-      actions.push({
-        icon: "presentation",
-        label: "Iespējot VR",
-        key: this.enableVR,
-        onClick: () => {
-          startVR()
-        }
-      })
-    }
     
     return actions;
   }
