@@ -18,3 +18,5 @@ class VRContainer extends Component{
      this.state.EngineEnabled ? <VRComponent { ...unityContext } />: null
   }
 };
+
+export default VRContainer
