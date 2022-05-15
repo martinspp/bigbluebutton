@@ -38,8 +38,9 @@ const VRContainer = (props) =>{
         //const userId = cursor.userId;
         //delete cursor.userId;
         //if (Auth.userID === userId) return;
-        console.log(cursor)
+        
       });
+      console.log(cursors)
     });
     unityContext.on("unityScreenShareStarted", function(){
       const screenShareData = {
