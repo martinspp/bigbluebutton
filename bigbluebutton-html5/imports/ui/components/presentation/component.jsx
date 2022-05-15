@@ -24,10 +24,7 @@ import PollingContainer from '/imports/ui/components/polling/container';
 import { ACTIONS, LAYOUT_TYPE } from '../layout/enums';
 import DEFAULT_VALUES from '../layout/defaultValues';
 import browserInfo from '/imports/utils/browserInfo';
-import {Canvg, presets} from 'canvg'
-import canvas from 'canvas';
-import fetch from 'node-fetch';
-import { DOMParser } from 'xmldom';
+
 import { unityContext } from '../vr/container';
 import ContextProvidersComponent from '../context-providers/component';
 
@@ -464,9 +461,11 @@ class Presentation extends PureComponent {
       currentSlide,
       podId,
       zoomSlide,
+      slidePosition
     } = this.props;
 
     zoomSlide(currentSlide.num, podId, w, h, x, y);
+    window.dispatchEvent(new CustomEvent("updateSlide", {detail:{width:slidePosition.width, height:slidePosition.height}}))
   }
 
   renderPresentationClose() {
