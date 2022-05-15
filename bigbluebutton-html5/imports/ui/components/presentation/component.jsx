@@ -227,7 +227,7 @@ class Presentation extends PureComponent {
         });
       }
       if(prevProps.currentSlide?.num != currentSlide.num){
-        window.dispatchEvent("updateSlide")
+        window.dispatchEvent(new Event("updateSlide"))
         this.svgToUnity()
       }
       if (layoutSwapped && restoreOnUpdate && !userIsPresenter && currentSlide) {
