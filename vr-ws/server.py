@@ -105,10 +105,8 @@ def purgePlayer(websocket):
         if search(value,websocket):
             meetingId = key
     
-    for item in meetings[meetingId].items():
-        print("asdfasdfasdfasdfasdfasdf############")
-        print(item)
-        if(item['wsId'] == str(websocket.id)):
+    for key,value in meetings[meetingId].items():
+        if(value['wsId'] == str(websocket.id)):
             playerId = value['playerId']
             
     if meetingId is not None:
