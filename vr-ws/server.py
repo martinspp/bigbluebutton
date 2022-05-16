@@ -110,11 +110,7 @@ def search(list, v):
                 
 async def broadcastUpdate():
     for key, value in wss.items():
-        websockets.broadcast(value, json.dumps([(v) for k, v in meetings[key].items() if k != "seatings"]))
-
-async def seatingUpdate():
-    for key, value in wss.items():
-        websockets.broadcast(value,json.dumps(meetings[key]["seatings"]))
+        websockets.broadcast(value, json.dumps([(v) for k, v in meetings[key].items()]))
 
 async def repeating(timeout, function):
     while True:
