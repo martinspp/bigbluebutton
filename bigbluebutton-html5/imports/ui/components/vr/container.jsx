@@ -40,7 +40,7 @@ const VRContainer = (props) =>{
       },500)  
     });
     cursorStreamListener.on('message', ({ cursors }) => {
-      unityContext.send("Presentation", "UpdateCursor",JSON.stringify(cursors[0]))
+      unityContext.send("PresentationController", "UpdateCursor",JSON.stringify(cursors[0]))
     });
     unityContext.on("unityScreenShareStarted", function(){
       const screenShareData = {
@@ -50,7 +50,7 @@ const VRContainer = (props) =>{
         userName: Auth.fullname,
         voiceBridge: BridgeService.getConferenceBridge()
       }
-      unityContext.send("ScreenShare","SettingsInit",JSON.stringify(screenShareData))
+      unityContext.send("ScreenShareController","SettingsInit",JSON.stringify(screenShareData))
     });
 
     unityContext.on("unityMultiplayerStarted", function(){
@@ -80,13 +80,13 @@ const VRContainer = (props) =>{
     unityContext.on("unityScreenShareWSConnected", function(){
       WSConnected = true;
       if (Screenshare.findOne({ meetingId: Auth.meetingID },{ fields: { 'screenshare.stream': 1 } })){
-        unityContext.send("ScreenShare", "ScreenshareStart")
+        unityContext.send("ScreenShareController", "ScreenshareStart")
       }
     });
 
     subscribeToStreamStateChange('screenshare', function(e){
       if(e.detail.streamState == "connected" && WSConnected)
-        unityContext.send("ScreenShare", "ScreenshareStart");
+        unityContext.send("ScreenShareController", "ScreenshareStart");
     });
     window.addEventListener("updateSlide",function(e){
 
@@ -118,7 +118,7 @@ const VRContainer = (props) =>{
           
         v.resize(slideDimensions.width*1.5, slideDimensions.height*1.5)
         v.render().then(() => {
-          unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
+          unityContext.send('PresentationController','UpdateSlide',c.toDataURL('image/png'))
         })
         .catch(e => console.log("Something broke: "+ e))  
       }
