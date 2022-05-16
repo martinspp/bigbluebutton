@@ -93,7 +93,7 @@ async def handler (websocket):
                     else:
                         meetings[meetingId]["seatings"] = [None if x == playerId else x for x in meetings[meetingId]["seatings"]]
                         meetings[meetingId]["seatings"][0] = playerId;
-    except (websockets.exceptions.ConnectionClosed, websockets.exceptions.ConnectionClosedError,websockets.exceptions.ConnectionClosedOK ):
+    finally:
         print("excpetion called")
         purgePlayer(websocket)
 
