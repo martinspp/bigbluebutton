@@ -98,16 +98,16 @@ async def handler (websocket):
         purgePlayer(websocket)
 
 def purgePlayer(websocket):
-    print(websocket)
     # because this function is mostly used when the connection is closed unexpectedly, find the meeting and player id by the websocket connection
     meetingId = None
     playerId = None
-    print(wss.items())
     for key, value in wss.items():
         if search(value,websocket):
             meetingId = key
     
     for item in meetings[meetingId].items():
+        print("asdfasdfasdfasdfasdfasdf############")
+        print(item)
         if(item['wsId'] == str(websocket.id)):
             playerId = value['playerId']
             
