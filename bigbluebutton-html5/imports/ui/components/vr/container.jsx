@@ -97,7 +97,6 @@ const VRContainer = (props) =>{
       var doc = document.getElementById('whiteboard')
       if (doc != null)
       {
-        debugger;
         var copy = doc.cloneNode(true);
         var arr = copy.getElementsByClassName("cursor")
         for (let element of arr) {
