@@ -19,18 +19,24 @@ async def handler (websocket):
             
             if m['id'] == "add":
                 isPresenter = m['isPresenter']
+                # check if player already exists, if does close the ws
                 if meetingId in meetings:
                     if playerId in meetings[meetingId]:
                         print("player " + playerId + " already exists, closing")
                         websocket.close()
 
+                # if new meeting, create record
                 if meetingId not in meetings:
                     meetings[meetingId] = {}
                     #0th seat is Presenter
                     meetings[meetingId]["seatings"] = [None,None,None,None,None,None,None,None,None]
+
+                # record this connection to broadcast later
                 if meetingId not in wss:
                     wss[meetingId] = []
+                wss[meetingId].append(websocket)
 
+                
                 if isPresenter:
                     if meetings[meetingId]['seatings'][0] != None:
                     # Need to move existing presenter
@@ -39,18 +45,18 @@ async def handler (websocket):
                             # No free seat found, replacing existing user, no seat for player will be handled by the engine
                             meetings[meetingId]["seatings"][0] = playerId;
                         else:
-                            oldPresenter = meetings[meetingId]["seatings"][emptySeatIdx]
+                            oldPresenter = meetings[meetingId]["seatings"][0]
                             meetings[meetingId]["seatings"][emptySeatIdx] = oldPresenter;
                             meetings[meetingId]["seatings"][0] = playerId;
                     else:
                         meetings[meetingId]["seatings"][0] = playerId;
                 else:
+                    # place the player in first empty seat
                     emptySeatIdx = findEmptySeat(meetings[meetingId]["seatings"])
                     if emptySeatIdx != -1:
                         meetings[meetingId]["seatings"][emptySeatIdx] = playerId;
                     
 
-                wss[meetingId].append(websocket)
                 meetings[meetingId][playerId] = {}
                 meetings[meetingId][playerId]['wsId'] = str(websocket.id)
                 meetings[meetingId][playerId]['playerId'] = playerId
@@ -61,6 +67,8 @@ async def handler (websocket):
                 print(websocket)
             if m['id'] == "remove":
                 websocket.close()
+                raise websockets.exceptions.ConnectionClosed
+                
                 
             if m['id'] == "update":
                 LController = m['LController']
