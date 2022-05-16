@@ -222,6 +222,7 @@ export default class Cursor extends Component {
 
     return (
       <g
+        class="cursor"
         x={x}
         y={y}
       >

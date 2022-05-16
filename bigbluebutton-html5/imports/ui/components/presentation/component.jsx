@@ -675,7 +675,6 @@ class Presentation extends PureComponent {
               whiteboardId={currentSlide.id}
             />
             <CursorWrapperContainer
-              id="cursor"
               podId={podId}
               whiteboardId={currentSlide.id}
               widthRatio={widthRatio}
