@@ -93,7 +93,7 @@ const VRContainer = (props) =>{
       
       const ctx = c.getContext('2d');
       var doc = document.getElementById('whiteboard');
-      doc.removeChild("g.class")
+      //doc.removeChild("g.class")
       if (doc != null)
       {
         var v = Canvg.fromString(ctx, doc.outerHTML, preset)
