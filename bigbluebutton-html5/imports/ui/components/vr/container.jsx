@@ -32,8 +32,12 @@ const VRContainer = (props) =>{
         window.dispatchEvent(new CustomEvent("updateSlide"))
       },500)  
     });
+    annotationsStreamListener.on('removed', () => {
+      setTimeout(()=>{
+        window.dispatchEvent(new CustomEvent("updateSlide"))
+      },500)  
+    });
     cursorStreamListener.on('message', ({ cursors }) => {
-      console.log(JSON.stringify(cursors[0]))
       unityContext.send("Presentation", "UpdateCursor",JSON.stringify(cursors[0]))
     });
     unityContext.on("unityScreenShareStarted", function(){

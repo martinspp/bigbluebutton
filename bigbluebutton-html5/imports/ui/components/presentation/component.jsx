@@ -141,6 +141,9 @@ class Presentation extends PureComponent {
         },
       });
     }
+    setTimeout(()=>{
+      window.dispatchEvent(new CustomEvent("updateSlide", {detail:{width:slidePosition.width, height:slidePosition.height}}))
+    },5000)
   }
 
   componentDidUpdate(prevProps) {
