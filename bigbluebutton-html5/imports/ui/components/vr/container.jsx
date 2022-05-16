@@ -13,8 +13,8 @@ import {Canvg, presets} from 'canvg'
 import canvas from 'canvas';
 import fetch from 'node-fetch';
 import { DOMParser } from 'xmldom';
-import Cursor from '../cursor/service';
-import { cloneDeep } from 'lodash/fp';
+
+import Users from '/imports/api/users';
 
 
 const VRContainer = (props) =>{
@@ -54,12 +54,23 @@ const VRContainer = (props) =>{
     });
 
     unityContext.on("unityMultiplayerStarted", function(){
+      const currentUser = Users.findOne(
+        { userId: Auth.userID },
+        {
+          fields:
+          {
+            approved: 1, emoji: 1, userId: 1, presenter: 1,
+          },
+        },
+      );
+
       const multiplayerData = {
         id: "add",
         meetingId: Auth.meetingID,
         playerId: Auth.userID,
         username: Auth.fullname,
         wsUrl: "wss://bbb.4eks1s.com:8765",
+        isPresenter:currentUser.presenter
       }
       console.log(multiplayerData)
       unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
