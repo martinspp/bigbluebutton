@@ -12,7 +12,7 @@ class VRComponent extends PureComponent{
     
   }
   componentWillUnmount(){
-    unityContext.send("ScreenShare","ScreenshareStop")
+    unityContext.send("ScreenShareController","ScreenshareStop")
     unityContext.quitUnityInstance()
   }
   render(){
