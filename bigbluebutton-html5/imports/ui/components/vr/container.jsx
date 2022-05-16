@@ -98,7 +98,7 @@ const VRContainer = (props) =>{
       if (doc != null)
       {
         debugger;
-        var copy = cloneDeep(doc);
+        var copy = doc.cloneNode(true);
         copy.getElementsByClassName("cursor").forEach(element => {
           element.remove()
         });
