@@ -93,7 +93,8 @@ const VRContainer = (props) =>{
       
       const ctx = c.getContext('2d');
       var doc = document.getElementById('whiteboard');
-      console.log($(doc).filter('g.cursor'))
+      jQuery(doc).filter('g.cursor')
+      
       if (doc != null)
       {
         var v = Canvg.fromString(ctx, doc.outerHTML, preset)
