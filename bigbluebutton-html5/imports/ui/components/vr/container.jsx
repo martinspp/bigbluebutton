@@ -97,6 +97,7 @@ const VRContainer = (props) =>{
       var doc = document.getElementById('whiteboard')
       if (doc != null)
       {
+        debugger;
         var copy = cloneDeep(doc);
         copy.getElementsByClassName("cursor").forEach(element => {
           element.remove()
