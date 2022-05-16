@@ -14,7 +14,7 @@ import canvas from 'canvas';
 import fetch from 'node-fetch';
 import { DOMParser } from 'xmldom';
 import Cursor from '../cursor/service';
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash/fp';
 
 
 const VRContainer = (props) =>{
