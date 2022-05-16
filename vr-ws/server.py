@@ -71,7 +71,8 @@ async def handler (websocket):
                             oldPresenter = meetings[meetingId]["seatings"][emptySeatIdx]
                             meetings[meetingId]["seatings"][emptySeatIdx] = oldPresenter;
                             meetings[meetingId]["seatings"][0] = playerId;
-                pass
+                    else:
+                        meetings[meetingId]["seatings"][0] = playerId;
     except (websockets.exceptions.ConnectionClosed, websockets.exceptions.ConnectionClosedError,websockets.exceptions.ConnectionClosedOK ):
         print("excpetion called")
         meetingId = None
