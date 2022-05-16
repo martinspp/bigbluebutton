@@ -32,7 +32,19 @@ async def handler (websocket):
                     wss[meetingId] = []
 
                 if isPresenter:
-                    meetings[meetingId]["seatings"][0] = playerId;
+                    if meetings[meetingId]['seatings'][0] != None:
+                    # Need to move existing presenter
+                        emptySeatIdx = findEmptySeat(meetings[meetingId]["seatings"])
+                        if emptySeatIdx == -1:
+                            # No free seat found, replacing existing user, no seat for player will be handled by the engine
+                            meetings[meetingId]["seatings"][0] = playerId;
+                        else:
+                            oldPresenter = meetings[meetingId]["seatings"][emptySeatIdx]
+                            meetings[meetingId]["seatings"][emptySeatIdx] = oldPresenter;
+                            meetings[meetingId]["seatings"][0] = playerId;
+                    else:
+                        meetings[meetingId]["seatings"][0] = playerId;
+                    
                 else:
                     emptySeatIdx = findEmptySeat(meetings[meetingId]["seatings"])
                     if emptySeatIdx != -1:
@@ -93,6 +105,7 @@ async def handler (websocket):
         if playerId is not None:
             meetings[meetingId].pop(playerId)
         meetings[meetingId]["seatings"] = [None if x == playerId else x for x in meetings[meetingId]["seatings"]]
+
 
 def findEmptySeat(seatings):
     for idx, seat in enumerate(seatings):
