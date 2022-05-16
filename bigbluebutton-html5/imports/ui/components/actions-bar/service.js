@@ -22,8 +22,8 @@ const filterBreakoutUsers = filter => users => users.filter(filter);
 const getUsersNotAssigned = filterBreakoutUsers(currentBreakoutUsers);
 
 const takePresenterRole = () => {
-  makeCall('assignPresenter', Auth.userID)
-  window.dispatchEvent(new Event('takePresenter'))
+  makeCall('assignPresenter', Auth.userID);
+  window.dispatchEvent(new Event('takePresenter'));
 };
 
 const amIPresenter = () => {
