@@ -99,8 +99,11 @@ const VRContainer = (props) =>{
       {
         debugger;
         var copy = doc.cloneNode(true);
-        copy.getElementsByClassName("cursor").forEach(element => {
-          element.remove()
+        var arr = copy.getElementsByClassName("cursor")
+        arr.forEach(element => {
+          
+            element.remove()
+          
         });
         
         var v = Canvg.fromString(ctx, copy.outerHTML, preset)
