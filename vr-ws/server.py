@@ -106,6 +106,7 @@ def purgePlayer(websocket):
             meetingId = key
     
     for key,value in meetings[meetingId].items():
+        print(meetings[meetingId].items())
         if(value['wsId'] == str(websocket.id)):
             playerId = value['playerId']
             
