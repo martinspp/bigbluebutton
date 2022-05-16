@@ -16,15 +16,29 @@ async def handler (websocket):
             meetingId = m['meetingId']
             playerId = m['playerId']
             
+            
             if m['id'] == "add":
+                isPresenter = m['isPresenter']
                 if meetingId in meetings:
                     if playerId in meetings[meetingId]:
                         print("player " + playerId + " already exists, closing")
                         websocket.close()
+
                 if meetingId not in meetings:
                     meetings[meetingId] = {}
+                    #0th seat is Presenter
+                    meetings[meetingId]["seatings"] = [None,None,None,None,None,None,None,None,None]
                 if meetingId not in wss:
                     wss[meetingId] = []
+
+                if isPresenter:
+                    meetings[meetingId]["seatings"][0] = playerId;
+                else:
+                    emptySeatIdx = findEmptySeat(meetings[meetingId]["seatings"])
+                    if emptySeatIdx != -1:
+                        meetings[meetingId]["seatings"][emptySeatIdx] = playerId;
+                    
+
                 wss[meetingId].append(websocket)
                 meetings[meetingId][playerId] = {}
                 meetings[meetingId][playerId]['wsId'] = str(websocket.id)
@@ -44,6 +58,20 @@ async def handler (websocket):
                 meetings[meetingId][playerId]['LController'] = LController
                 meetings[meetingId][playerId]['RController'] = RController
                 meetings[meetingId][playerId]['Head'] = Head 
+            if m['id'] == "updatePresenter":
+                isPresenter = m['isPresenter']
+                if isPresenter:
+                    if meetings[meetingId]['seatings'][0] != None:
+                        # Need to move existing presenter
+                        emptySeatIdx = findEmptySeat(meetings[meetingId]["seatings"])
+                        if emptySeatIdx == -1:
+                            # No free seat found, replacing existing user, no seat for player will be handled by the engine
+                            meetings[meetingId]["seatings"][0] = playerId;
+                        else:
+                            oldPresenter = meetings[meetingId]["seatings"][emptySeatIdx]
+                            meetings[meetingId]["seatings"][emptySeatIdx] = oldPresenter;
+                            meetings[meetingId]["seatings"][0] = playerId;
+                pass
     except (websockets.exceptions.ConnectionClosed, websockets.exceptions.ConnectionClosedError,websockets.exceptions.ConnectionClosedOK ):
         print("excpetion called")
         meetingId = None
@@ -62,7 +90,17 @@ async def handler (websocket):
                 wss.pop(meetingId)
         if playerId is not None:
             meetings[meetingId].pop(playerId)
+        meetings[meetingId]["seatings"] = [None if x == playerId else x for x in meetings[meetingId]["seatings"]]
 
+def findEmptySeat(seatings):
+    for idx, seat in enumerate(seatings):
+        # skip presenter seat as we dont want to fill that
+        if idx == 0:
+            continue
+        else:
+            if(seat == None):
+                return idx
+    return -1 # return -1 if all but presenter is filled
 
 def search(list, v):
     for i in range(len(list)):
@@ -70,12 +108,13 @@ def search(list, v):
             return True
     return False   
                 
-
 async def broadcastUpdate():
     for key, value in wss.items():
-        print(f"Broadcasting clients of {key}: {len(value)}")
-        websockets.broadcast(value, json.dumps([(v) for k, v in meetings[key].items()]))
-        
+        websockets.broadcast(value, json.dumps([(v) for k, v in meetings[key].items() if k != "seatings"]))
+
+async def seatingUpdate():
+    for key, value in wss.items():
+        websockets.broadcast(value,json.dumps(meetings[key]["seatings"]))
 
 async def repeating(timeout, function):
     while True:
@@ -90,6 +129,7 @@ async def main():
     loop = asyncio.get_running_loop()
     stop = loop.create_future()
     loop.create_task(repeating(0.1,broadcastUpdate))
+    loop.create_task(repeating(10,seatingUpdate))
     
     async with websockets.serve(handler, "", 8765, ssl=ssl_context):
         await stop
