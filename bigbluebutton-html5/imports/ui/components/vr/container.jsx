@@ -15,6 +15,7 @@ import fetch from 'node-fetch';
 import { DOMParser } from 'xmldom';
 import Cursor from '../cursor/service';
 
+
 const VRContainer = (props) =>{
   this.props = {unityContext}
   this.props = VRService.isVRAvailable()
@@ -92,14 +93,15 @@ const VRContainer = (props) =>{
       const c = preset.createCanvas(slideDimensions.width, slideDimensions.height);
       
       const ctx = c.getContext('2d');
-      var doc = document.getElementById('whiteboard');
-      jQuery(doc).filter('g.cursor')
+      var doc = document.getElementById('whiteboard')
       
       if (doc != null)
       {
+        doc.getElementsByClassName("cursor").remove()
+        
         var v = Canvg.fromString(ctx, doc.outerHTML, preset)
+          
         v.resize(slideDimensions.width*1.5, slideDimensions.height*1.5)
-        console.log("updating")
         v.render().then(() => {
           unityContext.send('Presentation','UpdateSlide',c.toDataURL('image/png'))
         })
