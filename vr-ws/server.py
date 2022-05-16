@@ -67,7 +67,7 @@ async def handler (websocket):
                 print(websocket)
             if m['id'] == "remove":
                 purgePlayer(websocket)
-                websocket.close()
+                #websocket.close()
                 
                 
             if m['id'] == "update":
