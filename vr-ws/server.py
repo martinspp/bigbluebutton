@@ -125,7 +125,7 @@ async def main():
     loop = asyncio.get_running_loop()
     stop = loop.create_future()
     loop.create_task(repeating(0.1,broadcastUpdate))
-    loop.create_task(repeating(10,seatingUpdate))
+    
     
     async with websockets.serve(handler, "", 8765, ssl=ssl_context):
         await stop
