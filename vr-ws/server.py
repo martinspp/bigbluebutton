@@ -66,10 +66,7 @@ async def handler (websocket):
                 meetings[meetingId][playerId]['Head'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
                 print(websocket)
             if m['id'] == "remove":
-                purgePlayer(websocket)
-                #websocket.close()
-                
-                
+                await websocket.close(code=1000, reason='Player Removed')
             if m['id'] == "update":
                 LController = m['LController']
                 RController = m['RController']
@@ -94,7 +91,6 @@ async def handler (websocket):
                         meetings[meetingId]["seatings"] = [None if x == playerId else x for x in meetings[meetingId]["seatings"]]
                         meetings[meetingId]["seatings"][0] = playerId;
     finally:
-        print("excpetion called")
         purgePlayer(websocket)
 
 def purgePlayer(websocket):
@@ -104,8 +100,13 @@ def purgePlayer(websocket):
     for key, value in wss.items():
         if search(value,websocket):
             meetingId = key
-    
+    # Do nothing if the player has already been purged
+    if meetingId == None:
+        return
+        
     for key,value in meetings[meetingId].items():
+        if(key == 'seatings'):
+            continue
         if(value['wsId'] == str(websocket.id)):
             playerId = value['playerId']
             
