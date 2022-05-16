@@ -45,6 +45,7 @@ async def handler (websocket):
                 meetings[meetingId][playerId]['RController'] = RController
                 meetings[meetingId][playerId]['Head'] = Head 
     except (websockets.exceptions.ConnectionClosed, websockets.exceptions.ConnectionClosedError,websockets.exceptions.ConnectionClosedOK ):
+        print("excpetion called")
         meetingId = None
         playerId = None
         for key, value in wss.items():
