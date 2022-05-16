@@ -14,6 +14,7 @@ import canvas from 'canvas';
 import fetch from 'node-fetch';
 import { DOMParser } from 'xmldom';
 import Cursor from '../cursor/service';
+import { cloneDeep } from 'lodash';
 
 
 const VRContainer = (props) =>{
@@ -94,12 +95,14 @@ const VRContainer = (props) =>{
       
       const ctx = c.getContext('2d');
       var doc = document.getElementById('whiteboard')
-      
       if (doc != null)
       {
-        doc.getElementsByClassName("cursor").remove()
+        var copy = cloneDeep(doc);
+        copy.getElementsByClassName("cursor").forEach(element => {
+          element.remove()
+        });
         
-        var v = Canvg.fromString(ctx, doc.outerHTML, preset)
+        var v = Canvg.fromString(ctx, copy.outerHTML, preset)
           
         v.resize(slideDimensions.width*1.5, slideDimensions.height*1.5)
         v.render().then(() => {
