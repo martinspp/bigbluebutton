@@ -61,5 +61,4 @@ export default function handlePresenterAssigned({ body }, meetingId) {
 
     setPresenterInPodReqMsg(setPresenterPayload);
   }
-  console.log('presenter assigned')
 }

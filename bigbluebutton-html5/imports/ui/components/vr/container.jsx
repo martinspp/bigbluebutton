@@ -70,7 +70,7 @@ const VRContainer = (props) =>{
         playerId: Auth.userID,
         username: Auth.fullname,
         wsUrl: "wss://bbb.4eks1s.com:8765",
-        isPresenter:currentUser.presenter
+        isPresenter:currentUser?.presenter
       }
       console.log(multiplayerData)
       unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
@@ -122,7 +122,10 @@ const VRContainer = (props) =>{
         })
         .catch(e => console.log("Something broke: "+ e))  
       }
-    })
+    });
+    window.addEventListener("takePresenter",function(){
+      console.log("present take");
+    });
   });
 
   return (
