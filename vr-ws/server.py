@@ -66,8 +66,8 @@ async def handler (websocket):
                 meetings[meetingId][playerId]['Head'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
                 print(websocket)
             if m['id'] == "remove":
+                purgePlayer(websocket)
                 websocket.close()
-                raise websockets.exceptions.ConnectionClosed
                 
                 
             if m['id'] == "update":
@@ -95,23 +95,28 @@ async def handler (websocket):
                         meetings[meetingId]["seatings"][0] = playerId;
     except (websockets.exceptions.ConnectionClosed, websockets.exceptions.ConnectionClosedError,websockets.exceptions.ConnectionClosedOK ):
         print("excpetion called")
-        meetingId = None
-        playerId = None
-        for key, value in wss.items():
-            if search(value,websocket):
-                meetingId = key
-        
-        for key,value in meetings[meetingId].items():
-            if(value['wsId'] == str(websocket.id)):
-                playerId = value['playerId']
-                
-        if meetingId is not None:
-            wss[meetingId].remove(websocket)
-            if(not wss[meetingId]):
-                wss.pop(meetingId)
-        if playerId is not None:
-            meetings[meetingId].pop(playerId)
-        meetings[meetingId]["seatings"] = [None if x == playerId else x for x in meetings[meetingId]["seatings"]]
+        purgePlayer(websocket)
+
+def purgePlayer(websocket):
+    # because this function is mostly used when the connection is closed unexpectedly, find the meeting and player id by the websocket connection
+    meetingId = None
+    playerId = None
+    for key, value in wss.items():
+        if search(value,websocket):
+            meetingId = key
+    
+    for key,value in meetings[meetingId].items():
+        if(value['wsId'] == str(websocket.id)):
+            playerId = value['playerId']
+            
+    if meetingId is not None:
+        wss[meetingId].remove(websocket)
+        if(not wss[meetingId]):
+            wss.pop(meetingId)
+    if playerId is not None:
+        meetings[meetingId].pop(playerId)
+    meetings[meetingId]["seatings"] = [None if x == playerId else x for x in meetings[meetingId]["seatings"]]
+
 
 
 def findEmptySeat(seatings):
