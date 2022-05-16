@@ -138,7 +138,8 @@ def search(list, v):
                 
 async def broadcastUpdate():
     for key, value in wss.items():
-        websockets.broadcast(value, json.dumps([(v) for k, v in meetings[key].items()]))
+        payload = {'seating':meetings[key]['seatings'],'update':value}
+        websockets.broadcast(value, json.dumps(payload))
 
 async def repeating(timeout, function):
     while True:
@@ -152,7 +153,7 @@ async def main():
     ssl_context.load_cert_chain(bbbssl_cert, keyfile=bbbssl_key)
     loop = asyncio.get_running_loop()
     stop = loop.create_future()
-    loop.create_task(repeating(1,broadcastUpdate))
+    loop.create_task(repeating(0.1,broadcastUpdate))
     
     
     async with websockets.serve(handler, "", 8765, ssl=ssl_context):
