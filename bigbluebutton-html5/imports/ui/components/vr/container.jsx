@@ -123,8 +123,8 @@ const VRContainer = (props) =>{
         .catch(e => console.log("Something broke: "+ e))  
       }
     });
-    window.addEventListener("takePresenter",function(){
-      console.log("present take");
+    window.addEventListener("assignPresenter",function(e){
+      unityContext.send('MultiplayerController','UpdatePresenter', e.detail.userId)
     });
   });
 

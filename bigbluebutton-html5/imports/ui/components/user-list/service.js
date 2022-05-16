@@ -443,7 +443,10 @@ const clearAllEmojiStatus = (users) => {
   users.forEach((user) => makeCall('setEmojiStatus', user.userId, 'none'));
 };
 
-const assignPresenter = (userId) => { makeCall('assignPresenter', userId); };
+const assignPresenter = (userId) => { 
+  makeCall('assignPresenter', userId); 
+  window.dispatchEvent(new CustomEvent('assignPresenter',{detail:{userId:userId}}))
+};
 
 const removeUser = (userId, banUser) => {
   if (isVoiceOnlyUser(userId)) {

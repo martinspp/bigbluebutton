@@ -23,7 +23,7 @@ const getUsersNotAssigned = filterBreakoutUsers(currentBreakoutUsers);
 
 const takePresenterRole = () => {
   makeCall('assignPresenter', Auth.userID);
-  window.dispatchEvent(new Event('takePresenter'));
+  window.dispatchEvent(new CustomEvent('assignPresenter',{detail:{userId:Auth.userID}}));
 };
 
 const amIPresenter = () => {
