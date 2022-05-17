@@ -15,7 +15,7 @@ async def handler (websocket):
             m = json.loads(message)
             meetingId = m['meetingId']
             playerId = m['playerId']
-            
+            username = m['username']
             
             if m['id'] == "add":
                 isPresenter = m['isPresenter']
@@ -60,7 +60,7 @@ async def handler (websocket):
                 meetings[meetingId][playerId] = {}
                 meetings[meetingId][playerId]['wsId'] = str(websocket.id)
                 meetings[meetingId][playerId]['playerId'] = playerId
-                
+                meetings[meetingId][playerId]['username'] = playerId
                 meetings[meetingId][playerId]['LController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
                 meetings[meetingId][playerId]['RController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
                 meetings[meetingId][playerId]['Head'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
