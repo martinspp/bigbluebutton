@@ -80,15 +80,21 @@ async def handler (websocket):
                 isPresenter = m['isPresenter']
                 if isPresenter:
                     if meetings[meetingId]['seatings'][0] != None:
-                        # Need to move existing presenter
-                        emptySeatIdx = findEmptySeat(meetings[meetingId]["seatings"])
-                        if emptySeatIdx == -1:
+                        #Presenter seat taken, lets attempt to swap seats
+                        if playerId in meetings[meetingId]['seatings']:
+                            # if the player already had a seat, lets give our old seat to the old presenter
+                            oldPresenter = meetings[meetingId]['seatings'][0]
+                            meetings[meetingId]['seatings'][meetings[meetingId]['seatings'].index(playerId)] = oldPresenter
+                        # If new presenter was in public space, the old presenter will be moved there too
+                        meetings[meetingId]['seatings'][0] = playerId
+                        #emptySeatIdx = findEmptySeat(meetings[meetingId]["seatings"])
+                        #if emptySeatIdx == -1:
                             # No free seat found, replacing existing user, no seat for player will be handled by the engine
-                            meetings[meetingId]["seatings"][0] = playerId;
-                        else:
-                            oldPresenter = meetings[meetingId]["seatings"][0]
-                            meetings[meetingId]["seatings"][emptySeatIdx] = oldPresenter;
-                            meetings[meetingId]["seatings"][0] = playerId;
+                        #    meetings[meetingId]["seatings"][0] = playerId;
+                        #else:
+                        #    oldPresenter = meetings[meetingId]["seatings"][0]
+                        #    meetings[meetingId]["seatings"][emptySeatIdx] = oldPresenter;
+                        #    meetings[meetingId]["seatings"][0] = playerId;
                     else:
                         meetings[meetingId]["seatings"] = [None if x == playerId else x for x in meetings[meetingId]["seatings"]]
                         meetings[meetingId]["seatings"][0] = playerId;
