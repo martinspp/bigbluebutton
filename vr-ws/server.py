@@ -75,8 +75,6 @@ async def handler (websocket):
                 meetings[meetingId][playerId]['RController'] = RController
                 meetings[meetingId][playerId]['Head'] = Head 
             if m['id'] == "updatePresenter":
-                print("################")
-                print(json.dumps(meetings[meetingId]['seatings']))
                 isPresenter = m['isPresenter']
                 if isPresenter:
                     if meetings[meetingId]['seatings'][0] != None:
@@ -98,7 +96,6 @@ async def handler (websocket):
                     else:
                         meetings[meetingId]["seatings"] = [None if x == playerId else x for x in meetings[meetingId]["seatings"]]
                         meetings[meetingId]["seatings"][0] = playerId;
-                print(json.dumps(meetings[meetingId]['seatings']))
     finally:
         purgePlayer(websocket)
 
