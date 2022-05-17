@@ -140,11 +140,10 @@ class Presentation extends PureComponent {
           height: slidePosition.height,
         },
       });
+      setTimeout(()=>{
+        window.dispatchEvent(new CustomEvent("updateSlide", {detail:{width:slidePosition.width, height:slidePosition.height}}))
+      },5000)
     }
-    setTimeout(()=>{
-      console.log(slidePosition);
-      window.dispatchEvent(new CustomEvent("updateSlide", {detail:{width:slidePosition.width, height:slidePosition.height}}))
-    },5000)
   }
 
   componentDidUpdate(prevProps) {
