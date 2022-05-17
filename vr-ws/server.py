@@ -90,6 +90,7 @@ async def handler (websocket):
                     else:
                         meetings[meetingId]["seatings"] = [None if x == playerId else x for x in meetings[meetingId]["seatings"]]
                         meetings[meetingId]["seatings"][0] = playerId;
+                print(json.dumps(meetings[meetingId]['seatings']))
     finally:
         purgePlayer(websocket)
 
