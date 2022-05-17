@@ -84,7 +84,7 @@ async def handler (websocket):
                             # No free seat found, replacing existing user, no seat for player will be handled by the engine
                             meetings[meetingId]["seatings"][0] = playerId;
                         else:
-                            oldPresenter = meetings[meetingId]["seatings"][0]
+                            oldPresenter = meetings[meetingId]["seatings"][emptySeatIdx]
                             meetings[meetingId]["seatings"][emptySeatIdx] = oldPresenter;
                             meetings[meetingId]["seatings"][0] = playerId;
                     else:
