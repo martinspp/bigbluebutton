@@ -32,9 +32,12 @@ const VRContainer = (props) =>{
 
     // debounce example https://www.geeksforgeeks.org/debouncing-in-javascript/
     annotationsStreamListener.on('added', () => {
-      setTimeout(()=>{
+      debounce(() =>{
         window.dispatchEvent(new CustomEvent("updateSlide"))
-      },500)  
+      }, 500)
+      //setTimeout(()=>{
+        //window.dispatchEvent(new CustomEvent("updateSlide"))
+      //},500)  
     });
     annotationsStreamListener.on('removed', () => {
       setTimeout(()=>{
@@ -91,11 +94,17 @@ const VRContainer = (props) =>{
         current: true,
       }, { fields: { podId: 1 } }) || {};
       const currentSlide = PresentationService.getCurrentSlide(currentPresentation.podId);
+      
+      nextSlide(currentSlide.num, presentation && presentation.pages ? presentation.pages.length : 0 ,currentPresentation.podId)
 
-      //nextSlide(currentSlide.num, ,1)
     });
     unityContext.on("unityPresentationPreviousSlide", () =>{
-      //previousSlide()
+      const currentPresentation = Presentations.findOne({
+        current: true,
+      }, { fields: { podId: 1 } }) || {};
+      const currentSlide = PresentationService.getCurrentSlide(currentPresentation.podId);
+      
+      previousSlide(currentSlide.num,currentPresentation.podId)
     });
 
     subscribeToStreamStateChange('screenshare', function(e){
@@ -103,14 +112,6 @@ const VRContainer = (props) =>{
         unityContext.send("ScreenShareController", "ScreenshareStart");
     });
     window.addEventListener("updateSlide",function(e){
-      const currentPresentation = Presentations.findOne({
-        current: true,
-      }, { fields: { podId: 1 } }) || {};
-      const currentSlide = PresentationService.getCurrentSlide(currentPresentation.podId);
-      console.log(currentPresentation)
-      console.log(currentSlide)
-      console.log("####################")
-
       if(e.detail){
         slideDimensions={
           width:e.detail.width,
@@ -148,6 +149,16 @@ const VRContainer = (props) =>{
       unityContext.send('MultiplayerController','UpdatePresenter', e.detail.userId)
     });
   });
+  const debounce = (func, delay) => {
+    let debounceTimer
+    return function() {
+      const context = this
+      const args = arguments
+        clearTimeout(debounceTimer)
+          debounceTimer
+        = setTimeout(() => func.apply(context, args), delay)
+    }
+  }
 
   return (
     <VRComponent {...props } />
