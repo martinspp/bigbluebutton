@@ -87,6 +87,7 @@ const VRContainer = (props) =>{
     });
 
     unityContext.on("unityPresentationNextSlide", () =>{
+      console.log("next slide")
       const currentPresentation = Presentations.findOne({
         current: true,
       }, { fields: { podId: 1 } }) || {};
@@ -96,6 +97,7 @@ const VRContainer = (props) =>{
 
     });
     unityContext.on("unityPresentationPreviousSlide", () =>{
+      console.log("prev slide")
       const currentPresentation = Presentations.findOne({
         current: true,
       }, { fields: { podId: 1 } }) || {};
