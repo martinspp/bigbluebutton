@@ -14,7 +14,6 @@ import ExternalVideoService from '/imports/ui/components/external-video-player/s
 import CaptionsService from '/imports/ui/components/captions/service';
 import LayoutContext from '../layout/context';
 import { isVideoBroadcasting } from '/imports/ui/components/screenshare/service';
-import VRService from '/imports/ui/components/vr/service';
 
 import MediaService, {
   getSwapLayout,
