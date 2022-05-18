@@ -93,7 +93,7 @@ const VRContainer = (props) =>{
       }, { fields: { podId: 1 } }) || {};
       const currentSlide = PresentationService.getCurrentSlide(currentPresentation.podId);
       
-      PresentationToolbarService.nextSlide(currentSlide.num, currentPresentation && currentPresentation.pages ? currentPresentation.pages.length : 0 ,currentPresentation.podId)
+      PresentationToolbarService.nextSlide(currentSlide.num, 5 ,currentPresentation.podId)
 
     });
     unityContext.on("unityPresentationPreviousSlide", () =>{
