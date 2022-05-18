@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import VRComponent from './component'
-import VRService from './service'
+
 import { UnityContext } from "react-unity-webgl";
 import { withTracker } from 'meteor/react-meteor-data';
 import Auth from '/imports/ui/services/auth';
@@ -13,22 +13,23 @@ import {Canvg, presets} from 'canvg'
 import canvas from 'canvas';
 import fetch from 'node-fetch';
 import { DOMParser } from 'xmldom';
+import {nextSlide, previousSlide} from '/imports/ui/components/presentation/presentation-toolbar/service'
 
 import Users from '/imports/api/users';
-
+import Presentations from '/imports/api/presentations';
 
 const VRContainer = (props) =>{
   this.props = {unityContext}
-  this.props = VRService.isVRAvailable()
-  console.log("render container " + VRService.isVRAvailable())
+
   var WSConnected = false;
   var slideDimensions = {width: null, height:null}
   var lastSvg = null
   useEffect(() => {
 
-    annotationsStreamListener = new Meteor.Streamer(`annotations-${Auth.meetingID}`, { retransmit: false });
-    cursorStreamListener = new Meteor.Streamer(`cursor-${Auth.meetingID}`, { retransmit: false });
+    annotationsStreamListener = new Meteor.Streamer(`annotations-${Auth.meetingID}`);
+    cursorStreamListener = new Meteor.Streamer(`cursor-${Auth.meetingID}`);
 
+    // debounce example https://www.geeksforgeeks.org/debouncing-in-javascript/
     annotationsStreamListener.on('added', () => {
       setTimeout(()=>{
         window.dispatchEvent(new CustomEvent("updateSlide"))
@@ -84,11 +85,30 @@ const VRContainer = (props) =>{
       }
     });
 
+    unityContext.on("unityPresentationNextSlide", () =>{
+      const currentPresentation = Presentations.findOne({
+        current: true,
+      }, { fields: { podId: 1 } }) || {};
+      const currentSlide = PresentationService.getCurrentSlide(currentPresentation.podId);
+
+      //nextSlide(currentSlide.num, ,1)
+    });
+    unityContext.on("unityPresentationPreviousSlide", () =>{
+      //previousSlide()
+    });
+
     subscribeToStreamStateChange('screenshare', function(e){
       if(e.detail.streamState == "connected" && WSConnected)
         unityContext.send("ScreenShareController", "ScreenshareStart");
     });
     window.addEventListener("updateSlide",function(e){
+      const currentPresentation = Presentations.findOne({
+        current: true,
+      }, { fields: { podId: 1 } }) || {};
+      const currentSlide = PresentationService.getCurrentSlide(currentPresentation.podId);
+      console.log(currentPresentation)
+      console.log(currentSlide)
+      console.log("####################")
 
       if(e.detail){
         slideDimensions={
