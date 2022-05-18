@@ -13,7 +13,7 @@ import {Canvg, presets} from 'canvg'
 import canvas from 'canvas';
 import fetch from 'node-fetch';
 import { DOMParser } from 'xmldom';
-import PresentationToolbarService from '/imports/ui/components/presentation/presentation-toolbar/service'
+import {nextSlide, previousSlide} from '/imports/ui/components/presentation/presentation-toolbar/service'
 
 import Users from '/imports/api/users';
 import Presentations from '/imports/api/presentations';
@@ -103,7 +103,7 @@ const VRContainer = (props) =>{
       }, { fields: { podId: 1 } }) || {};
       const currentSlide = PresentationService.getCurrentSlide(currentPresentation.podId);
       
-      PresentationToolBar.previousSlide(currentSlide.num,currentPresentation.podId)
+      previousSlide(currentSlide.num,currentPresentation.podId)
     });
 
     subscribeToStreamStateChange('screenshare', function(e){
