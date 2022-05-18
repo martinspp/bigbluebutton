@@ -92,7 +92,7 @@ const VRContainer = (props) =>{
         current: true,
       }, { fields: { podId: 1 } }) || {};
       const currentSlide = PresentationService.getCurrentSlide(currentPresentation.podId);
-      const numberOfSlides = PresentationToolbarService.getNumberOfSlides(podId, presentationId)
+      const numberOfSlides = PresentationToolbarService.getNumberOfSlides(currentPresentation.podId, currentSlide.presentationId)
       PresentationToolbarService.nextSlide(currentSlide.num, numberOfSlides ,currentPresentation.podId)
 
     });
