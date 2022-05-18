@@ -17,6 +17,7 @@ import {nextSlide, previousSlide} from '/imports/ui/components/presentation/pres
 
 import Users from '/imports/api/users';
 import Presentations from '/imports/api/presentations';
+import PresentationService from '/imports/ui/components/presentation/service';
 
 const VRContainer = (props) =>{
   this.props = {unityContext}
