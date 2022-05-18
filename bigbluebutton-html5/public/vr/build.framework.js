@@ -5832,7 +5832,7 @@ function _emscripten_asm_const_id(code, a0) {
  return ASM_CONSTS[code](a0);
 }
 STATIC_BASE = GLOBAL_BASE;
-STATICTOP = STATIC_BASE + 4177552;
+STATICTOP = STATIC_BASE + 4177808;
 __ATINIT__.push({
  func: (function() {
   __GLOBAL__sub_I_AccessibilityScriptingClasses_cpp();
@@ -7886,7 +7886,7 @@ __ATINIT__.push({
   ___emscripten_environ_constructor();
  })
 });
-var STATIC_BUMP = 4177552;
+var STATIC_BUMP = 4177808;
 Module["STATIC_BASE"] = STATIC_BASE;
 Module["STATIC_BUMP"] = STATIC_BUMP;
 var tempDoublePtr = STATICTOP;
@@ -20212,8 +20212,11 @@ function _time(ptr) {
 function _unityMultiplayerStarted() {
  window.dispatchReactUnityEvent("unityMultiplayerStarted");
 }
-function _unityPresentationSetSlide(slideNumber) {
- window.dispatchReactUnityEvent("unityPresentationSetSlide", slideNumber);
+function _unityPresentationNextSlide() {
+ window.dispatchReactUnityEvent("unityPresentationNextSlide");
+}
+function _unityPresentationPreviousSlide() {
+ window.dispatchReactUnityEvent("unityPresentationPreviousSlide");
 }
 function _unityScreenShareStarted() {
  window.dispatchReactUnityEvent("unityScreenShareStarted");
@@ -26981,7 +26984,8 @@ Module.asmLibraryArg = {
  "_time": _time,
  "_tzset": _tzset,
  "_unityMultiplayerStarted": _unityMultiplayerStarted,
- "_unityPresentationSetSlide": _unityPresentationSetSlide,
+ "_unityPresentationNextSlide": _unityPresentationNextSlide,
+ "_unityPresentationPreviousSlide": _unityPresentationPreviousSlide,
  "_unityScreenShareStarted": _unityScreenShareStarted,
  "_unityScreenShareWSConnected": _unityScreenShareWSConnected,
  "_unsetenv": _unsetenv,

@@ -30,12 +30,11 @@ const VRContainer = (props) =>{
     annotationsStreamListener = new Meteor.Streamer(`annotations-${Auth.meetingID}`);
     cursorStreamListener = new Meteor.Streamer(`cursor-${Auth.meetingID}`);
 
-    // debounce example https://www.geeksforgeeks.org/debouncing-in-javascript/
     annotationsStreamListener.on('added', () => {
-      debounce(window.dispatchEvent(new CustomEvent("updateSlide")), 500)
-      //setTimeout(()=>{
-        //window.dispatchEvent(new CustomEvent("updateSlide"))
-      //},500)  
+
+      setTimeout(()=>{
+        window.dispatchEvent(new CustomEvent("updateSlide"))
+      },500)  
     });
     annotationsStreamListener.on('removed', () => {
       setTimeout(()=>{
@@ -147,16 +146,7 @@ const VRContainer = (props) =>{
       unityContext.send('MultiplayerController','UpdatePresenter', e.detail.userId)
     });
   });
-  const debounce = (func, delay) => {
-    let debounceTimer
-    return function() {
-      const context = this
-      const args = arguments
-        clearTimeout(debounceTimer)
-          debounceTimer
-        = setTimeout(() => func.apply(context, args), delay)
-    }
-  }
+
 
   return (
     <VRComponent {...props } />
