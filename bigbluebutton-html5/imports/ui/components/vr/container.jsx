@@ -32,10 +32,7 @@ const VRContainer = (props) =>{
 
     // debounce example https://www.geeksforgeeks.org/debouncing-in-javascript/
     annotationsStreamListener.on('added', () => {
-      debounce(() =>{
-        debugger;
-        window.dispatchEvent(new CustomEvent("updateSlide"))
-      }, 500)
+      debounce(window.dispatchEvent(new CustomEvent("updateSlide")), 500)
       //setTimeout(()=>{
         //window.dispatchEvent(new CustomEvent("updateSlide"))
       //},500)  
