@@ -149,7 +149,7 @@ const VRContainer = (props) =>{
         setTimeout(()=>{
           console.log("self start")
           unityContext.send("ScreenShareController", "ScreenshareStart");
-        },100000)  
+        },5000)  
     }
         
     })
