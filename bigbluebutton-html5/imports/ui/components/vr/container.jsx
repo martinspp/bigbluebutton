@@ -20,6 +20,7 @@ import Presentations from '/imports/api/presentations';
 import PresentationService from '/imports/ui/components/presentation/service';
 import WhiteboardService from '/imports/ui/components/whiteboard/service';
 import { publishCursorUpdate } from '/imports/ui/components/cursor/service';
+import { current } from 'fibers';
 
 
 const VRContainer = (props) =>{
@@ -131,28 +132,19 @@ const VRContainer = (props) =>{
         },
       );
       console.log(currentUser?.presenter)
-      if(e.detail.streamState == "connected" && WSConnected && !currentUser?.presenter)
-        console.log ("screenshare stared")
-        //unityContext.send("ScreenShareController", "ScreenshareStart");
-    });
-    window.addEventListener("screenShareStartSelf", function(){
-      const currentUser = Users.findOne(
-        { userId: Auth.userID },
-        {
-          fields:
-          {
-            approved: 1, emoji: 1, userId: 1, presenter: 1,
-          },
-        },
-      );
-      if(WSConnected && currentUser?.presenter){
-        setTimeout(()=>{
-          console.log("self start")
+      if(e.detail.streamState == "connected" && WSConnected)
+      {
+        if(currentUser?.presenter){
+          setTimeout(()=>{
+            unityContext.send("ScreenShareController", "ScreenshareStart");
+          },5000) 
+        }
+        else{
           unityContext.send("ScreenShareController", "ScreenshareStart");
-        },5000)  
-    }
-        
-    })
+        }
+      }
+    });
+    
     window.addEventListener("updateSlide",function(e){
       if(e.detail){
         slideDimensions={
