@@ -27,8 +27,6 @@ export default function loadAndPlayMediaStream (mediaStream, mediaElement, muted
   mediaElement.muted = muted;
   mediaElement.pause();
   mediaElement.srcObject = mediaStream;
-  console.log('mediaelemm')
-  console.log(mediaElement);
 
   const constraints = { video: true };
 

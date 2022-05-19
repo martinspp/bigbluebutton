@@ -123,8 +123,12 @@ const VRContainer = (props) =>{
         unityContext.send("ScreenShareController", "ScreenshareStart");
     });
     window.addEventListener("screenShareStartSelf", function(){
-      if(WSConnected)
+      if(WSConnected){
+      //setTimeout(()=>{
         unityContext.send("ScreenShareController", "ScreenshareStart");
+      //},500)  
+    }
+        
     })
     window.addEventListener("updateSlide",function(e){
       if(e.detail){
