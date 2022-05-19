@@ -32,15 +32,7 @@ const VRContainer = (props) =>{
 
     annotationsStreamListener = new Meteor.Streamer(`annotations-${Auth.meetingID}`);
     cursorStreamListener = new Meteor.Streamer(`cursor-${Auth.meetingID}`);
-    const currentUser = () => Users.findOne(
-      { userId: Auth.userID },
-      {
-        fields:
-        {
-          approved: 1, emoji: 1, userId: 1, presenter: 1,
-        },
-      },
-    );
+    
 
     annotationsStreamListener.on('added', () => {
 
@@ -69,7 +61,16 @@ const VRContainer = (props) =>{
     });
 
     unityContext.on("unityMultiplayerStarted", function(){
-      
+
+      const currentUser = Users.findOne(
+        { userId: Auth.userID },
+        {
+          fields:
+          {
+            approved: 1, emoji: 1, userId: 1, presenter: 1,
+          },
+        },
+      );
 
       const multiplayerData = {
         id: "add",
@@ -120,6 +121,15 @@ const VRContainer = (props) =>{
     });
 
     subscribeToStreamStateChange('screenshare', function(e){
+      const currentUser = Users.findOne(
+        { userId: Auth.userID },
+        {
+          fields:
+          {
+            approved: 1, emoji: 1, userId: 1, presenter: 1,
+          },
+        },
+      );
       console.log(currentUser?.presenter)
       if(e.detail.streamState == "connected" && WSConnected && !currentUser?.presenter)
         console.log ("screenshare stared")
