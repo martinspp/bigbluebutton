@@ -18,6 +18,7 @@ import PresentationToolbarService from '/imports/ui/components/presentation/pres
 import Users from '/imports/api/users';
 import Presentations from '/imports/api/presentations';
 import PresentationService from '/imports/ui/components/presentation/service';
+import CursorStreamer from '/imports/api/cursor/server/streamer';
 
 const VRContainer = (props) =>{
   this.props = {unityContext}
@@ -45,6 +46,7 @@ const VRContainer = (props) =>{
       console.log(JSON.stringify(cursors[0]));
       unityContext.send("PresentationController", "UpdateCursor",JSON.stringify(cursors[0]))
     });
+    
     unityContext.on("unityScreenShareStarted", function(){
       const screenShareData = {
         wsUrl: Auth.authenticateURL(Meteor.settings.public.kurento.wsUrl),
@@ -105,6 +107,12 @@ const VRContainer = (props) =>{
       const currentSlide = PresentationService.getCurrentSlide(currentPresentation.podId);
       
       PresentationToolbarService.previousSlide(currentSlide.num,currentPresentation.podId)
+    });
+
+    unityContext.on("unityPresentationSendCursor",(xPercent, yPercent) =>{
+      console.log("received"+ xPercent + " "+ yPercent);
+      const cursors = [];
+      //CursorStreamer(Auth.meetingID).emit('message', { Auth.meetingID, cursors });
     });
 
     subscribeToStreamStateChange('screenshare', function(e){

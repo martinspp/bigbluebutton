@@ -17,6 +17,7 @@ const proccess = _.throttle(() => {
           cursors.push(cursorQueue[meetingId][userId]);
         }
         delete cursorQueue[meetingId];
+        console.log(cursors)
         CursorStreamer(meetingId).emit('message', { meetingId, cursors });
       } catch (error) {
         Logger.error(`Error while trying to send cursor streamer data for meeting ${meetingId}. ${error}`);
