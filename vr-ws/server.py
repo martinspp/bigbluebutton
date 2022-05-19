@@ -61,9 +61,9 @@ async def handler (websocket):
                 meetings[meetingId][playerId]['wsId'] = str(websocket.id)
                 meetings[meetingId][playerId]['playerId'] = playerId
                 meetings[meetingId][playerId]['username'] = username
-                meetings[meetingId][playerId]['LController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-                meetings[meetingId][playerId]['RController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-                meetings[meetingId][playerId]['Head'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+                meetings[meetingId][playerId]['LController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+                meetings[meetingId][playerId]['RController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+                meetings[meetingId][playerId]['Head'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
                 print(websocket)
             if m['id'] == "remove":
                 await websocket.close(code=1000, reason='Player Removed')
