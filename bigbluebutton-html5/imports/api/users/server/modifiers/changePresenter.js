@@ -14,7 +14,6 @@ export default function changePresenter(presenter, userId, meetingId, changedBy)
   };
 
   try {
-    console.log("test")
     const numberAffected = Users.update(selector, modifier);
 
     if (numberAffected) {

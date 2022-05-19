@@ -107,10 +107,12 @@ const attachLocalPreviewStream = (mediaElement) => {
 }
 
 const screenshareHasStarted = () => {
-  console.log("test")
   // Presenter's screen preview is local, so skip
   if (!UserListService.amIPresenter()) {
     viewScreenshare();
+  }else{
+    // start presenters screen share in VR 
+    window.dispatchEvent(new Event("screenShareStartSelf"));
   }
 };
 

@@ -122,6 +122,10 @@ const VRContainer = (props) =>{
       if(e.detail.streamState == "connected" && WSConnected)
         unityContext.send("ScreenShareController", "ScreenshareStart");
     });
+    window.addEventListener("screenShareStartSelf", function(){
+      if(WSConnected)
+        unityContext.send("ScreenShareController", "ScreenshareStart");
+    })
     window.addEventListener("updateSlide",function(e){
       if(e.detail){
         slideDimensions={
