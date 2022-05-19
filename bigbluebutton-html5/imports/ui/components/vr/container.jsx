@@ -18,7 +18,7 @@ import PresentationToolbarService from '/imports/ui/components/presentation/pres
 import Users from '/imports/api/users';
 import Presentations from '/imports/api/presentations';
 import PresentationService from '/imports/ui/components/presentation/service';
-import CursorStreamer from '/imports/api/cursor/server/streamer';
+//import CursorStreamer from '/imports/api/cursor/server/streamer';
 
 const VRContainer = (props) =>{
   this.props = {unityContext}
