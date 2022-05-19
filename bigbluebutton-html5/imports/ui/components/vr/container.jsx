@@ -120,6 +120,7 @@ const VRContainer = (props) =>{
     });
 
     subscribeToStreamStateChange('screenshare', function(e){
+      console.log(currentUser?.presenter)
       if(e.detail.streamState == "connected" && WSConnected && !currentUser?.presenter)
         console.log ("screenshare stared")
         unityContext.send("ScreenShareController", "ScreenshareStart");
