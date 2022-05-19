@@ -18,6 +18,7 @@ import PresentationToolbarService from '/imports/ui/components/presentation/pres
 import Users from '/imports/api/users';
 import Presentations from '/imports/api/presentations';
 import PresentationService from '/imports/ui/components/presentation/service';
+import WhiteboardService from '/imports/ui/components/whiteboard/service';
 //import CursorStreamer from '/imports/api/cursor/server/streamer';
 
 const VRContainer = (props) =>{
@@ -111,8 +112,8 @@ const VRContainer = (props) =>{
 
     unityContext.on("unityPresentationSendCursor",(xPercent, yPercent) =>{
       console.log("received"+ xPercent + " "+ yPercent);
-      const cursors = [];
-      //CursorStreamer(Auth.meetingID).emit('message', { Auth.meetingID, cursors });
+      whiteboardId=WhiteboardService.getCurrentWhiteboardId()
+      cursorStreamListener.emit({xPercent:xPercent,yPercent:yPercent,whiteboardId})
     });
 
     subscribeToStreamStateChange('screenshare', function(e){
