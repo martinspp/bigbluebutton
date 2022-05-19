@@ -45,7 +45,6 @@ const VRContainer = (props) =>{
       },500)  
     });
     cursorStreamListener.on('message', ({ cursors }) => {
-      console.log(JSON.stringify(cursors[0]));
       unityContext.send("PresentationController", "UpdateCursor",JSON.stringify(cursors[0]))
     });
     
@@ -112,7 +111,6 @@ const VRContainer = (props) =>{
     });
 
     unityContext.on("unityPresentationSendCursor",(xPercent, yPercent) =>{
-      console.log("received"+ xPercent + " "+ yPercent);
       whiteboardId=WhiteboardService.getCurrentWhiteboardId()
       publishCursorUpdate({
         xPercent:xPercent,
