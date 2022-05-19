@@ -113,7 +113,8 @@ const VRContainer = (props) =>{
     unityContext.on("unityPresentationSendCursor",(xPercent, yPercent) =>{
       console.log("received"+ xPercent + " "+ yPercent);
       whiteboardId=WhiteboardService.getCurrentWhiteboardId()
-      cursorStreamListener.emit({xPercent:xPercent,yPercent:yPercent,whiteboardId})
+      console.log(whiteboardId)
+      //cursorStreamListener.emit({xPercent:xPercent,yPercent:yPercent,whiteboardId})
     });
 
     subscribeToStreamStateChange('screenshare', function(e){
