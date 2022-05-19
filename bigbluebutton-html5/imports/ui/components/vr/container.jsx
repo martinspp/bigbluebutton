@@ -20,7 +20,6 @@ import Presentations from '/imports/api/presentations';
 import PresentationService from '/imports/ui/components/presentation/service';
 import WhiteboardService from '/imports/ui/components/whiteboard/service';
 import { publishCursorUpdate } from '/imports/ui/components/cursor/service';
-import { current } from 'fibers';
 
 
 const VRContainer = (props) =>{
