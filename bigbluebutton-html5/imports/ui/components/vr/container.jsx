@@ -136,6 +136,15 @@ const VRContainer = (props) =>{
         unityContext.send("ScreenShareController", "ScreenshareStart");
     });
     window.addEventListener("screenShareStartSelf", function(){
+      const currentUser = Users.findOne(
+        { userId: Auth.userID },
+        {
+          fields:
+          {
+            approved: 1, emoji: 1, userId: 1, presenter: 1,
+          },
+        },
+      );
       if(WSConnected && currentUser?.presenter){
         setTimeout(()=>{
           console.log("self start")
