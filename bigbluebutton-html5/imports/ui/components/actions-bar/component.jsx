@@ -126,7 +126,6 @@ class ActionsBar extends PureComponent {
             )
             : null}
             <Button
-              icon="vr"
               label='Iespējot VR'
               size="lg"
               color="primary"
