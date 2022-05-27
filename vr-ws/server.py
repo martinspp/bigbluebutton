@@ -65,8 +65,6 @@ async def handler (websocket):
                 meetings[meetingId][playerId]['RController'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
                 meetings[meetingId][playerId]['Head'] = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
                 print(websocket)
-            if m['id'] == "remove":
-                await websocket.close(code=1000, reason='Player Removed')
             if m['id'] == "update":
                 LController = m['LController']
                 RController = m['RController']
@@ -160,10 +158,7 @@ async def main():
     loop = asyncio.get_running_loop()
     stop = loop.create_future()
     loop.create_task(repeating(0.1,broadcastUpdate))
-    
-    
     async with websockets.serve(handler, "", 8765, ssl=ssl_context):
         await stop
         
-    
 asyncio.run(main())

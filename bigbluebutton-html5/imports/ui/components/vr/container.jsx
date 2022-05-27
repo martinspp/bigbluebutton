@@ -35,7 +35,6 @@ const VRContainer = (props) =>{
     
 
     annotationsStreamListener.on('added', () => {
-
       setTimeout(()=>{
         window.dispatchEvent(new CustomEvent("updateSlide"))
       },500)  
@@ -45,6 +44,7 @@ const VRContainer = (props) =>{
         window.dispatchEvent(new CustomEvent("updateSlide"))
       },500)  
     });
+    
     cursorStreamListener.on('message', ({ cursors }) => {
       unityContext.send("PresentationController", "UpdateCursor",JSON.stringify(cursors[0]))
     });
