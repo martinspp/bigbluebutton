@@ -33,7 +33,7 @@ const VRContainer = (props) =>{
     annotationsStreamListener = new Meteor.Streamer(`annotations-${Auth.meetingID}`);
     cursorStreamListener = new Meteor.Streamer(`cursor-${Auth.meetingID}`);
     
-
+    
     annotationsStreamListener.on('added', () => {
       setTimeout(()=>{
         window.dispatchEvent(new CustomEvent("updateSlide"))
@@ -44,7 +44,7 @@ const VRContainer = (props) =>{
         window.dispatchEvent(new CustomEvent("updateSlide"))
       },500)  
     });
-    
+
     cursorStreamListener.on('message', ({ cursors }) => {
       unityContext.send("PresentationController", "UpdateCursor",JSON.stringify(cursors[0]))
     });
@@ -126,7 +126,7 @@ const VRContainer = (props) =>{
         {
           fields:
           {
-            approved: 1, emoji: 1, userId: 1, presenter: 1,
+            presenter: 1
           },
         },
       );
