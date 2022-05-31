@@ -27,7 +27,6 @@ const VRContainer = (props) =>{
 
   var WSConnected = false;
   var slideDimensions = {width: null, height:null}
-  var lastSvg = null
   useEffect(() => {
 
     annotationsStreamListener = new Meteor.Streamer(`annotations-${Auth.meetingID}`);
@@ -64,12 +63,7 @@ const VRContainer = (props) =>{
 
       const currentUser = Users.findOne(
         { userId: Auth.userID },
-        {
-          fields:
-          {
-            approved: 1, emoji: 1, userId: 1, presenter: 1,
-          },
-        },
+        { fields: { presenter: 1}}
       );
 
       const multiplayerData = {
@@ -79,7 +73,7 @@ const VRContainer = (props) =>{
         username: Auth.fullname,
         wsUrl: "wss://bbb.4eks1s.com:8765",
         isPresenter:currentUser?.presenter
-      }
+      };
       console.log(multiplayerData)
       unityContext.send("MultiplayerController", "SettingsInit",JSON.stringify(multiplayerData))
      
@@ -123,16 +117,10 @@ const VRContainer = (props) =>{
     subscribeToStreamStateChange('screenshare', function(e){
       const currentUser = Users.findOne(
         { userId: Auth.userID },
-        {
-          fields:
-          {
-            presenter: 1
-          },
-        },
+        { fields: { presenter: 1}}
       );
       console.log(currentUser?.presenter)
-      if(e.detail.streamState == "connected" && WSConnected)
-      {
+      if(e.detail.streamState == "connected" && WSConnected){
         if(currentUser?.presenter){
           setTimeout(()=>{
             unityContext.send("ScreenShareController", "ScreenshareStart");
